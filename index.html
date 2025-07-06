@@ -8,21 +8,18 @@
 </head>
 <body>
 
-  <!-- แสงทอง -->
   <div class="gold-glow"></div>
 
-  <!-- Navbar -->
-<header class="navbar">
-  <div class="logo">
-    <a href="#">
-      <img src="assets/image/logo.png" alt="PhoneXpress Logo" class="logo-img" />
-    </a>
-  </div>
-  <nav class="menu">
-    <a href="#">สินค้า</a>
-    <a href="#">ตะกร้า</a>
-  </nav>
-</header>
+  <header class="navbar">
+    <div class="logo">
+      <a href="#"><img src="assets/image/logo.png" alt="PhoneXpress Logo" class="logo-img" /></a>
+    </div>
+    <nav class="menu">
+      <a href="#">สินค้า</a>
+      <a href="#">ตะกร้า</a>
+    </nav>
+  </header>
+
 
   <!-- Hero -->
   <section class="hero">
@@ -34,147 +31,219 @@
   <!-- Products -->
 <section class="product-section">
 
-  <div class="product-card left">
-    <img src="assets/images/iphone16.png" alt="iPhone 16" />
-    <div class="content">
-      <h3>iPhone 16</h3>
-      <strong>“ก้าวสู่ยุคใหม่แห่งความแรงเหนือชั้น”</strong>
-      <ul>
-        <li>ชิป A18 Bionic เร็วขึ้นกว่าเดิม 20%</li>
-        <li>พอร์ต USB‑C ชาร์จไว ใช้งานง่ายทุกอุปกรณ์</li>
-        <li>แบตเตอรี่ใช้งานได้นานข้ามวัน</li>
-      </ul>
-      <a href="#" class="btn">ดูรายละเอียด</a>
-    </div>
-  </div>
+    <!-- 🔁 10 รุ่น iPhone พร้อมปุ่มเลือกสี -->
+    <!-- 🧱 โครงสร้าง: preview-img id, name="color-รุ่น", สี 3 ตัว -->
 
-  <div class="product-card right">
-    <img src="assets/images/iphone16-promax.png" alt="iPhone 16 Pro Max" />
-    <div class="content">
-      <h3>iPhone 16 Pro Max</h3>
-      <strong>“สุดยอดประสบการณ์ภาพและความลึกที่คุณสัมผัสได้”</strong>
-      <ul>
-        <li>กล้อง Periscope Zoom 5× คมชัดทุกช็อต</li>
-        <li>จอ ProMotion 120Hz ลื่นไหล ไร้ดีเลย์</li>
-        <li>ตัวเครื่องไทเทเนียม แข็งแกร่ง หรูหรา</li>
-      </ul>
-      <a href="#" class="btn">ดูรายละเอียด</a>
+    <!-- 1. iPhone 16 -->
+    <div class="product-card left">
+      <img src="assets/images/iphone16-black.png" alt="iPhone 16" id="preview-iphone16" />
+      <div class="content">
+        <h3>iPhone 16</h3>
+        <strong>“ก้าวสู่ยุคใหม่แห่งความแรงเหนือชั้น”</strong>
+        <ul>
+          <li>ชิป A18 Bionic เร็วขึ้นกว่าเดิม 20%</li>
+          <li>พอร์ต USB‑C ชาร์จไว</li>
+          <li>แบตเตอรี่ยาวนาน</li>
+        </ul>
+        <ul class="colornav">
+          <li><input type="radio" id="iphone16-black" name="color-iphone16" value="black" hidden checked><label for="iphone16-black" class="colornav-link">สีดำ</label></li>
+          <li><input type="radio" id="iphone16-blue" name="color-iphone16" value="blue" hidden><label for="iphone16-blue" class="colornav-link">สีน้ำเงิน</label></li>
+          <li><input type="radio" id="iphone16-pink" name="color-iphone16" value="pink" hidden><label for="iphone16-pink" class="colornav-link">สีชมพู</label></li>
+        </ul>
+        <a href="#" class="btn">ดูรายละเอียด</a>
+      </div>
     </div>
-  </div>
 
-  <div class="product-card left">
-    <img src="assets/images/iphone16-pro.png" alt="iPhone 16 Pro" />
-    <div class="content">
-      <h3>iPhone 16 Pro</h3>
-      <strong>“ดีไซน์อันปราณีต พลังแรงเกินบรรยาย”</strong>
-      <ul>
-        <li>Dynamic Island โต้ตอบเรียลไทม์</li>
-        <li>จอ OLED HDR สว่างคมชัด</li>
-        <li>Neural Engine รุ่นล่าสุดพร้อม A18 Bionic</li>
-      </ul>
-      <a href="#" class="btn">ดูรายละเอียด</a>
+    <!-- 2. iPhone 16 Pro Max -->
+    <div class="product-card right">
+      <img src="assets/images/iphone16-promax-black.png" alt="iPhone 16 Pro Max" id="preview-iphone16-promax" />
+      <div class="content">
+        <h3>iPhone 16 Pro Max</h3>
+        <strong>“สุดยอดประสบการณ์ภาพและความลึกที่คุณสัมผัสได้”</strong>
+        <ul>
+          <li>กล้อง Periscope Zoom 5×</li>
+          <li>จอ ProMotion 120Hz</li>
+          <li>ตัวเครื่องไทเทเนียม</li>
+        </ul>
+        <ul class="colornav">
+          <li><input type="radio" id="iphone16-promax-black" name="color-iphone16-promax" value="black" hidden checked><label for="iphone16-promax-black" class="colornav-link">สีดำ</label></li>
+          <li><input type="radio" id="iphone16-promax-gold" name="color-iphone16-promax" value="gold" hidden><label for="iphone16-promax-gold" class="colornav-link">สีทอง</label></li>
+          <li><input type="radio" id="iphone16-promax-titanium" name="color-iphone16-promax" value="titanium" hidden><label for="iphone16-promax-titanium" class="colornav-link">ไทเทเนียม</label></li>
+        </ul>
+        <a href="#" class="btn">ดูรายละเอียด</a>
+      </div>
     </div>
-  </div>
 
-  <div class="product-card right">
-    <img src="assets/images/iphone16e.png" alt="iPhone 16e" />
-    <div class="content">
-      <h3>iPhone 16e</h3>
-      <strong>“ความลงตัวระหว่างประหยัดและประสิทธิภาพ”</strong>
-      <ul>
-        <li>ขนาดกะทัดรัด จับถนัดมือ</li>
-        <li>ชิป A17 Bionic ในราคาคุ้มค่า</li>
-        <li>กล้องคู่ พร้อมฟีเจอร์ครบ</li>
-      </ul>
-      <a href="#" class="btn">ดูรายละเอียด</a>
+    <!-- 3. iPhone 16 Pro -->
+    <div class="product-card left">
+      <img src="assets/images/iphone16-pro-black.png" alt="iPhone 16 Pro" id="preview-iphone16-pro" />
+      <div class="content">
+        <h3>iPhone 16 Pro</h3>
+        <strong>“ดีไซน์อันปราณีต พลังแรงเกินบรรยาย”</strong>
+        <ul>
+          <li>Dynamic Island</li>
+          <li>จอ OLED HDR</li>
+          <li>Neural Engine รุ่นล่าสุด</li>
+        </ul>
+        <ul class="colornav">
+          <li><input type="radio" id="iphone16-pro-black" name="color-iphone16-pro" value="black" hidden checked><label for="iphone16-pro-black" class="colornav-link">สีดำ</label></li>
+          <li><input type="radio" id="iphone16-pro-blue" name="color-iphone16-pro" value="blue" hidden><label for="iphone16-pro-blue" class="colornav-link">สีน้ำเงิน</label></li>
+          <li><input type="radio" id="iphone16-pro-titanium" name="color-iphone16-pro" value="titanium" hidden><label for="iphone16-pro-titanium" class="colornav-link">ไทเทเนียม</label></li>
+        </ul>
+        <a href="#" class="btn">ดูรายละเอียด</a>
+      </div>
     </div>
-  </div>
 
-  <div class="product-card left">
-    <img src="assets/images/iphone15-promax.png" alt="iPhone 15 Pro Max" />
-    <div class="content">
-      <h3>iPhone 15 Pro Max</h3>
-      <strong>“ขีดสุดแห่งพลังสร้างสรรค์ ให้คุณมากกว่าที่เคย”</strong>
-      <ul>
-        <li>Action Button ปรับแต่งได้ตามใจ</li>
-        <li>ซูมออพติคอล 5× พร้อมกันสั่นระดับโปร</li>
-        <li>ตัวเครื่อง Titanium แข็งแรงแต่น้ำหนักเบา</li>
-      </ul>
-      <a href="#" class="btn">ดูรายละเอียด</a>
+    <!-- 4. iPhone 16e -->
+    <div class="product-card right">
+      <img src="assets/images/iphone16e-black.png" alt="iPhone 16e" id="preview-iphone16e" />
+      <div class="content">
+        <h3>iPhone 16e</h3>
+        <strong>“ประหยัดแต่ประสิทธิภาพไม่ลด”</strong>
+        <ul>
+          <li>ขนาดกะทัดรัด</li>
+          <li>ชิป A17 Bionic</li>
+          <li>กล้องคู่</li>
+        </ul>
+        <ul class="colornav">
+          <li><input type="radio" id="iphone16e-black" name="color-iphone16e" value="black" hidden checked><label for="iphone16e-black" class="colornav-link">สีดำ</label></li>
+          <li><input type="radio" id="iphone16e-starlight" name="color-iphone16e" value="starlight" hidden><label for="iphone16e-starlight" class="colornav-link">สีสตาร์ไลท์</label></li>
+          <li><input type="radio" id="iphone16e-red" name="color-iphone16e" value="red" hidden><label for="iphone16e-red" class="colornav-link">สีแดง</label></li>
+        </ul>
+        <a href="#" class="btn">ดูรายละเอียด</a>
+      </div>
     </div>
-  </div>
 
-  <div class="product-card right">
-    <img src="assets/images/iphone15-pro.png" alt="iPhone 15 Pro" />
-    <div class="content">
-      <h3>iPhone 15 Pro</h3>
-      <strong>“เหนือระดับทุกการใช้งาน ด้วยนวัตกรรมล้ำสมัย”</strong>
-      <ul>
-        <li>หน้าจอ ProMotion 120Hz สัมผัสลื่นไหล</li>
-        <li>กล้องอัลตร้าไวด์ คมกริบทุกมุมมอง</li>
-        <li>ชิป A17 Pro ประสิทธิภาพขั้นสุด</li>
-      </ul>
-      <a href="#" class="btn">ดูรายละเอียด</a>
-    </div>
+<div class="product-card left">
+  <img src="assets/images/iphone15-promax-black.png" alt="iPhone 15 Pro Max" id="preview-iphone15-promax" />
+  <div class="content">
+    <h3>iPhone 15 Pro Max</h3>
+    <strong>“สุดยอดสมาร์ตโฟนที่แรงและบางที่สุดเท่าที่เคยมีมา”</strong>
+    <ul>
+      <li>กล้อง Periscope Zoom ซูม 5× คมกริบทุกรายละเอียด</li>
+      <li>หน้าจอ ProMotion 120Hz ลื่นไหลไม่มีสะดุด</li>
+      <li>บอดี้ Titanium แข็งแรงแต่น้ำหนักเบา</li>
+    </ul>
+    <ul class="colornav">
+      <li><input type="radio" id="iphone15-promax-black" name="color-iphone15-promax" value="black" hidden checked><label for="iphone15-promax-black" class="colornav-link">สีดำ</label></li>
+      <li><input type="radio" id="iphone15-promax-blue" name="color-iphone15-promax" value="blue" hidden><label for="iphone15-promax-blue" class="colornav-link">สีน้ำเงิน</label></li>
+      <li><input type="radio" id="iphone15-promax-natural" name="color-iphone15-promax" value="natural" hidden><label for="iphone15-promax-natural" class="colornav-link">สีไทเทเนียม</label></li>
+    </ul>
+    <a href="#" class="btn">ดูรายละเอียด</a>
   </div>
+</div>
 
-  <div class="product-card left">
-    <img src="assets/images/iphone15.png" alt="iPhone 15" />
-    <div class="content">
-      <h3>iPhone 15</h3>
-      <strong>“ที่สุดแห่งความคุ้มค่า ดีไซน์พรีเมียม”</strong>
-      <ul>
-        <li>พอร์ต USB‑C มาตรฐานใหม่ ชาร์จสะดวก</li>
-        <li>Dynamic Island ใช้งานแจ้งเตือนลื่นไหล</li>
-        <li>กล้องคู่ 48 MP คุณภาพระดับโปร</li>
-      </ul>
-      <a href="#" class="btn">ดูรายละเอียด</a>
-    </div>
+<!-- 6. iPhone 15 Pro -->
+<div class="product-card right">
+  <img src="assets/images/iphone15-pro-black.png" alt="iPhone 15 Pro" id="preview-iphone15-pro" />
+  <div class="content">
+    <h3>iPhone 15 Pro</h3>
+    <strong>“เหนือระดับทุกการใช้งาน ด้วยนวัตกรรมล้ำสมัย”</strong>
+    <ul>
+      <li>หน้าจอ ProMotion 120Hz สัมผัสลื่นไหล</li>
+      <li>กล้องอัลตร้าไวด์ คมกริบทุกมุมมอง</li>
+      <li>ชิป A17 Pro ประสิทธิภาพขั้นสุด</li>
+    </ul>
+    <ul class="colornav">
+      <li><input type="radio" id="iphone15-pro-black" name="color-iphone15-pro" value="black" hidden checked><label for="iphone15-pro-black" class="colornav-link">สีดำ</label></li>
+      <li><input type="radio" id="iphone15-pro-blue" name="color-iphone15-pro" value="blue" hidden><label for="iphone15-pro-blue" class="colornav-link">สีน้ำเงิน</label></li>
+      <li><input type="radio" id="iphone15-pro-natural" name="color-iphone15-pro" value="natural" hidden><label for="iphone15-pro-natural" class="colornav-link">สีไทเทเนียม</label></li>
+    </ul>
+    <a href="#" class="btn">ดูรายละเอียด</a>
   </div>
+</div>
 
-  <div class="product-card right">
-    <img src="assets/images/iphone14-promax.png" alt="iPhone 14 Pro Max" />
-    <div class="content">
-      <h3>iPhone 14 Pro Max</h3>
-      <strong>“เปิดโลกอัจฉริยะ ด้วยภาพและเสียงเหนือชั้น”</strong>
-      <ul>
-        <li>จอ Always-On Display เห็นทุกสถานะ</li>
-        <li>กล้อง 48 MP ถ่ายกลางคืนคมสวย</li>
-        <li>Emergency SOS ผ่านดาวเทียม</li>
-      </ul>
-      <a href="#" class="btn">ดูรายละเอียด</a>
-    </div>
+<!-- 7. iPhone 15 -->
+<div class="product-card left">
+  <img src="assets/images/iphone15-black.png" alt="iPhone 15" id="preview-iphone15" />
+  <div class="content">
+    <h3>iPhone 15</h3>
+    <strong>“ที่สุดแห่งความคุ้มค่า ดีไซน์พรีเมียม”</strong>
+    <ul>
+      <li>พอร์ต USB‑C มาตรฐานใหม่ ชาร์จสะดวก</li>
+      <li>Dynamic Island ใช้งานแจ้งเตือนลื่นไหล</li>
+      <li>กล้องคู่ 48 MP คุณภาพระดับโปร</li>
+    </ul>
+    <ul class="colornav">
+      <li><input type="radio" id="iphone15-black" name="color-iphone15" value="black" hidden checked><label for="iphone15-black" class="colornav-link">สีดำ</label></li>
+      <li><input type="radio" id="iphone15-green" name="color-iphone15" value="green" hidden><label for="iphone15-green" class="colornav-link">สีเขียว</label></li>
+      <li><input type="radio" id="iphone15-pink" name="color-iphone15" value="pink" hidden><label for="iphone15-pink" class="colornav-link">สีชมพู</label></li>
+    </ul>
+    <a href="#" class="btn">ดูรายละเอียด</a>
   </div>
+</div>
 
-  <div class="product-card left">
-    <img src="assets/images/iphone14-pro.png" alt="iPhone 14 Pro" />
-    <div class="content">
-      <h3>iPhone 14 Pro</h3>
-      <strong>“พรีเมียมอัจฉริยะ ทุกวินาทีคือแรงบันดาลใจ”</strong>
-      <ul>
-        <li>Dynamic Island ใช้งานแบบอินเทอร์แอคทีฟ</li>
-        <li>ชิป A16 Bionic ลื่นแรงในทุกแอป</li>
-        <li>บอดี้สแตนเลสสตีล เงางามพรีเมียม</li>
-      </ul>
-      <a href="#" class="btn">ดูรายละเอียด</a>
-    </div>
+<!-- 8. iPhone 14 Pro Max -->
+<div class="product-card right">
+  <img src="assets/images/iphone14-promax-black.png" alt="iPhone 14 Pro Max" id="preview-iphone14-promax" />
+  <div class="content">
+    <h3>iPhone 14 Pro Max</h3>
+    <strong>“เปิดโลกอัจฉริยะ ด้วยภาพและเสียงเหนือชั้น”</strong>
+    <ul>
+      <li>จอ Always-On Display เห็นทุกสถานะ</li>
+      <li>กล้อง 48 MP ถ่ายกลางคืนคมสวย</li>
+      <li>Emergency SOS ผ่านดาวเทียม</li>
+    </ul>
+    <ul class="colornav">
+      <li><input type="radio" id="iphone14-promax-black" name="color-iphone14-promax" value="black" hidden checked><label for="iphone14-promax-black" class="colornav-link">สีดำ</label></li>
+      <li><input type="radio" id="iphone14-promax-gold" name="color-iphone14-promax" value="gold" hidden><label for="iphone14-promax-gold" class="colornav-link">สีทอง</label></li>
+      <li><input type="radio" id="iphone14-promax-silver" name="color-iphone14-promax" value="silver" hidden><label for="iphone14-promax-silver" class="colornav-link">สีเงิน</label></li>
+    </ul>
+    <a href="#" class="btn">ดูรายละเอียด</a>
   </div>
+</div>
 
-  <div class="product-card right">
-    <img src="assets/images/iphone13.png" alt="iPhone 13" />
-    <div class="content">
-      <h3>iPhone 13</h3>
-      <strong>“คลาสสิคคุ้มค่า คาแรกเตอร์สดใหม่”</strong>
-      <ul>
-        <li>Cinematic Mode ถ่ายวิดีโอเบลอหลัง</li>
-        <li>แบตเตอรี่ใช้ได้นานตลอดวัน</li>
-        <li>กล้องไวด์ + อัลตร้าไวด์ ครบทุกมุม</li>
-      </ul>
-      <a href="#" class="btn">ดูรายละเอียด</a>
-    </div>
+<!-- 9. iPhone 14 Pro -->
+<div class="product-card left">
+  <img src="assets/images/iphone14-pro-black.png" alt="iPhone 14 Pro" id="preview-iphone14-pro" />
+  <div class="content">
+    <h3>iPhone 14 Pro</h3>
+    <strong>“พรีเมียมอัจฉริยะ ทุกวินาทีคือแรงบันดาลใจ”</strong>
+    <ul>
+      <li>Dynamic Island ใช้งานแบบอินเทอร์แอคทีฟ</li>
+      <li>ชิป A16 Bionic ลื่นแรงในทุกแอป</li>
+      <li>บอดี้สแตนเลสสตีล เงางามพรีเมียม</li>
+    </ul>
+    <ul class="colornav">
+      <li><input type="radio" id="iphone14-pro-black" name="color-iphone14-pro" value="black" hidden checked><label for="iphone14-pro-black" class="colornav-link">สีดำ</label></li>
+      <li><input type="radio" id="iphone14-pro-purple" name="color-iphone14-pro" value="purple" hidden><label for="iphone14-pro-purple" class="colornav-link">สีม่วง</label></li>
+      <li><input type="radio" id="iphone14-pro-silver" name="color-iphone14-pro" value="silver" hidden><label for="iphone14-pro-silver" class="colornav-link">สีเงิน</label></li>
+    </ul>
+    <a href="#" class="btn">ดูรายละเอียด</a>
   </div>
+</div>
+
+<!-- 10. iPhone 13 -->
+<div class="product-card right">
+  <img src="assets/images/iphone13-black.png" alt="iPhone 13" id="preview-iphone13" />
+  <div class="content">
+    <h3>iPhone 13</h3>
+    <strong>“คลาสสิคคุ้มค่า คาแรกเตอร์สดใหม่”</strong>
+    <ul>
+      <li>Cinematic Mode ถ่ายวิดีโอเบลอหลัง</li>
+      <li>แบตเตอรี่ใช้ได้นานตลอดวัน</li>
+      <li>กล้องไวด์ + อัลตร้าไวด์ ครบทุกมุม</li>
+    </ul>
+    <ul class="colornav">
+      <li><input type="radio" id="iphone13-black" name="color-iphone13" value="black" hidden checked><label for="iphone13-black" class="colornav-link">สีดำ</label></li>
+      <li><input type="radio" id="iphone13-blue" name="color-iphone13" value="blue" hidden><label for="iphone13-blue" class="colornav-link">สีน้ำเงิน</label></li>
+      <li><input type="radio" id="iphone13-pink" name="color-iphone13" value="pink" hidden><label for="iphone13-pink" class="colornav-link">สีชมพู</label></li>
+    </ul>
+    <a href="#" class="btn">ดูรายละเอียด</a>
+  </div>
+</div>
 
 </section>
+<script>
+  const preview = document.getElementById("preview-iphone16");
+  const radios = document.getElementsByName("color-iphone16");
+
+  radios.forEach(radio => {
+    radio.addEventListener("change", () => {
+      preview.src = `assets/images/iphone16-${radio.value}.png`;
+    });
+  });
+</script>
 
   <!-- Footer -->
   <footer class="footer">

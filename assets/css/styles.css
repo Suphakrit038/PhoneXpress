@@ -1,0 +1,129 @@
+:root {
+  --gold: #d4af37;
+  --black: #000000;
+  --white: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: var(--black);
+  color: var(--white);
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Golden glow animation */
+.gold-glow {
+  position: fixed;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+  animation: glowMove 6s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes glowMove {
+  0% {
+    transform: translateX(-30%);
+  }
+  100% {
+    transform: translateX(30%);
+  }
+}
+
+.navbar, .hero, .about, .footer {
+  position: relative;
+  z-index: 1;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: rgba(0, 0, 0, 0.9);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--gold);
+}
+
+.menu a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.menu a:hover {
+  color: var(--gold);
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.125rem;
+  color: #e5e7eb;
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  background-color: var(--gold);
+  color: var(--black);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #f6c84f;
+  transform: translateY(-2px);
+}
+
+.about {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 1.8rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.about p {
+  color: #d1d5db;
+  margin-bottom: 1rem;
+}
+
+.footer {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: var(--white);
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  margin-top: auto;
+}

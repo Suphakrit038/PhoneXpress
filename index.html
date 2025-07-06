@@ -4,93 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PhoneXpress</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background-color: white;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid #e5e7eb;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      background-color: white;
-    }
-    .navbar .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: black;
-    }
-    .menu a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: black;
-    }
-    .menu a:hover {
-      color: #d97706; /* yellow-600 */
-    }
-    .hero {
-      text-align: center;
-      padding: 4rem 1rem;
-      background: linear-gradient(to bottom, white, #fefce8); /* yellow-50 */
-    }
-    .hero h1 {
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: black;
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      font-size: 1.125rem;
-      color: #374151; /* gray-700 */
-      margin-bottom: 1.5rem;
-    }
-    .btn {
-      padding: 0.5rem 1.5rem;
-      border-radius: 9999px;
-      background-color: black;
-      color: white;
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .btn:hover {
-      background-color: #d97706;
-    }
-    .about {
-      max-width: 768px;
-      max-hight: 350px;
-      margin: 0 auto;
-      padding: 2.5rem 1rem;
-      text-align: center;
-    }
-    .about h2 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: black;
-      margin-bottom: 0.75rem;
-    }
-    .about p {
-      color: #1f2937; /* gray-800 */
-      margin-bottom: 0.5rem;
-    }
-    .footer {
-      background-color: black;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.875rem;
-      margin-top: auto;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
+  <!-- แสงทอง -->
+  <div class="gold-glow"></div>
 
   <!-- Navbar -->
   <header class="navbar">
@@ -105,15 +23,15 @@
   <section class="hero">
     <h1>ซื้อ iPhone แท้ ง่าย ปลอดภัย และเหนือระดับ</h1>
     <p>เปรียบเทียบรุ่น สี ความจุ พร้อมชำระเงินในคลิกเดียว</p>
-    <button class="btn">ดูสินค้าทั้งหมด</button>
+    <a href="/shop" class="btn">ดูสินค้าทั้งหมด</a>
   </section>
 
-  <!-- About Section -->
+  <!-- About -->
   <section class="about">
     <h2>เกี่ยวกับเว็บไซต์</h2>
-    <p>แพลตฟอร์มออนไลน์ที่รวบรวม iPhone แต่ละรุ่นพร้อมภาพสวยคมชัดและข้อมูลสเปกครบครัน ให้คุณเปรียบเทียบรุ่น สี และความจุได้อย่างใจต้องการ</p>
-    <p>เพียงคลิกเดียวก็สามารถเพิ่มสินค้าลงตะกร้า กรอกที่อยู่ และชำระเงินพร้อมระบบติดตามสถานะคำสั่งซื้อและฟอร์มติดต่อสอบถามภายในเว็บ</p>
-    <p>ดีไซน์เรียบหรูด้วยโทนสีขาว–ทอง–ดำ รองรับทั้งคอมพิวเตอร์และมือถือ มอบประสบการณ์ซื้อ iPhone ออนไลน์ที่ง่าย ปลอดภัย และเหนือระดับตั้งแต่ก้าวแรกจนถึงมือลูกค้า</p>
+    <p>แพลตฟอร์มออนไลน์ที่รวบรวม iPhone แต่ละรุ่นพร้อมภาพสวยคมชัดและข้อมูลสเปกครบครัน</p>
+    <p>เพียงคลิกเดียวก็สามารถเพิ่มสินค้าลงตะกร้า กรอกที่อยู่ และชำระเงิน พร้อมระบบติดตามสถานะคำสั่งซื้อ</p>
+    <p>ดีไซน์เรียบหรูด้วยโทนสีดำและทอง รองรับทั้งคอมพิวเตอร์และมือถือ</p>
   </section>
 
   <!-- Footer -->
@@ -121,6 +39,5 @@
     <p>&copy; 2025 PhoneXpress. All rights reserved.</p>
     <p>ติดตามสถานะคำสั่งซื้อ | ติดต่อผ่าน LINE | บริการจัดส่งถึงบ้าน</p>
   </footer>
-
 </body>
 </html>

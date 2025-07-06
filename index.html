@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8" />
-    <title>PhoneXpress - ซื้อ iPhone แท้</title>
+    <title>PhoneXpress - ซื้อ iPhone ง่าย ปลอดภัย เหนือระดับ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="assets/image/favicon.png" />
     <style>
@@ -11,8 +11,9 @@
             --gold: #d4af37;
             --black: #000000;
             --white: #ffffff;
-            --dark-gray-bg: rgba(255, 255, 255, 0.1); /* Background color for cards */
+            --dark-gray-bg: rgba(255, 255, 255, 0.1); /* Background color for cards/sections */
             --light-text-color: #e5e7eb; /* Secondary text color */
+            --border-color: rgba(255, 255, 255, 0.2);
         }
 
         /* --- Global Styles & Body --- */
@@ -24,7 +25,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden; /* Prevent horizontal scroll due to glow */
+            overflow-x: hidden;
         }
 
         /* --- Animations --- */
@@ -36,7 +37,7 @@
             height: 100%;
             background: linear-gradient(120deg, transparent, rgba(212, 175, 55, 0.15), transparent);
             animation: glowMove 10s ease-in-out infinite alternate;
-            pointer-events: none; /* Allows clicks to pass through */
+            pointer-events: none;
             z-index: 0;
         }
 
@@ -45,13 +46,8 @@
             100% { transform: translateX(30%); }
         }
 
-        @keyframes floatFadeIn {
-            0% { transform: translateY(40px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-
         /* --- Layout & Z-index for content over glow --- */
-        .navbar, .hero, .footer, .product-section {
+        .navbar, .hero, .products-section, .about, .contact, .footer {
             position: relative;
             z-index: 1;
         }
@@ -83,7 +79,7 @@
             position: relative;
             font-weight: 500;
             font-size: 1.05rem;
-            padding-bottom: 5px; /* Space for underline effect */
+            padding-bottom: 5px;
         }
 
         .menu a::after {
@@ -99,160 +95,226 @@
 
         .menu a:hover { color: var(--gold); }
         .menu a:hover::after { width: 100%; }
-        .menu a.active::after { width: 100%; } /* Active link underline */
+        .menu a.active::after { width: 100%; }
 
         /* --- Hero Section --- */
         .hero {
             text-align: center;
-            padding: 5rem 1.5rem 6rem;
-            background: url('assets/image/hero-bg.jpg') no-repeat center center/cover;
-            min-height: 500px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            padding: 5rem 1.5rem;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('assets/image/iphone-hero-bg.jpg'); /* Add a hero background image */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3; /* Adjust opacity as needed */
+            z-index: -1;
         }
 
         .hero h1 {
-            font-size: 3.2rem;
-            font-weight: 700;
-            margin-bottom: 1.2rem;
+            font-size: 3.5rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
             line-height: 1.2;
-            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-            animation: floatFadeIn 1s ease-out;
         }
 
         .hero p {
             font-size: 1.3rem;
             color: var(--light-text-color);
-            margin-bottom: 2rem;
             max-width: 700px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-            animation: floatFadeIn 1s ease-out 0.2s forwards;
-            opacity: 0; /* Hidden initially for animation */
+            margin: 0 auto 2.5rem;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
         }
 
-        /* --- Call-to-Action Button --- */
+        /* --- Call-to-Action Buttons --- */
         .btn {
             padding: 0.8rem 2.5rem;
-            border-radius: 9999px; /* Pill shape */
+            border-radius: 9999px;
             background-color: var(--gold);
             color: var(--black);
             border: none;
             cursor: pointer;
             font-weight: bold;
             font-size: 1.1rem;
-            text-decoration: none; /* Remove underline for links */
+            text-decoration: none;
             display: inline-block;
             transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
-            animation: floatFadeIn 1s ease-out 0.4s forwards;
-            opacity: 0; /* Hidden initially for animation */
         }
 
         .btn:hover {
-            background-color: #f6c84f; /* Lighter gold on hover */
-            transform: translateY(-4px); /* Slight lift effect */
+            background-color: #f6c84f;
+            transform: translateY(-4px);
             box-shadow: 0 8px 20px rgba(212, 175, 55, 0.6);
         }
 
-        /* --- Product Section (GRID Layout) --- */
-        .product-section {
-            display: grid; /* Changed to grid */
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid columns */
-            gap: 2.5rem; /* Space between product cards */
-            padding: 5rem 1.5rem;
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
+        }
+
+        /* --- Products Section --- */
+        .products-section {
+            padding: 4rem 1.5rem;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly darker background */
+        }
+
+        .products-section h2 {
+            font-size: 2.8rem;
+            color: var(--gold);
+            margin-bottom: 3rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
             max-width: 1200px;
             margin: 0 auto;
-            /* Removed align-items: center; as grid handles alignment */
+            justify-content: center; /* Center items in grid */
         }
 
         .product-card {
-            display: flex; /* Kept flex for stacking content inside card */
-            flex-direction: column; /* Stack image and content */
             background-color: var(--dark-gray-bg);
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(8px);
-            overflow: hidden;
-            width: 100%; /* Take full width of grid column */
-            padding: 1.5rem; /* Reduced padding for compact cards */
-            align-items: center; /* Center content horizontally within card */
-            text-align: center; /* Center text within card */
-            transition: transform 0.3s ease;
+            border-radius: 15px;
+            padding: 1.8rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         .product-card:hover {
             transform: translateY(-8px);
-        }
-
-        /* Removed .product-card.left/right specific styles */
-
-        .product-image-container {
-            flex-shrink: 0;
-            width: 80%; /* Adjusted for a more compact card */
-            height: 300px; /* Fixed height for consistent image display in grid */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            margin-bottom: 1rem; /* Space between image and content */
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
         }
 
         .product-card img {
             width: 100%;
-            height: 100%;
+            max-height: 250px;
             object-fit: contain;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-            animation: floatFadeIn 1s ease-out 0.3s forwards;
-            opacity: 0;
-            transition: transform 0.4s ease;
+            margin-bottom: 1.5rem;
         }
-
-        .product-card img:hover {
-            transform: scale(1.08);
-        }
-
-        .content {
-            padding: 0 0.5rem; /* Adjusted padding */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            flex-grow: 1;
-            text-align: center; /* Center text within card */
-        }
-
-        /* Removed .product-card.right .content specific styles */
 
         .product-card h3 {
-            font-size: 1.8rem; /* Slightly smaller for grid cards */
-            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 0.8rem;
+        }
+
+        .product-card .price {
+            font-size: 1.8rem;
+            font-weight: bold;
             color: var(--gold);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        .product-card strong {
-            font-weight: 600;
-            font-size: 1.1rem; /* Slightly smaller */
-            margin-bottom: 1rem; /* Reduced margin */
+        .product-card .btn {
+            width: 80%;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+        }
+
+
+        /* --- About Section --- */
+        .about {
+            padding: 4rem 1.5rem;
+            background-color: rgba(255, 255, 255, 0.05); /* Lighter background than products */
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        .about p {
+            font-size: 1.1rem;
             color: var(--light-text-color);
+            max-width: 800px;
+            margin: 0.8rem auto;
+            line-height: 1.7;
         }
 
-        .product-card ul {
-            margin: 0;
-            padding: 0 1rem 0 1.5rem; /* Padding for list items */
-            list-style: disc; /* Added bullet points for clarity in grid */
-            text-align: left; /* Keep list items left-aligned for readability */
-            margin-bottom: 1.5rem; /* Reduced margin */
+        /* --- Contact Section (Placeholder) --- */
+        .contact {
+            padding: 4rem 1.5rem;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
         }
 
-        .product-card li {
-            margin-bottom: 0.5rem; /* Reduced margin */
-            font-size: 0.95rem; /* Slightly smaller */
+        .contact h2 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        .contact p {
+            font-size: 1.1rem;
             color: var(--light-text-color);
-            line-height: 1.4;
+            margin-bottom: 1.5rem;
         }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--white);
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--light-text-color);
+            opacity: 0.7;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+        }
+
 
         /* --- Footer --- */
         .footer {
@@ -261,11 +323,11 @@
             text-align: center;
             padding: 2.5rem 1.5rem;
             font-size: 0.95rem;
-            margin-top: auto; /* Push footer to the bottom */
+            margin-top: auto;
             box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
         }
 
-        /* --- Responsive Adjustments (Grid specific) --- */
+        /* --- Responsive Adjustments --- */
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
@@ -294,34 +356,21 @@
                 font-size: 1rem;
             }
 
-            .product-section {
-                grid-template-columns: 1fr; /* Single column on small screens */
-                gap: 2rem;
+            .products-section h2, .about h2, .contact h2 {
+                font-size: 2rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr; /* Stack products on small screens */
             }
 
             .product-card {
-                padding: 1rem;
+                margin: 0 auto; /* Center single column cards */
+                max-width: 350px; /* Constrain width on small screens */
             }
 
-            .product-image-container {
-                width: 90%;
-                height: 250px;
-            }
-
-            .product-card h3 {
-                font-size: 1.6rem;
-            }
-
-            .product-card strong {
-                font-size: 1rem;
-            }
-
-            .product-card ul {
-                padding-left: 1.2rem;
-            }
-
-            .product-card li {
-                font-size: 0.9rem;
+            .about p, .contact p {
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -342,145 +391,69 @@
         </div>
     </nav>
 
-    <header class="hero">
+    <section class="hero">
         <h1>ซื้อ iPhone แท้ ง่าย ปลอดภัย และเหนือระดับ</h1>
-        <p>รุ่น สี ความจุ พร้อมชำระเงินในคลิกเดียว</p>
+        <p>
+            เปรียบเทียบรุ่น สี ความจุ พร้อมชำระเงินในคลิกเดียว มอบประสบการณ์ซื้อ iPhone ออนไลน์ที่ง่าย ปลอดภัย และเหนือระดับตั้งแต่ต้นจนจบ
+        </p>
         <a href="page/allproduct.html" class="btn">ดูสินค้าทั้งหมด</a>
-    </header>
+    </section>
 
-    <section class="product-section">
-        <article class="product-card">
-            <div class="product-image-container">
-                <img src="assets/image/iphone/iphone16-promax-Black.png" alt="iPhone 16 Pro Max สีดำ" class="product-image" />
-            </div>
-            <div class="content">
+    <section class="products-section">
+        <h2>รุ่นยอดนิยม</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="assets/image/iphone/iphone 16 Pro Max Black Titanium.jpg" alt="iPhone 16 Pro Max Black Titanium" />
                 <h3>iPhone 16 Pro Max (Black)</h3>
-                <strong>"สุดยอดประสบการณ์ภาพและความลึกที่คุณสัมผัสได้"</strong>
-                <ul>
-                    <li>กล้อง Telephoto 5× พร้อมเซ็นเซอร์ขนาดใหญ่</li>
-                    <li>จอ ProMotion 120Hz พร้อม Dynamic Island</li>
-                    <li>ชิป A18 Pro สุดแรง ประหยัดพลังงาน</li>
-                </ul>
-                <a href="#" class="btn">ดูรายละเอียด</a>
+                <div class="price">฿48,900</div>
+                <a href="page/product-detail.html?model=iphone16promaxblack" class="btn">ดูรายละเอียด</a>
             </div>
-        </article>
 
-        <article class="product-card">
-            <div class="product-image-container">
-                <img src="assets/image/iphone/iPhone 16 Pro Max Desert Titanium.jpg" alt="iPhone 16 Pro Max สี Desert Titanium" class="product-image" />
+            <div class="product-card">
+                <img src="assets/image/iphone/iPhone 16 Pro Max Desert Titanium.jpg" alt="iPhone 16 Pro Max Desert Titanium" />
+                <h3>iPhone 16 Pro Max (Desert)</h3>
+                <div class="price">฿48,900</div>
+                <a href="page/product-detail.html?model=iphone16promaxdesert" class="btn">ดูรายละเอียด</a>
             </div>
-            <div class="content">
-                <h3>iPhone 16 Pro Max (Desert Titanium)</h3>
-                <strong>"ความหรูหราแห่งอนาคต"</strong>
-                <ul>
-                    <li>ตัวเครื่องไทเทเนียม เกรดการบิน ทนทานเป็นพิเศษ</li>
-                    <li>กล้อง Pro ระดับสตูดิโอ</li>
-                    <li>ประสิทธิภาพแบตเตอรี่ที่ยาวนานที่สุด</li>
-                </ul>
-                <a href="#" class="btn">ดูรายละเอียด</a>
-            </div>
-        </article>
 
-        <article class="product-card">
-            <div class="product-image-container">
-                <img src="assets/image/iphone/iPhone 16 Pro Max Natural Natural Titanium.png" alt="iPhone 16 Pro Max สี Natural Titanium" class="product-image" />
+            <div class="product-card">
+                <img src="assets/image/iphone/iPhone 16 Pro Max Natural Natural Titanium.png" alt="iPhone 16 Pro Max Natural Titanium" />
+                <h3>iPhone 16 Pro Max (Natural)</h3>
+                <div class="price">฿48,900</div>
+                <a href="page/product-detail.html?model=iphone16promaxnatural" class="btn">ดูรายละเอียด</a>
             </div>
-            <div class="content">
-                <h3>iPhone 16 Pro Max (Natural Titanium)</h3>
-                <strong>"พลังและความงามที่แท้จริง"</strong>
-                <ul>
-                    <li>ดีไซน์ไทเทเนียมพร้อมพื้นผิวแบบปัดเงา</li>
-                    <li>จอภาพ Super Retina XDR ที่สว่างที่สุด</li>
-                    <li>ชิป A18 Pro พร้อมการประมวลผล AI ที่เหนือชั้น</li>
-                </ul>
-                <a href="#" class="btn">ดูรายละเอียด</a>
-            </div>
-        </article>
+        </div>
+        <div style="margin-top: 3rem;">
+            <a href="page/allproduct.html" class="btn btn-secondary">ดู iPhone ทุกรุ่น</a>
+        </div>
+    </section>
 
-        <article class="product-card">
-            <div class="product-image-container">
-                <img src="assets/image/iphone/iphone16-Black.jpg" alt="iPhone 16 สีดำ" class="product-image" />
-            </div>
-            <div class="content">
-                <h3>iPhone 16 (Black)</h3>
-                <strong>"ก้าวสู่ยุคใหม่แห่งความแรงเหนือชั้น"</strong>
-                <ul>
-                    <li>ชิป A18 Bionic เร็วขึ้น 20% รองรับ AI เต็มรูปแบบ</li>
-                    <li>พอร์ต USB‑C ชาร์จไวและถ่ายโอนข้อมูลรวดเร็ว</li>
-                    <li>แบตเตอรี่ใช้งานได้ยาวนานกว่าเดิม ตลอดวัน</li>
-                </ul>
-                <a href="#" class="btn">ดูรายละเอียด</a>
-            </div>
-        </article>
+    <section class="about">
+        <h2>เกี่ยวกับเว็บไซต์</h2>
+        <p>
+            แพลตฟอร์มออนไลน์ที่รวบรวม iPhone แต่ละรุ่นพร้อมภาพสวยคมชัดและข้อมูลสเปกครบครัน ให้คุณเปรียบเทียบรุ่น สี และความจุได้อย่างใจต้องการ
+        </p>
+        <p>
+            เพียงคลิกเดียวก็สามารถเพิ่มสินค้าลงตะกร้า กรอกที่อยู่ และชำระเงินพร้อมระบบติดตามสถานะคำสั่งซื้อและฟอร์มติดต่อสอบถามภายในเว็บ
+        </p>
+        <p>
+            ดีไซน์เรียบหรูด้วยโทนสีขาว–ทอง–ดำ รองรับทั้งคอมพิวเตอร์และมือถือ มอบประสบการณ์ซื้อ iPhone ออนไลน์ที่ง่าย ปลอดภัย และเหนือระดับตั้งแต่เริ่มต้น
+        </p>
+    </section>
 
-        <article class="product-card">
-            <div class="product-image-container">
-                <img src="assets/image/iphone/iphone16-pink.png" alt="iPhone 16 สีชมพู" class="product-image" />
-            </div>
-            <div class="content">
-                <h3>iPhone 16 (Pink)</h3>
-                <strong>"สีสันแห่งความสดใสและพลัง"</strong>
-                <ul>
-                    <li>ระบบกล้องคู่ 48MP พร้อมฟีเจอร์ใหม่ Photo Processing</li>
-                    <li>Dynamic Island ที่ปรับปรุงใหม่</li>
-                    <li>หน้าจอ Super Retina XDR ที่สว่างยิ่งขึ้น</li>
-                </ul>
-                <a href="#" class="btn">ดูรายละเอียด</a>
-            </div>
-        </article>
-
-        <article class="product-card">
-            <div class="product-image-container">
-                <img src="assets/image/iphone/iphone16-Silver-gray.png" alt="iPhone 16 สี Silver-gray" class="product-image" />
-            </div>
-            <div class="content">
-                <h3>iPhone 16 (Silver-gray)</h3>
-                <strong>"ความเรียบง่ายที่ลงตัว"</strong>
-                <ul>
-                    <li>ดีไซน์กระจกด้านหลังที่ทนทาน</li>
-                    <li>ชิป A18 Bionic อันทรงพลัง</li>
-                    <li>รองรับ 5G เพื่อการเชื่อมต่อที่รวดเร็ว</li>
-                </ul>
-                <a href="#" class="btn">ดูรายละเอียด</a>
-            </div>
-        </article>
-
-        <article class="product-card">
-            <div class="product-image-container">
-                <img src="assets/image/iphone/iPhone 15 Pro Max Blue Titanium.png" alt="iPhone 15 Pro Max สีน้ำเงิน" class="product-image" />
-            </div>
-            <div class="content">
-                <h3>iPhone 15 Pro Max (Blue Titanium)</h3>
-                <strong>"ขุมพลังและนวัตกรรมที่เหนือกว่า"</strong>
-                <ul>
-                    <li>กล้องหลัก 48MP พร้อมเทเลโฟโต้ 5 เท่าแบบออปติคัล</li>
-                    <li>ชิป A17 Pro พร้อม Ray Tracing ระดับฮาร์ดแวร์</li>
-                    <li>ปุ่มแอ็กชันที่ปรับแต่งได้ตามใจคุณ</li>
-                </ul>
-                <a href="#" class="btn">ดูรายละเอียด</a>
-            </div>
-        </article>
-
-        <article class="product-card">
-            <div class="product-image-container">
-                <img src="assets/image/iphone/iphone 15 pink.png" alt="iPhone 15 สีชมพู" class="product-image" />
-            </div>
-            <div class="content">
-                <h3>iPhone 15 (Pink)</h3>
-                <strong>"ดีไซน์ที่ลงตัวและฟีเจอร์ที่ต้องมี"</strong>
-                <ul>
-                    <li>Dynamic Island สำหรับแจ้งเตือนและกิจกรรมสด</li>
-                    <li>กล้องหลัก 48MP ถ่ายภาพความละเอียดสูง</li>
-                    <li>ชิป A16 Bionic ประมวลผลรวดเร็ว</li>
-                </ul>
-                <a href="#" class="btn">ดูรายละเอียด</a>
-            </div>
-        </article>
+    <section class="contact">
+        <h2>ติดต่อเรา</h2>
+        <p>มีคำถามหรือข้อสงสัย? ติดต่อเราได้เลย!</p>
+        <form class="contact-form" action="#" method="POST">
+            <input type="text" name="name" placeholder="ชื่อของคุณ" required />
+            <input type="email" name="email" placeholder="อีเมลของคุณ" required />
+            <textarea name="message" rows="5" placeholder="ข้อความของคุณ" required></textarea>
+            <button type="submit" class="btn">ส่งข้อความ</button>
+        </form>
     </section>
 
     <footer class="footer">
         <p>&copy; 2025 PhoneXpress. All rights reserved.</p>
     </footer>
-
-    </body>
+</body>
 </html>

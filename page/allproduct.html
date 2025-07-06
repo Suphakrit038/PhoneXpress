@@ -202,15 +202,8 @@
             color: var(--light-gray);
         }
 
-        .colornav {
-            display: flex;
-            gap: 0.5rem;
-            margin: 1rem 0;
-            padding: 0;
-            justify-content: center; /* จัดปุ่มสีให้อยู่กึ่งกลาง */
-        }
-
-        input[type="radio"][hidden] {
+        /* ลบ CSS ที่เกี่ยวข้องกับ colornav ออก หากไม่มีการใช้งาน */
+        /* input[type="radio"][hidden] {
             opacity: 0;
             position: absolute;
             pointer-events: none;
@@ -237,7 +230,7 @@
             color: var(--black);
             font-weight: bold;
             border-color: var(--gold);
-        }
+        } */
 
         .footer {
             background-color: rgba(0, 0, 0, 0.85);
@@ -290,9 +283,9 @@
                 font-size: 1.3rem;
             }
 
-            .colornav {
-                flex-wrap: wrap; /* ให้ปุ่มสีขึ้นบรรทัดใหม่ได้ถ้าเยอะ */
-            }
+            /* .colornav {
+                flex-wrap: wrap; 
+            } */
         }
     </style>
 </head>
@@ -317,30 +310,31 @@
 
     <section class="product-section">
         <div class="product-card">
-            <img src="assets/image/iphone15pro-black.png" alt="iPhone 15 Pro Max" />
+            <img src="assets/image/iphone/iphone16-promax-Black.png" alt="iPhone 16 Pro Max" />
             <div class="content">
-                <h3>iPhone 15 Pro Max</h3>
-                <strong>ราคา: 48,900 บาท</strong>
+                <h3>iPhone 16 Pro Max</h3>
+                <strong>ราคา: 52,900 บาท</strong>
                 <ul>
-                    <li>ชิป A17 Pro สุดแรง</li>
-                    <li>กล้องหลัก 48MP พร้อม Telephoto 5x</li>
-                    <li>หน้าจอ Super Retina XDR ProMotion</li>
-                    <li>ไทเทเนียมดีไซน์ ทนทานและเบา</li>
+                    <li>ชิป A18 Pro Max สุดแรง</li>
+                    <li>กล้อง Periscope Telephoto 6x</li>
+                    <li>หน้าจอ ProMotion XDR Display</li>
+                    <li>วัสดุ Titanium Grade 5</li>
                 </ul>
-                <div class="colornav">
-                    <label>
-                        <input type="radio" name="color-1" value="black" hidden checked />
-                        <span class="colornav-link">ดำ</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="color-1" value="white" hidden />
-                        <span class="colornav-link">ขาว</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="color-1" value="blue" hidden />
-                        <span class="colornav-link">น้ำเงิน</span>
-                    </label>
-                </div>
+                <button class="btn">ดูรายละเอียด</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="assets/image/iphone/iphone16-Black.png" alt="iPhone 16" />
+            <div class="content">
+                <h3>iPhone 16</h3>
+                <strong>ราคา: 32,900 บาท</strong>
+                <ul>
+                    <li>ชิป A18 Bionic</li>
+                    <li>กล้องคู่ใหม่</li>
+                    <li>หน้าจอ Super Retina XDR</li>
+                    <li>ดีไซน์ขอบเรียบ</li>
+                </ul>
                 <button class="btn">ดูรายละเอียด</button>
             </div>
         </div>
@@ -356,20 +350,6 @@
                     <li>หน้าจอ Dynamic AMOLED 2X</li>
                     <li>ปากกา S Pen ในตัว</li>
                 </ul>
-                <div class="colornav">
-                    <label>
-                        <input type="radio" name="color-2" value="black" hidden checked />
-                        <span class="colornav-link">ดำ</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="color-2" value="grey" hidden />
-                        <span class="colornav-link">เทา</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="color-2" value="violet" hidden />
-                        <span class="colornav-link">ม่วง</span>
-                    </label>
-                </div>
                 <button class="btn">ดูรายละเอียด</button>
             </div>
         </div>
@@ -385,20 +365,6 @@
                     <li>หน้าจอ Super Actua Display</li>
                     <li>อัปเดต Android 7 ปี</li>
                 </ul>
-                <div class="colornav">
-                    <label>
-                        <input type="radio" name="color-3" value="black" hidden checked />
-                        <span class="colornav-link">ดำ</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="color-3" value="bay" hidden />
-                        <span class="colornav-link">ฟ้า</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="color-3" value="obsidian" hidden />
-                        <span class="colornav-link">เข้ม</span>
-                    </label>
-                </div>
                 <button class="btn">ดูรายละเอียด</button>
             </div>
         </div>
@@ -414,20 +380,6 @@
                     <li>โหมดภาพยนตร์และแอคชั่น</li>
                     <li>แบตเตอรี่ใช้งานได้นานขึ้น</li>
                 </ul>
-                <div class="colornav">
-                    <label>
-                        <input type="radio" name="color-4" value="purple" hidden checked />
-                        <span class="colornav-link">ม่วง</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="color-4" value="blue" hidden />
-                        <span class="colornav-link">ฟ้า</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="color-4" value="starlight" hidden />
-                        <span class="colornav-link">ขาว</span>
-                    </label>
-                </div>
                 <button class="btn">ดูรายละเอียด</button>
             </div>
         </div>
@@ -443,20 +395,6 @@
                     <li>กล้อง FlexCam ถ่ายภาพง่าย</li>
                     <li>ทนทานด้วย Armor Aluminum</li>
                 </ul>
-                <div class="colornav">
-                    <label>
-                        <input type="radio" name="color-5" value="mint" hidden checked />
-                        <span class="colornav-link">เขียว</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="color-5" value="graphite" hidden />
-                        <span class="colornav-link">เทา</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="color-5" value="cream" hidden />
-                        <span class="colornav-link">ครีม</span>
-                    </label>
-                </div>
                 <button class="btn">ดูรายละเอียด</button>
             </div>
         </div>
@@ -472,20 +410,6 @@
                     <li>กล้องคุณภาพสูง ถ่ายสวยทุกมุม</li>
                     <li>รองรับปากกา S Pen</li>
                 </ul>
-                <div class="colornav">
-                    <label>
-                        <input type="radio" name="color-6" value="phantom" hidden checked />
-                        <span class="colornav-link">ดำ</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="color-6" value="cream" hidden />
-                        <span class="colornav-link">ครีม</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="color-6" value="icyblue" hidden />
-                        <span class="colornav-link">ฟ้า</span>
-                    </label>
-                </div>
                 <button class="btn">ดูรายละเอียด</button>
             </div>
         </div>
@@ -501,20 +425,6 @@
                     <li>หน้าจอ AMOLED CrystalRes</li>
                     <li>ระบบระบายความร้อน Loop LiquidCool</li>
                 </ul>
-                <div class="colornav">
-                    <label>
-                        <input type="radio" name="color-7" value="black" hidden checked />
-                        <span class="colornav-link">ดำ</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="color-7" value="white" hidden />
-                        <span class="colornav-link">ขาว</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="color-7" value="green" hidden />
-                        <span class="colornav-link">เขียว</span>
-                    </label>
-                </div>
                 <button class="btn">ดูรายละเอียด</button>
             </div>
         </div>
@@ -530,49 +440,6 @@
                     <li>ชิป Snapdragon 8 Gen 3</li>
                     <li>หน้าจอ ProXDR Display</li>
                 </ul>
-                <div class="colornav">
-                    <label>
-                        <input type="radio" name="color-8" value="black" hidden checked />
-                        <span class="colornav-link">ดำ</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="color-8" value="brown" hidden />
-                        <span class="colornav-link">น้ำตาล</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="color-8" value="blue" hidden />
-                        <span class="colornav-link">ฟ้า</span>
-                    </label>
-                </div>
-                <button class="btn">ดูรายละเอียด</button>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/image/vivoX100-black.png" alt="Vivo X100 Pro" />
-            <div class="content">
-                <h3>Vivo X100 Pro</h3>
-                <strong>ราคา: 37,999 บาท</strong>
-                <ul>
-                    <li>กล้อง ZEISS Optics พร้อม Telephoto</li>
-                    <li>ชิป Dimensity 9300</li>
-                    <li>หน้าจอ LTPO AMOLED 8T</li>
-                    <li>แบตเตอรี่ขนาดใหญ่ ชาร์จเร็ว</li>
-                </ul>
-                <div class="colornav">
-                    <label>
-                        <input type="radio" name="color-9" value="black" hidden checked />
-                        <span class="colornav-link">ดำ</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="color-9" value="white" hidden />
-                        <span class="colornav-link">ขาว</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="color-9" value="blue" hidden />
-                        <span class="colornav-link">ฟ้า</span>
-                    </label>
-                </div>
                 <button class="btn">ดูรายละเอียด</button>
             </div>
         </div>

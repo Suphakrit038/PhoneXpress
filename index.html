@@ -1,15 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ร้านขาย iPhone แท้ ออนไลน์ สั่งง่าย ส่งไว ปลอดภัย มีให้เลือกหลายรุ่น" />
   <title>PhoneXpress</title>
   <link rel="icon" type="image/png" href="assets/image/favicon.png" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
-
   <div class="gold-glow"></div>
-
   <header class="navbar">
     <div class="logo">
       <a href="#"><img src="assets/image/logo.png" alt="PhoneXpress Logo" class="logo-img" /></a>
@@ -19,7 +20,6 @@
       <a href="#">ตะกร้า</a>
     </nav>
   </header>
-
 
   <!-- Hero -->
   <section class="hero">
@@ -227,7 +227,7 @@
 </div>
 
 <!-- 10. iPhone 13 -->
-<div class="product-card right">
+<article class="product-card right">
   <img src="assets/images/iphone13-black.png" alt="iPhone 13" id="preview-iphone13" />
   <div class="content">
     <h3>iPhone 13</h3>
@@ -245,25 +245,24 @@
     <a href="#" class="btn">ดูรายละเอียด</a>
   </div>
 </div>
+</article>
 
 </section>
-<script>
-  document.querySelectorAll(".product-card").forEach(card => {
-    const preview = card.querySelector("img[id^='preview-']");
-    const name = preview?.id.replace("preview-", "");
-    const radios = card.querySelectorAll(`input[name="color-${name}"]`);
-    radios.forEach(radio => {
-      radio.addEventListener("change", () => {
-        preview.src = `assets/image/iphone/${name}-${radio.value}.png`;
+  <script>
+    document.querySelectorAll(".product-item").forEach(item => {
+      const preview = item.querySelector(".product-image");
+      const name = preview.id.replace("preview-", "");
+      item.querySelectorAll(".color-options input").forEach(r => {
+        r.addEventListener("change", () => {
+          preview.src = `assets/image/iphone/${name}-${r.value}.png`;
+        });
       });
     });
-  });
-</script>
+  </script>
 
   <!-- Footer -->
   <footer class="footer">
     <p>&copy; 2025 PhoneXpress. All rights reserved.</p>
   </footer>
-
 </body>
 </html>

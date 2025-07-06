@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -11,9 +10,12 @@
 </head>
 <body>
   <div class="gold-glow"></div>
+
   <header class="navbar">
     <div class="logo">
-      <a href="#"><img src="assets/image/logo.png" alt="PhoneXpress Logo" class="logo-img" /></a>
+      <a href="#">
+        <img src="assets/image/logo.png" alt="PhoneXpress Logo" class="logo-img" />
+      </a>
     </div>
     <nav class="menu">
       <a href="#">สินค้า</a>
@@ -29,46 +31,30 @@
   </section>
 
   <!-- Products -->
-<section class="product-section">
+  <section class="product-section">
+    <!-- iPhone 16 -->
+    <article class="product-card left">
+      <img src="assets/image/iphone/iphone16-black.png" alt="iPhone 16" id="preview-iphone16" class="product-image" />
+      <div class="content">
+        <h3>iPhone 16</h3>
+        <strong>“ก้าวสู่ยุคใหม่แห่งความแรงเหนือชั้น”</strong>
+        <ul>
+          <li>ชิป A18 Bionic เร็วขึ้นกว่าเดิม 20%</li>
+          <li>พอร์ต USB‑C ชาร์จไว</li>
+          <li>แบตเตอรี่ยาวนาน</li>
+        </ul>
+        <ul class="colornav">
+          <li><input type="radio" id="iphone16-black" name="color-iphone16" value="black" hidden checked><label for="iphone16-black" class="colornav-link">Black Titanium</label></li>
+          <li><input type="radio" id="iphone16-silver" name="color-iphone16" value="silver" hidden><label for="iphone16-silver" class="colornav-link">Silver Gray</label></li>
+          <li><input type="radio" id="iphone16-white" name="color-iphone16" value="white" hidden><label for="iphone16-white" class="colornav-link">สีขาว</label></li>
+        </ul>
+        <a href="#" class="btn">ดูรายละเอียด</a>
+      </div>
+    </article>
 
-    <!-- 🔁 10 รุ่น iPhone พร้อมปุ่มเลือกสี -->
-    <!-- 🧱 โครงสร้าง: preview-img id, name="color-รุ่น", สี 3 ตัว -->
-
-    <!-- 1. iPhone 16 -->
-<article class="product-card left">
-  <img src="assets/image/iphone/iphone16-Black.png" alt="iPhone 16" id="preview-iphone16" />
-  <div class="content">
-    <h3>iPhone 16</h3>
-    <strong>“ก้าวสู่ยุคใหม่แห่งความแรงเหนือชั้น”</strong>
-    <ul>
-      <li>ชิป A18 Bionic เร็วขึ้นกว่าเดิม 20%</li>
-      <li>พอร์ต USB‑C ชาร์จไว</li>
-      <li>แบตเตอรี่ยาวนาน</li>
-    </ul>
-
-    <!-- ปุ่มเลือกสี -->
-<ul class="colornav">
-  <li>
-    <input type="radio" id="iphone16-black" name="color-iphone16" value="black" hidden checked>
-    <label for="iphone16-black" class="colornav-link">Black Titanium</label>
-  </li>
-  <li>
-    <input type="radio" id="iphone16-Silver-gray" name="color-iphone16" value="Silver-gray" hidden>
-    <label for="iphone16-Silver-gray" class="colornav-link">Silver Gray</label>
-  </li>
-  <li>
-    <input type="radio" id="iphone16-white" name="color-iphone16" value="white" hidden>
-    <label for="iphone16-white" class="colornav-link">สีขาว</label>
-  </li>
-</ul>
-
-    <a href="#" class="btn">ดูรายละเอียด</a>
-  </div>
-</div>
-</article>
-    <!-- 2. iPhone 16 Pro Max -->
-    <div class="product-card right">
-      <img src="assets\image\iphone\iphone16-promax-black.png" alt="iPhone 16 Pro Max" id="preview-iphone16-promax" />
+    <!-- iPhone 16 Pro Max -->
+    <article class="product-card right">
+      <img src="assets/image/iphone/iphone16-promax-black.png" alt="iPhone 16 Pro Max" id="preview-iphone16-promax" class="product-image" />
       <div class="content">
         <h3>iPhone 16 Pro Max</h3>
         <strong>“สุดยอดประสบการณ์ภาพและความลึกที่คุณสัมผัสได้”</strong>
@@ -84,11 +70,11 @@
         </ul>
         <a href="#" class="btn">ดูรายละเอียด</a>
       </div>
-    </div>
+    </article>
 
-    <!-- 3. iPhone 16 Pro -->
-    <div class="product-card left">
-      <img src="assets/images/iphone16-pro-black.png" alt="iPhone 16 Pro" id="preview-iphone16-pro" />
+    <!-- iPhone 16 Pro -->
+    <article class="product-card left">
+      <img src="assets/image/iphone/iphone16-pro-black.png" alt="iPhone 16 Pro" id="preview-iphone16-pro" class="product-image" />
       <div class="content">
         <h3>iPhone 16 Pro</h3>
         <strong>“ดีไซน์อันปราณีต พลังแรงเกินบรรยาย”</strong>
@@ -104,11 +90,11 @@
         </ul>
         <a href="#" class="btn">ดูรายละเอียด</a>
       </div>
-    </div>
+    </article>
 
-    <!-- 4. iPhone 16e -->
-    <div class="product-card right">
-      <img src="assets/images/iphone16e-black.png" alt="iPhone 16e" id="preview-iphone16e" />
+    <!-- iPhone 16e -->
+    <article class="product-card right">
+      <img src="assets/image/iphone/iphone16e-black.png" alt="iPhone 16e" id="preview-iphone16e" class="product-image" />
       <div class="content">
         <h3>iPhone 16e</h3>
         <strong>“ประหยัดแต่ประสิทธิภาพไม่ลด”</strong>
@@ -124,16 +110,16 @@
         </ul>
         <a href="#" class="btn">ดูรายละเอียด</a>
       </div>
-    </div>
+    </article>
+  </section>
 
-</section>
   <script>
-    document.querySelectorAll(".product-item").forEach(item => {
-      const preview = item.querySelector(".product-image");
+    document.querySelectorAll(".product-card").forEach(card => {
+      const preview = card.querySelector(".product-image");
       const name = preview.id.replace("preview-", "");
-      item.querySelectorAll(".color-options input").forEach(r => {
-        r.addEventListener("change", () => {
-          preview.src = `assets/image/iphone/${name}-${r.value}.png`;
+      card.querySelectorAll(".colornav input").forEach(radio => {
+        radio.addEventListener("change", () => {
+          preview.src = `assets/image/iphone/${name}-${radio.value}.png`;
         });
       });
     });

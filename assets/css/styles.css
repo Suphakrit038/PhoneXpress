@@ -195,7 +195,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 700px;
+  width: 80%px;
   max-width: 100%;
 }
 

@@ -427,7 +427,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphone16">
-                    <img class="product-image" src="../assets/image/iphone/iphone16/iphone16-Black.png" alt="iPhone 16 Black" data-model-name="iphone16" />
+                    <img class="product-image" src="../assets/image/iphone/iphone16-Black.png" alt="iPhone 16 Black" data-model-name="iphone16" />
                     <div class="product-info">
                         <h3>iPhone 16</h3>
                         <p class="price">฿ <span>38,900</span></p>
@@ -441,7 +441,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphone15promax">
-                    <img class="product-image" src="../assets/image/iphone/iphone15promax/iphone15promax-naturaltitanium.png" alt="iPhone 15 Pro Max Natural Titanium" data-model-name="iphone15promax" />
+                    <img class="product-image" src="../assets/image/iphone/iphone15promax-naturaltitanium.png" alt="iPhone 15 Pro Max Natural Titanium" data-model-name="iphone15promax" />
                     <div class="product-info">
                         <h3>iPhone 15 Pro Max</h3>
                         <p class="price">฿ <span>48,900</span></p>
@@ -455,7 +455,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphone15pro">
-                    <img class="product-image" src="../assets/image/iphone/iphone15pro/iphone15pro-blacktitanium.png" alt="iPhone 15 Pro Black Titanium" data-model-name="iphone15pro" />
+                    <img class="product-image" src="../assets/image/iphone/iphone15pro-blacktitanium.png" alt="iPhone 15 Pro Black Titanium" data-model-name="iphone15pro" />
                     <div class="product-info">
                         <h3>iPhone 15 Pro</h3>
                         <p class="price">฿ <span>41,900</span></p>
@@ -469,7 +469,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphone15">
-                    <img class="product-image" src="../assets/image/iphone/iphone15/iphone15-pink.png" alt="iPhone 15 Pink" data-model-name="iphone15" />
+                    <img class="product-image" src="../assets/image/iphone/iphone15-pink.png" alt="iPhone 15 Pink" data-model-name="iphone15" />
                     <div class="product-info">
                         <h3>iPhone 15</h3>
                         <p class="price">฿ <span>32,900</span></p>
@@ -483,7 +483,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphonese">
-                    <img class="product-image" src="../assets/image/iphone/iphonese/iphonese-midnight.png" alt="iPhone SE (3rd Gen) Midnight" data-model-name="iphonese" />
+                    <img class="product-image" src="../assets/image/iphone/iphonese-midnight.png" alt="iPhone SE (3rd Gen) Midnight" data-model-name="iphonese" />
                     <div class="product-info">
                         <h3>iPhone SE (3rd Gen)</h3>
                         <p class="price">฿ <span>17,900</span></p>
@@ -497,7 +497,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphone14">
-                    <img class="product-image" src="../assets/image/iphone/iphone14/iphone14-purple.png" alt="iPhone 14 Purple" data-model-name="iphone14" />
+                    <img class="product-image" src="../assets/image/iphone/iphone14-purple.png" alt="iPhone 14 Purple" data-model-name="iphone14" />
                     <div class="product-info">
                         <h3>iPhone 14</h3>
                         <p class="price">฿ <span>26,900</span></p>
@@ -535,43 +535,36 @@
                         let newImageFileName;
 
                         // **Crucial: Define filename logic based on model and color, matching your actual file names**
+                        // All images are in the same folder: assets/image/iphone/
                         switch (model) {
                             case 'iphone16promax':
+                                // These file names are specific and full
                                 if (selectedColor === 'Natural Natural Titanium') {
                                     newImageFileName = 'iPhone 16 Pro Max Natural Natural Titanium.png';
                                 } else if (selectedColor === 'Black Titanium') {
-                                    newImageFileName = 'iphone 16 Pro Max Black Titanium.png';
+                                    newImageFileName = 'iphone 16 Pro Max Black Titanium.png'; // Note 'iphone' lowercase
                                 } else if (selectedColor === 'Desert Titanium') {
                                     newImageFileName = 'iPhone 16 Pro Max Desert Titanium.png';
                                 }
-                                // Since these files are directly in assets/image/iphone/, no subfolder is needed
-                                productImage.src = `${imageBaseDir}${newImageFileName}`;
                                 break;
                             case 'iphone16pro':
+                                // These file names are specific and full
                                 if (selectedColor === 'Black Titanium') {
-                                    newImageFileName = 'Phone 16 Pro Black Titanium.png';
+                                    newImageFileName = 'Phone 16 Pro Black Titanium.png'; // Note 'Phone' uppercase
                                 } else if (selectedColor === 'Silver-gray') {
                                     newImageFileName = 'iPhone 16 Pro Silver-gray.png'; // Make sure this file exists!
                                 } else if (selectedColor === 'White') {
                                     newImageFileName = 'iPhone 16 Pro White.png'; // Make sure this file exists!
                                 }
-                                // Since these files are directly in assets/image/iphone/, no subfolder is needed
-                                productImage.src = `${imageBaseDir}${newImageFileName}`;
                                 break;
-                            case 'iphone16':
-                                // For iPhone 16, assume images are in assets/image/iphone/iphone16/
-                                newImageFileName = `${modelName}-${selectedColor}.png`;
-                                productImage.src = `${imageBaseDir}${modelName}/${newImageFileName}`;
-                                break;
-                            // Add cases for other models if their naming differs significantly
                             default:
-                                // Default for iPhone 15 series, iPhone SE, iPhone 14
-                                // Assumes images are in assets/image/iphone/[modelName]/[modelName]-[color].png
+                                // For all other models, assume the pattern [modelName]-[color].png
+                                // e.g., iphone16-Black.png, iphone15promax-naturaltitanium.png
                                 newImageFileName = `${modelName}-${selectedColor}.png`;
-                                productImage.src = `${imageBaseDir}${modelName}/${newImageFileName}`;
                                 break;
                         }
 
+                        productImage.src = `${imageBaseDir}${newImageFileName}`;
                         productImage.alt = `${productCard.querySelector('h3').textContent} ${selectedColor}`;
 
                         // Remove 'selected' class from siblings and add to clicked one

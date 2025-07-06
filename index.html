@@ -35,24 +35,36 @@
     <!-- 🧱 โครงสร้าง: preview-img id, name="color-รุ่น", สี 3 ตัว -->
 
     <!-- 1. iPhone 16 -->
-    <div class="product-card left">
-      <img src="assets\image\iphone\iphone16-Black.png" alt="iPhone 16" id="preview-iphone16" />
-      <div class="content">
-        <h3>iPhone 16</h3>
-        <strong>“ก้าวสู่ยุคใหม่แห่งความแรงเหนือชั้น”</strong>
-        <ul>
-          <li>ชิป A18 Bionic เร็วขึ้นกว่าเดิม 20%</li>
-          <li>พอร์ต USB‑C ชาร์จไว</li>
-          <li>แบตเตอรี่ยาวนาน</li>
-        </ul>
-        <ul class="colornav">
-          <li><input type="radio" id="assets\image\iphone\iphone16-Black.png" name="color-iphone16" value="black" hidden checked><label for="iphone16-black" class="colornav-link">Black Titanium</label></li>
-          <li><input type="radio" id="assets\image\iphone\iphone16-Silver-gray" name="color-iphone16" value="blue" hidden><label for="iphone16-blue" class="colornav-link">สีเทาเงิน</label></li>
-          <li><input type="radio" id="assets\image\iphone\iphone16-iphone16-White.png" name="color-iphone16" value="pink" hidden><label for="iphone16-pink" class="colornav-link">สีขาว</label></li>
-        </ul>
-        <a href="#" class="btn">ดูรายละเอียด</a>
-      </div>
-    </div>
+<div class="product-card left">
+  <img src="assets/image/iphone/iphone16-Black.png" alt="iPhone 16" id="preview-iphone16" />
+  <div class="content">
+    <h3>iPhone 16</h3>
+    <strong>“ก้าวสู่ยุคใหม่แห่งความแรงเหนือชั้น”</strong>
+    <ul>
+      <li>ชิป A18 Bionic เร็วขึ้นกว่าเดิม 20%</li>
+      <li>พอร์ต USB‑C ชาร์จไว</li>
+      <li>แบตเตอรี่ยาวนาน</li>
+    </ul>
+
+    <!-- ปุ่มเลือกสี -->
+    <ul class="colornav">
+      <li>
+        <input type="radio" id="iphone16-black" name="color-iphone16" value="Black" hidden checked>
+        <label for="iphone16-black" class="colornav-link">Black Titanium</label>
+      </li>
+      <li>
+        <input type="radio" id="iphone16-silver" name="color-iphone16" value="Silver-gray" hidden>
+        <label for="iphone16-silver" class="colornav-link">Silver Gray</label>
+      </li>
+      <li>
+        <input type="radio" id="iphone16-white" name="color-iphone16" value="iphone16-White" hidden>
+        <label for="iphone16-white" class="colornav-link">White</label>
+      </li>
+    </ul>
+
+    <a href="#" class="btn">ดูรายละเอียด</a>
+  </div>
+</div>
 
     <!-- 2. iPhone 16 Pro Max -->
     <div class="product-card right">
@@ -236,12 +248,14 @@
 
 </section>
 <script>
-  const preview = document.getElementById("preview-iphone16");
-  const radios = document.getElementsByName("color-iphone16");
-
-  radios.forEach(radio => {
-    radio.addEventListener("change", () => {
-      preview.src = `assets/images/iphone16-${radio.value}.png`;
+  document.querySelectorAll(".product-card").forEach(card => {
+    const preview = card.querySelector("img[id^='preview-']");
+    const name = preview?.id.replace("preview-", "");
+    const radios = card.querySelectorAll(`input[name="color-${name}"]`);
+    radios.forEach(radio => {
+      radio.addEventListener("change", () => {
+        preview.src = `assets/image/iphone/${name}-${radio.value}.png`;
+      });
     });
   });
 </script>

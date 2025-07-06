@@ -206,3 +206,25 @@ body {
     margin-left: 1.5rem;
   }
 }
+/* --- New: Add to Cart Success Message Styles --- */
+        .add-to-cart-success {
+            display: none; /* ซ่อนไว้ก่อน */
+            background-color: #d4edda; /* สีเขียวอ่อน */
+            color: #155724; /* สีตัวอักษรเขียวเข้ม */
+            padding: 1rem 1.5rem;
+            margin: 1.5rem auto 0; /* จัดให้อยู่ตรงกลางและมีขอบบน */
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            opacity: 0; /* ซ่อนด้วย opacity เพื่อให้ transition ได้ */
+            transition: opacity 0.5s ease-in-out; /* เพิ่ม animation เวลาแสดง/ซ่อน */
+            z-index: 100; /* ให้แสดงทับองค์ประกอบอื่น */
+            position: relative; /* หรือ fixed/absolute แล้วแต่ตำแหน่งที่ต้องการ */
+        }
+        .add-to-cart-success.show {
+            display: block; /* แสดงเมื่อมีคลาส 'show' */
+            opacity: 1; /* ทำให้มองเห็น */
+        }

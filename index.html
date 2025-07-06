@@ -1,348 +1,288 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8" />
-    <title>PhoneXpress - หน้าแรก</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="assets/image/favicon.png" />
-    <style>
-        /* --- CSS Variables --- */
-        :root {
-            --gold: #d4af37;
-            --black: #000000;
-            --white: #ffffff;
-            --dark-gray-bg: rgba(255, 255, 255, 0.1); /* Background color for cards/sections */
-            --light-text-color: #e5e7eb; /* Secondary text color */
-            --border-color: rgba(255, 255, 255, 0.2);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PhoneXpress - หน้าแรก</title>
+  <meta name="description" content="ซื้อ iPhone ของแท้ ราคาดี มีให้เลือกหลากหลายรุ่น ส่งฟรีทั่วประเทศ - PhoneXpress">
+  <link rel="icon" type="image/png" href="assets/image/favicon.png" />
+  <style>
+    :root {
+      --gold: #d4af37;
+      --black: #000000;
+      --white: #ffffff;
+      --dark-gray-bg: rgba(255, 255, 255, 0.1);
+      --light-text-color: #e5e7eb;
+      --border-color: rgba(255, 255, 255, 0.2);
+      --light-green: #d4edda;
+      --dark-green-text: #155724;
+    }
 
-        /* --- Global Styles & Body --- */
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--black);
-            color: var(--white);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
 
-        /* --- Animations --- */
-        .gold-glow {
-            position: fixed;
-            top: 0;
-            left: -50%;
-            width: 200%;
-            height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(212, 175, 55, 0.15), transparent);
-            animation: glowMove 10s ease-in-out infinite alternate;
-            pointer-events: none;
-            z-index: 0;
-        }
+    .gold-glow {
+      position: fixed;
+      top: 0;
+      left: -50%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+      animation: glowMove 10s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-        @keyframes glowMove {
-            0% { transform: translateX(-30%); }
-            100% { transform: translateX(30%); }
-        }
+    @keyframes glowMove {
+      0% { transform: translateX(-30%); }
+      100% { transform: translateX(30%); }
+    }
 
-        /* --- Layout & Z-index for content over glow --- */
-        .navbar, .hero, .about, .featured-products, .footer {
-            position: relative;
-            z-index: 1;
-        }
+    .navbar, .hero, .about, .featured-products, .footer {
+      position: relative;
+      z-index: 1;
+    }
 
-        /* --- Navbar --- */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            background-color: rgba(0, 0, 0, 0.9);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-        }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      background-color: rgba(0, 0, 0, 0.9);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
 
-        .logo-img {
-            height: 45px;
-            width: auto;
-            transition: transform 0.3s ease;
-        }
+    .logo-img {
+      height: 45px;
+      width: auto;
+      transition: transform 0.3s ease;
+    }
 
-        .logo-img:hover {
-            transform: scale(1.05);
-        }
+    .logo-img:hover {
+      transform: scale(1.05);
+    }
 
-        .menu a {
-            color: var(--white);
-            margin-left: 1.8rem;
-            text-decoration: none;
-            position: relative;
-            font-weight: 500;
-            font-size: 1.05rem;
-            padding-bottom: 5px;
-        }
+    .menu a {
+      color: var(--white);
+      margin-left: 1.8rem;
+      text-decoration: none;
+      position: relative;
+      font-weight: 500;
+      font-size: 1.05rem;
+      padding-bottom: 5px;
+    }
 
-        .menu a::after {
-            content: "";
-            position: absolute;
-            width: 0;
-            height: 2px;
-            left: 0;
-            bottom: 0;
-            background-color: var(--gold);
-            transition: width 0.3s ease-in-out;
-        }
+    .menu a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      left: 0;
+      bottom: 0;
+      background-color: var(--gold);
+      transition: width 0.3s ease-in-out;
+    }
 
-        .menu a:hover { color: var(--gold); }
-        .menu a:hover::after { width: 100%; }
-        .menu a.active::after { width: 100%; }
+    .menu a:hover { color: var(--gold); }
+    .menu a:hover::after,
+    .menu a.active::after { width: 100%; }
 
-        /* --- Call-to-Action Button --- */
-        .btn {
-            padding: 0.8rem 2.5rem;
-            border-radius: 9999px;
-            background-color: var(--gold);
-            color: var(--black);
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1.1rem;
-            text-decoration: none;
-            display: inline-block;
-            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
-        }
+    .btn {
+      padding: 0.8rem 2.5rem;
+      border-radius: 9999px;
+      background-color: var(--gold);
+      color: var(--black);
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+    }
 
-        .btn:hover {
-            background-color: #f6c84f;
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.6);
-        }
+    .btn:hover {
+      background-color: #f6c84f;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.6);
+    }
 
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--gold);
-            border: 1px solid var(--gold);
-            box-shadow: none;
-        }
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      box-shadow: none;
+    }
 
-        .btn-secondary:hover {
-            background-color: rgba(212, 175, 55, 0.1);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
-        }
+    .btn-secondary:hover {
+      background-color: rgba(212, 175, 55, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
+    }
 
-        /* --- Hero Section --- */
-        .hero {
-            text-align: center;
-            padding: 3rem 1.5rem; /* ปรับลด padding */
-            background: linear-gradient(180deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
-            min-height: 40vh; /* ปรับลดความสูงขั้นต่ำ */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 1px solid var(--border-color);
-        }
+    .hero {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      background: linear-gradient(180deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
+      min-height: 40vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-color);
+    }
 
-        .hero::before {
-            content: "";
-            background-image: url('assets/image/iphone-hero.jpg'); /* Example image path */
-            background-size: cover;
-            background-position: center;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.2; /* Adjust transparency of background image */
-            z-index: -1;
-        }
+    .hero::before {
+      content: "";
+      background-image: url('assets/image/iphone-hero.jpg');
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.2;
+      z-index: -1;
+    }
 
-        .hero h1 {
-            font-size: 2.8rem; /* ปรับลดขนาด font ของ h1 */
-            color: var(--gold);
-            margin-bottom: 1.2rem; /* ปรับลด margin */
-            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
-            max-width: 800px;
-            line-height: 1.2;
-        }
+    .hero h1 {
+      font-size: 2.8rem;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
+      max-width: 800px;
+      line-height: 1.2;
+    }
 
-        .hero p {
-            font-size: 1.1rem; /* ปรับลดขนาด font ของ p */
-            color: var(--light-text-color);
-            margin-bottom: 2rem; /* ปรับลด margin */
-            max-width: 600px;
-        }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--light-text-color);
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
 
-        /* --- About Section --- */
-        .about {
-            padding: 4rem 1.5rem;
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: var(--dark-gray-bg);
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(8px);
-            text-align: center;
-            margin-top: 3rem;
-            margin-bottom: 3rem;
-        }
+    .add-to-cart-success {
+      display: none;
+      background-color: var(--light-green);
+      color: var(--dark-green-text);
+      padding: 1rem 1.5rem;
+      margin: 1.5rem auto 0;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 500;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      z-index: 100;
+      position: relative;
+    }
 
-        .about h2 {
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 2rem;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-        }
+    .add-to-cart-success.show {
+      display: block;
+      opacity: 1;
+    }
 
-        .about p {
-            font-size: 1.1rem;
-            color: var(--light-text-color);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
+    .about {
+      padding: 4rem 1.5rem;
+      max-width: 1000px;
+      margin: 3rem auto;
+      background-color: var(--dark-gray-bg);
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(8px);
+      text-align: center;
+    }
 
-        /* --- Featured Products Section --- */
-        .featured-products {
-            padding: 4rem 1.5rem;
-            max-width: 1200px;
-            margin: 3rem auto;
-            background-color: var(--dark-gray-bg);
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(8px);
-            text-align: center;
-        }
+    .about h2 {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    }
 
-        .featured-products h2 {
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 2.5rem;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-        }
+    .about p {
+      font-size: 1.1rem;
+      color: var(--light-text-color);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            justify-content: center; /* Center items in grid */
-        }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      justify-content: center;
+    }
 
-        .product-card {
-            background-color: rgba(0, 0, 0, 0.5); /* Slightly darker for contrast */
-            border-radius: 15px;
-            padding: 1.8rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(5px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            border: 1px solid var(--border-color);
-        }
+    .product-card {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 15px;
+      padding: 1.8rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(5px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border: 1px solid var(--border-color);
+    }
 
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-        }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
 
-        .product-card img {
-            width: 100%;
-            max-height: 250px;
-            object-fit: contain;
-            margin-bottom: 1.5rem;
-        }
+    .product-card img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: contain;
+      margin-bottom: 1.5rem;
+    }
 
-        .product-card h3 {
-            font-size: 1.5rem;
-            color: var(--white);
-            margin-bottom: 0.8rem;
-        }
+    .product-card h3 {
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
 
-        .product-card .price {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--gold);
-            margin-bottom: 1.5rem;
-        }
+    .product-card .price {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
 
-        .product-card .btn {
-            width: 80%;
-            padding: 0.7rem 1.5rem;
-            font-size: 1rem;
-        }
+    .product-card .btn {
+      width: 80%;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+    }
 
-        /* --- Footer --- */
-        .footer {
-            background-color: rgba(0, 0, 0, 0.9);
-            color: var(--light-text-color);
-            text-align: center;
-            padding: 2.5rem 1.5rem;
-            font-size: 0.95rem;
-            margin-top: auto;
-            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
-        }
-
-        /* --- Responsive Adjustments --- */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                align-items: flex-start;
-                padding-bottom: 1rem;
-            }
-
-            .menu {
-                margin-top: 1rem;
-                width: 100%;
-                justify-content: space-around;
-            }
-
-            .menu a {
-                margin-left: 0;
-                margin-right: 0;
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
-            }
-
-            .hero {
-                padding: 3rem 1rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .about, .featured-products {
-                padding: 2rem 1rem;
-                margin: 2rem auto;
-            }
-
-            .about h2, .featured-products h2 {
-                font-size: 2rem;
-            }
-
-            .about p {
-                font-size: 0.9rem;
-            }
-
-            .product-grid {
-                grid-template-columns: 1fr; /* Stack products on small screens */
-            }
-
-            .product-card {
-                margin: 0 auto; /* Center single column cards */
-                max-width: 350px; /* Constrain width on small screens */
-            }
-        }
-    </style>
+    .footer {
+      background-color: rgba(0, 0, 0, 0.9);
+      color: var(--light-text-color);
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      font-size: 0.95rem;
+      margin-top: auto;
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
+    }
+  </style>
 </head>
 <body>
     <div class="gold-glow"></div>

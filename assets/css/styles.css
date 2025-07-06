@@ -69,58 +69,53 @@ body {
   padding: 3rem 1rem;
 }
 
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
 .product-card {
-  display: flex;
-  margin-bottom: 5rem;
-  align-items: center;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   opacity: 0;
   transform: translateY(60px);
   animation: floatInUp 0.9s ease-out forwards;
 }
 
-.product-card.left {
-  flex-direction: row;
-}
-
-.product-card.right {
-  flex-direction: row-reverse;
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
 }
 
 .product-image-container {
   position: relative;
-  flex: 1;
-  min-height: 400px;
+  height: 300px;
+  padding: 1rem;
 }
 
 .product-image {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: contain;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.product-image.active {
-  opacity: 1;
 }
 
 .content {
-  flex: 1;
-  padding: 0 3rem;
+  padding: 1.5rem;
 }
 
 .product-card h3 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 0.5rem;
   color: #1d1d1f;
 }
 
 .product-card strong {
   display: block;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #86868b;
   margin-bottom: 1.5rem;
   font-weight: normal;
@@ -134,33 +129,6 @@ body {
 .product-card li {
   margin-bottom: 0.8rem;
   color: #515154;
-}
-
-/* Color Navigation */
-.colornav {
-  display: flex;
-  gap: 0.8rem;
-  margin-bottom: 2rem;
-}
-
-.colornav-link {
-  padding: 0.5rem 1rem;
-  border: 1px solid #d2d2d7;
-  background: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
-}
-
-.colornav-link:hover {
-  border-color: #86868b;
-}
-
-.colornav-link.active {
-  background-color: #0071e3;
-  color: white;
-  border-color: #0071e3;
 }
 
 /* Buttons */
@@ -203,25 +171,19 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .product-card {
-    flex-direction: column;
-    margin-bottom: 3rem;
+  .hero {
+    padding: 3rem 1rem;
   }
   
-  .product-card.left, 
-  .product-card.right {
-    flex-direction: column;
-  }
-  
-  .content {
-    padding: 2rem 1rem;
-    text-align: center;
-  }
-  
-  .colornav {
-    justify-content: center;
-  }
   .hero h1 {
     font-size: 2rem;
+  }
+  
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .menu a {
+    margin-left: 1.5rem;
   }
 }

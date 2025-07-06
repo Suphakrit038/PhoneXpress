@@ -1,242 +1,10 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8" />
-  <title>PhoneXpress</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="assets/image/favicon.png" />
-  <style>
-    :root {
-      --gold: #d4af37;
-      --black: #000000;
-      --white: #ffffff;
-    }
-
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background-color: var(--black);
-      color: var(--white);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
-    }
-
-    /* Golden glow */
-    .gold-glow {
-      position: fixed;
-      top: 0;
-      left: -50%;
-      width: 200%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(212, 175, 55, 0.15), transparent);
-      animation: glowMove 10s ease-in-out infinite alternate;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    @keyframes glowMove {
-      0% { transform: translateX(-30%); }
-      100% { transform: translateX(30%); }
-    }
-
-    @keyframes floatFadeIn {
-      0% {
-        transform: translateY(40px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    /* Layout */
-    .navbar, .hero, .footer {
-      position: relative;
-      z-index: 1;
-    }
-
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 1.5rem;
-      background-color: rgba(0, 0, 0, 0.9);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
-
-    .logo-img {
-      height: 40px;
-      width: auto;
-    }
-
-    .menu a {
-      color: var(--white);
-      margin-left: 1.5rem;
-      text-decoration: none;
-      position: relative;
-    }
-
-    .menu a::after {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 2px;
-      left: 0;
-      bottom: -4px;
-      background-color: var(--gold);
-      transition: width 0.3s;
-    }
-
-    .menu a:hover { color: var(--gold); }
-    .menu a:hover::after { width: 100%; }
-
-    .hero {
-      text-align: center;
-      padding: 4rem 1rem;
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-
-    .hero p {
-      font-size: 1.125rem;
-      color: #e5e7eb;
-      margin-bottom: 1.5rem;
-    }
-
-    .btn {
-      padding: 0.5rem 1.5rem;
-      border-radius: 9999px;
-      background-color: var(--gold);
-      color: var(--black);
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s, transform 0.2s;
-    }
-
-    .btn:hover {
-      background-color: #f6c84f;
-      transform: translateY(-2px);
-    }
-
-    .product-section {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      padding: 3rem 1rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .product-card {
-      display: flex;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(6px);
-      overflow: hidden;
-      width: 100%;
-    }
-
-    .product-card.left { justify-content: flex-start; }
-    .product-card.right { flex-direction: row-reverse; justify-content: flex-end; }
-
-    .product-card img {
-      width: 320px;
-      height: 400px;
-      object-fit: contain;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      animation: floatFadeIn 0.9s ease-out 0.3s forwards;
-      opacity: 0;
-      transition: transform 0.3s ease;
-    }
-
-    .product-card img:hover {
-      transform: scale(1.03);
-    }
-
-    .content {
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      max-width: 600px;
-    }
-
-    .product-card h3 {
-      font-size: 1.75rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-
-    .product-card strong {
-      font-weight: 500;
-      margin-bottom: 1rem;
-    }
-
-    .product-card ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .product-card li {
-      margin-bottom: 0.5rem;
-    }
-
-    .colornav {
-      display: flex;
-      gap: 0.5rem;
-      margin: 1rem 0;
-      padding: 0;
-    }
-
-    input[type="radio"][hidden] {
-      opacity: 0;
-      position: absolute;
-      pointer-events: none;
-    }
-
-    .colornav-link {
-      display: inline-block;
-      padding: 0.4rem 0.8rem;
-      background-color: rgba(255,255,255,0.15);
-      border: 1px solid #ccc;
-      border-radius: 999px;
-      cursor: pointer;
-      color: var(--white);
-      font-size: 0.875rem;
-      transition: all 0.3s ease;
-    }
-
-    .colornav-link:hover {
-      background-color: rgba(255,255,255,0.3);
-    }
-
-    input[type="radio"]:checked + .colornav-link {
-      background-color: var(--gold);
-      color: var(--black);
-      font-weight: bold;
-      border-color: var(--gold);
-    }
-
-    .footer {
-      background-color: rgba(0, 0, 0, 0.85);
-      color: var(--white);
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      margin-top: auto;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhoneXpress - ซื้อ iPhone แท้ ปลอดภัย</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="gold-glow"></div>
@@ -259,73 +27,75 @@
 
   <!-- Products Section -->
   <section class="product-section">
-    <!-- iPhone 16 -->
-    <article class="product-card left">
-      <div class="product-image-container">
-        <img src="assets/image/iphone/iphone16-black.png" alt="iPhone 16 สีดำ" class="product-image" />
-      </div>
-      <div class="content">
-        <h3>iPhone 16</h3>
-        <strong>"ก้าวสู่ยุคใหม่แห่งความแรงเหนือชั้น"</strong>
-        <ul>
-          <li>ชิป A18 Bionic เร็วขึ้นกว่าเดิม 20%</li>
-          <li>พอร์ต USB‑C ชาร์จไว</li>
-          <li>แบตเตอรี่ยาวนาน</li>
-        </ul>
-        <a href="#" class="btn">ดูรายละเอียด</a>
-      </div>
-    </article>
+    <div class="product-grid">
+      <!-- iPhone 16 -->
+      <article class="product-card">
+        <div class="product-image-container">
+          <img src="assets/image/iphone/iphone16-black.png" alt="iPhone 16 สีดำ" class="product-image" />
+        </div>
+        <div class="content">
+          <h3>iPhone 16</h3>
+          <strong>"ก้าวสู่ยุคใหม่แห่งความแรงเหนือชั้น"</strong>
+          <ul>
+            <li>ชิป A18 Bionic เร็วขึ้นกว่าเดิม 20%</li>
+            <li>พอร์ต USB‑C ชาร์จไว</li>
+            <li>แบตเตอรี่ยาวนาน</li>
+          </ul>
+          <a href="#" class="btn">ดูรายละเอียด</a>
+        </div>
+      </article>
 
-    <!-- iPhone 16 Pro Max -->
-    <article class="product-card right">
-      <div class="product-image-container">
-        <img src="assets/image/iphone/iphone16-pro-max-black.png" alt="iPhone 16 Pro Max สีดำ" class="product-image" />
-      </div>
-      <div class="content">
-        <h3>iPhone 16 Pro Max</h3>
-        <strong>"สุดยอดประสบการณ์ภาพและความลึกที่คุณสัมผัสได้"</strong>
-        <ul>
-          <li>กล้อง Periscope Zoom 5×</li>
-          <li>จอ ProMotion 120Hz</li>
-          <li>ตัวเครื่องไทเทเนียม</li>
-        </ul>
-        <a href="#" class="btn">ดูรายละเอียด</a>
-      </div>
-    </article>
+      <!-- iPhone 16 Pro Max -->
+      <article class="product-card">
+        <div class="product-image-container">
+          <img src="assets/image/iphone/iphone16-pro-max-black.png" alt="iPhone 16 Pro Max สีดำ" class="product-image" />
+        </div>
+        <div class="content">
+          <h3>iPhone 16 Pro Max</h3>
+          <strong>"สุดยอดประสบการณ์ภาพและความลึกที่คุณสัมผัสได้"</strong>
+          <ul>
+            <li>กล้อง Periscope Zoom 5×</li>
+            <li>จอ ProMotion 120Hz</li>
+            <li>ตัวเครื่องไทเทเนียม</li>
+          </ul>
+          <a href="#" class="btn">ดูรายละเอียด</a>
+        </div>
+      </article>
 
-    <!-- iPhone 16 Pro -->
-    <article class="product-card left">
-      <div class="product-image-container">
-        <img src="assets/image/iphone/iphone16-pro-black.png" alt="iPhone 16 Pro สีดำ" class="product-image" />
-      </div>
-      <div class="content">
-        <h3>iPhone 16 Pro</h3>
-        <strong>"ดีไซน์อันปราณีต พลังแรงเกินบรรยาย"</strong>
-        <ul>
-          <li>Dynamic Island</li>
-          <li>จอ OLED HDR</li>
-          <li>Neural Engine รุ่นล่าสุด</li>
-        </ul>
-        <a href="#" class="btn">ดูรายละเอียด</a>
-      </div>
-    </article>
+      <!-- iPhone 16 Pro -->
+      <article class="product-card">
+        <div class="product-image-container">
+          <img src="assets/image/iphone/iphone16-pro-black.png" alt="iPhone 16 Pro สีดำ" class="product-image" />
+        </div>
+        <div class="content">
+          <h3>iPhone 16 Pro</h3>
+          <strong>"ดีไซน์อันปราณีต พลังแรงเกินบรรยาย"</strong>
+          <ul>
+            <li>Dynamic Island</li>
+            <li>จอ OLED HDR</li>
+            <li>Neural Engine รุ่นล่าสุด</li>
+          </ul>
+          <a href="#" class="btn">ดูรายละเอียด</a>
+        </div>
+      </article>
 
-    <!-- iPhone 16e -->
-    <article class="product-card right">
-      <div class="product-image-container">
-        <img src="assets/image/iphone/iphone16e-black.png" alt="iPhone 16e สีดำ" class="product-image" />
-      </div>
-      <div class="content">
-        <h3>iPhone 16e</h3>
-        <strong>"ประหยัดแต่ประสิทธิภาพไม่ลด"</strong>
-        <ul>
-          <li>ขนาดกะทัดรัด</li>
-          <li>ชิป A17 Bionic</li>
-          <li>กล้องคู่</li>
-        </ul>
-        <a href="#" class="btn">ดูรายละเอียด</a>
-      </div>
-    </article>
+      <!-- iPhone 16e -->
+      <article class="product-card">
+        <div class="product-image-container">
+          <img src="assets/image/iphone/iphone16e-black.png" alt="iPhone 16e สีดำ" class="product-image" />
+        </div>
+        <div class="content">
+          <h3>iPhone 16e</h3>
+          <strong>"ประหยัดแต่ประสิทธิภาพไม่ลด"</strong>
+          <ul>
+            <li>ขนาดกะทัดรัด</li>
+            <li>ชิป A17 Bionic</li>
+            <li>กล้องคู่</li>
+          </ul>
+          <a href="#" class="btn">ดูรายละเอียด</a>
+        </div>
+      </article>
+    </div>
   </section>
 
   <!-- Footer -->

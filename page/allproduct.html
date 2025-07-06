@@ -400,7 +400,7 @@
         <section class="product-grid-container">
             <div class="product-grid">
                 <div class="product-card" data-model="iphone16promax">
-                    <img class="product-image" src="../assets/image/iphone/iPhone 16 Pro Max Natural Natural Titanium.png" alt="iPhone 16 Pro Max Natural Titanium" data-base-src="../assets/image/iphone/iPhone 16 Pro Max" />
+                    <img class="product-image" src="assets/image/iphone/iPhone 16 Pro Max Natural Natural Titanium.png" alt="iPhone 16 Pro Max Natural Titanium" data-base-src="assets/image/iphone/iPhone 16 Pro Max" />
                     <div class="product-info">
                         <h3>iPhone 16 Pro Max</h3>
                         <p class="price">฿ <span>59,900</span></p>
@@ -414,7 +414,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphone16pro">
-                    <img class="product-image" src="../assets/image/iphone/Phone 16 Pro Black Titanium.png" alt="iPhone 16 Pro Black Titanium" data-base-src="../assets/image/iphone/iPhone 16 Pro" />
+                    <img class="product-image" src="assets/image/iphone/Phone 16 Pro Black Titanium.png" alt="iPhone 16 Pro Black Titanium" data-base-src="assets/image/iphone/iPhone 16 Pro" />
                     <div class="product-info">
                         <h3>iPhone 16 Pro</h3>
                         <p class="price">฿ <span>52,900</span></p>
@@ -426,7 +426,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphone16">
-                    <img class="product-image" src="../assets/image/iphone/iphone16-Black.png" alt="iPhone 16 Black" data-base-src="../assets/image/iphone/iphone16" />
+                    <img class="product-image" src="assets/image/iphone/iphone16-Black.png" alt="iPhone 16 Black" data-base-src="assets/image/iphone/iphone16" />
                     <div class="product-info">
                         <h3>iPhone 16</h3>
                         <p class="price">฿ <span>38,900</span></p>
@@ -440,7 +440,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphone15promax">
-                    <img class="product-image" src="../assets/image/iphone/iphone15promax-naturaltitanium.png" alt="iPhone 15 Pro Max Natural Titanium" data-base-src="../assets/image/iphone/iphone15promax" />
+                    <img class="product-image" src="assets/image/iphone/iphone15promax-naturaltitanium.png" alt="iPhone 15 Pro Max Natural Titanium" data-base-src="assets/image/iphone/iphone15promax" />
                     <div class="product-info">
                         <h3>iPhone 15 Pro Max</h3>
                         <p class="price">฿ <span>48,900</span></p>
@@ -454,7 +454,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphone15pro">
-                    <img class="product-image" src="../assets/image/iphone/iphone15pro-blacktitanium.png" alt="iPhone 15 Pro Black Titanium" data-base-src="../assets/image/iphone/iphone15pro" />
+                    <img class="product-image" src="assets/image/iphone/iphone15pro-blacktitanium.png" alt="iPhone 15 Pro Black Titanium" data-base-src="assets/image/iphone/iphone15pro" />
                     <div class="product-info">
                         <h3>iPhone 15 Pro</h3>
                         <p class="price">฿ <span>41,900</span></p>
@@ -468,7 +468,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphone15">
-                    <img class="product-image" src="../assets/image/iphone/iphone15-pink.png" alt="iPhone 15 Pink" data-base-src="../assets/image/iphone/iphone15" />
+                    <img class="product-image" src="assets/image/iphone/iphone15-pink.png" alt="iPhone 15 Pink" data-base-src="assets/image/iphone/iphone15" />
                     <div class="product-info">
                         <h3>iPhone 15</h3>
                         <p class="price">฿ <span>32,900</span></p>
@@ -482,7 +482,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphonese">
-                    <img class="product-image" src="../assets/image/iphone/iphonese-midnight.png" alt="iPhone SE (3rd Gen) Midnight" data-base-src="../assets/image/iphone/iphonese" />
+                    <img class="product-image" src="assets/image/iphone/iphonese-midnight.png" alt="iPhone SE (3rd Gen) Midnight" data-base-src="assets/image/iphone/iphonese" />
                     <div class="product-info">
                         <h3>iPhone SE (3rd Gen)</h3>
                         <p class="price">฿ <span>17,900</span></p>
@@ -496,7 +496,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphone14">
-                    <img class="product-image" src="../assets/image/iphone/iphone14-purple.png" alt="iPhone 14 Purple" data-base-src="../assets/image/iphone/iphone14" />
+                    <img class="product-image" src="assets/image/iphone/iphone14-purple.png" alt="iPhone 14 Purple" data-base-src="assets/image/iphone/iphone14" />
                     <div class="product-info">
                         <h3>iPhone 14</h3>
                         <p class="price">฿ <span>26,900</span></p>
@@ -529,16 +529,13 @@
                         const baseSrc = productImage.dataset.baseSrc;
                         const selectedColor = this.dataset.color;
 
-                        // Construct the new image filename based on the model and selected color
-                        // This logic needs to be robust for various naming conventions
+
                         let newImageFileName;
                         const model = productCard.dataset.model;
 
-                        // Specific logic for iPhone 16 series to match your provided file names
+
                         if (model === 'iphone16promax') {
-                            // Example: iPhone 16 Pro Max Natural Natural Titanium.png
-                            // Example: iphone 16 Pro Max Black Titanium.png
-                            // Example: iPhone 16 Pro Max Desert Titanium.png
+
                             if (selectedColor === 'Natural Natural Titanium') {
                                 newImageFileName = 'iPhone 16 Pro Max Natural Natural Titanium.png';
                             } else if (selectedColor === 'Black Titanium') {
@@ -547,8 +544,7 @@
                                 newImageFileName = 'iPhone 16 Pro Max Desert Titanium.png';
                             }
                         } else if (model === 'iphone16pro') {
-                            // Example: Phone 16 Pro Black Titanium.png
-                            // Assuming similar naming for Silver-gray and White if they exist
+
                              if (selectedColor === 'Black Titanium') {
                                 newImageFileName = 'Phone 16 Pro Black Titanium.png'; // Note: your file has 'Phone' instead of 'iPhone'
                             } else if (selectedColor === 'Silver-gray') {
@@ -557,40 +553,34 @@
                                 newImageFileName = 'iPhone 16 Pro White.png'; // Assumption
                             }
                         } else if (model === 'iphone16') {
-                            // Example: iphone16-Black.png, iphone16-Silver-gray.png, iphone16-pink.png
+
                             newImageFileName = `iphone16-${selectedColor}.png`;
                         }
-                        // For other models, use the simpler baseSrc-color.png convention
+
                         else {
                             newImageFileName = `${baseSrc.split('/').pop()}-${selectedColor}.png`;
                         }
 
                         if (newImageFileName) {
-                            // Corrected path construction for baseSrc.
-                            // Assuming baseSrc is already up to the folder name, e.g., "../assets/image/iphone/iphone15promax"
-                            // We need to extract just the part after the last slash to join with the filename.
+
                             const pathSegments = baseSrc.split('/');
                             const folderName = pathSegments[pathSegments.length - 1]; // e.g., "iphone15promax"
-                            
-                            // Reconstruct the full path
-                            // This part handles the inconsistency in your naming.
-                            // If baseSrc is like "../assets/image/iphone/iPhone 16 Pro Max", then newImageFileName is already full.
-                            // If baseSrc is like "../assets/image/iphone/iphone15", then we need to add the folder name + selectedColor.
+
                             let finalImagePath;
                             if (model === 'iphone16promax' || model === 'iphone16pro' || model === 'iphone16') {
-                                // For iPhone 16 series, newImageFileName is already the full file name as per your list
+
                                 finalImagePath = `${baseSrc.split('/').slice(0, -1).join('/')}/${newImageFileName}`;
                             } else {
-                                // For older models, follow the pattern: foldername-color.png
+
                                 finalImagePath = `${baseSrc}/${newImageFileName}`;
                             }
                             
                             productImage.src = finalImagePath;
-                            productImage.alt = `${productCard.querySelector('h3').textContent} ${selectedColor}`; // Update alt text
+                            productImage.alt = `${productCard.querySelector('h3').textContent} ${selectedColor}`;
                         }
 
 
-                        // Remove 'selected' class from siblings and add to clicked one
+
                         this.closest('.colornav').querySelectorAll('.color-option').forEach(option => {
                             option.classList.remove('selected');
                         });
@@ -599,7 +589,6 @@
                 });
             });
 
-            // Function to handle Add to Cart button
             document.querySelectorAll('.btn-add-to-cart').forEach(button => {
                 button.addEventListener('click', function() {
                     const productCard = this.closest('.product-card');

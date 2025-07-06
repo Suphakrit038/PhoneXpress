@@ -54,7 +54,7 @@
   <!-- Hero -->
   <section class="hero">
     <h1>ซื้อ iPhone แท้ ง่าย ปลอดภัย และเหนือระดับ</h1>
-    <p>เปรียบเทียบรุ่น สี ความจุ พร้อมชำระเงินในคลิกเดียว</p>
+    <p>รุ่น สี ความจุ พร้อมชำระเงินในคลิกเดียว</p>
     <a href="#" class="btn">ดูสินค้าทั้งหมด</a>
   </section>
 
@@ -94,7 +94,7 @@
         <ul class="colornav">
           <li><input type="radio" id="iphone16-pro-max-black" name="color-iphone16-promax" value="black" hidden checked><label for="iphone16-pro-max-black" class="colornav-link">สีดำ</label></li>
           <li><input type="radio" id="iphone16-pro-max-desert" name="color-iphone16-promax" value="desert" hidden><label for="iphone16-pro-max-desert" class="colornav-link">สีทอง</label></li>
-          <li><input type="radio" id="iphone16-pro-max-white" name="color-iphone16-promax" value="white" hidden><label for="iphone16-pro-max-white" class="colornav-link">ขาว</label></li>
+          <li><input type="radio" id="iphone16-pro-mex-white" name="color-iphone16-promax" value="white" hidden><label for="iphone16-pro-mex-white" class="colornav-link">ขาว</label></li>
         </ul>
         <a href="#" class="btn">ดูรายละเอียด</a>
       </div>
@@ -142,21 +142,16 @@
   </section>
 
   <script>
-  document.querySelectorAll(".product-card").forEach(card => {
-    const preview = card.querySelector(".product-image");
-    const name = preview.id.replace("preview-", "");
-    const radios = card.querySelectorAll(".colornav input");
-    radios.forEach(radio => {
-      radio.addEventListener("change", () => {
-        preview.classList.remove("animate-float", "animate-fade");
-        void preview.offsetWidth;
-        preview.src = `assets/image/iphone/${name}-${radio.value}.png`;
-        preview.classList.add("animate-float", "animate-fade");
+    document.querySelectorAll(".product-card").forEach(card => {
+      const preview = card.querySelector(".product-image");
+      const name = preview.id.replace("preview-", "");
+      card.querySelectorAll(".colornav input").forEach(radio => {
+        radio.addEventListener("change", () => {
+          preview.src = `assets/image/iphone/${name}-${radio.value}.png`;
+        });
       });
     });
-    preview.classList.add("animate-fade");
-  });
-</script>
+  </script>
 
   <!-- Footer -->
   <footer class="footer">

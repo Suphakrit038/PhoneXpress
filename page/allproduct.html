@@ -448,21 +448,21 @@
                 </div>
 
                 <div class="product-card" data-model="iphone15pro">
-                    <img class="product-image" src="../assets/image/iphone/iphone15pro-blacktitanium.png" alt="iPhone 15 Pro Black Titanium" data-model-name="iphone15pro" />
+                    <img class="product-image" src="../assets/image/iphone/iphone 15 pro black titanium.png" alt="iPhone 15 Pro Black Titanium" data-model-name="iphone 15 pro" />
                     <div class="product-info">
                         <h3>iPhone 15 Pro</h3>
                         <p class="price">฿ <span>41,900</span></p>
                         <div class="colornav">
-                            <div class="color-option color-black selected" data-color="blacktitanium"></div>
-                            <div class="color-option color-white" data-color="whitetitanium"></div>
-                            <div class="color-option color-natural-titanium" data-color="naturaltitanium"></div>
+                            <div class="color-option color-black selected" data-color="black titanium"></div>
+                            <div class="color-option color-white" data-color="white titanium"></div>
+                            <div class="color-option color-natural-titanium" data-color="natural titanium"></div>
                         </div>
                         <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
                     </div>
                 </div>
 
                 <div class="product-card" data-model="iphone15">
-                    <img class="product-image" src="../assets/image/iphone/iphone15-pink.png" alt="iPhone 15 Pink" data-model-name="iphone15" />
+                    <img class="product-image" src="../assets/image/iphone/iphone 15 pink.png" alt="iPhone 15 Pink" data-model-name="iphone 15" />
                     <div class="product-info">
                         <h3>iPhone 15</h3>
                         <p class="price">฿ <span>32,900</span></p>
@@ -476,7 +476,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphonese">
-                    <img class="product-image" src="../assets/image/iphone/iphonese-midnight.png" alt="iPhone SE (3rd Gen) Midnight" data-model-name="iphonese" />
+                    <img class="product-image" src="../assets/image/iphone/iphone se 3rd gen midnight.png" alt="iPhone SE (3rd Gen) Midnight" data-model-name="iphone se 3rd gen" />
                     <div class="product-info">
                         <h3>iPhone SE (3rd Gen)</h3>
                         <p class="price">฿ <span>17,900</span></p>
@@ -490,7 +490,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphone14">
-                    <img class="product-image" src="../assets/image/iphone/iphone14-purple.png" alt="iPhone 14 Purple" data-model-name="iphone14" />
+                    <img class="product-image" src="../assets/image/iphone/iPhone 14 blue.png" alt="iPhone 14 Blue" data-model-name="iPhone 14" />
                     <div class="product-info">
                         <h3>iPhone 14</h3>
                         <p class="price">฿ <span>26,900</span></p>
@@ -532,64 +532,77 @@
                                 if (selectedColor === 'Natural Natural Titanium') {
                                     newImageFileName = 'iPhone 16 Pro Max Natural Natural Titanium';
                                 } else if (selectedColor === 'Black Titanium') {
-                                    newImageFileName = 'iphone 16 Pro Max Black Titanium'; // Updated to new request
+                                    newImageFileName = 'iphone 16 Pro Max Black Titanium';
                                 } else if (selectedColor === 'Desert Titanium') {
                                     newImageFileName = 'iPhone 16 Pro Max Desert Titanium';
                                 }
-                                fileExtension = '.png'; // All are .png
                                 break;
                             case 'iphone16pro':
                                 if (selectedColor === 'Black Titanium') {
                                     newImageFileName = 'Phone 16 Pro Black Titanium';
                                 } else if (selectedColor === 'Silver-gray') {
-                                    newImageFileName = 'iphone 16 pro silver grey'; // Updated name and case
+                                    newImageFileName = 'iphone 16 pro silver grey';
                                 } else if (selectedColor === 'White') {
-                                    newImageFileName = 'iphone 16 pro white'; // Updated name and case
+                                    newImageFileName = 'iphone 16 pro white';
                                 }
-                                fileExtension = '.png'; // All are .png
                                 break;
                             case 'iphone16':
-                                // For iPhone 16, using modelName and selectedColor for concatenation
-                                // Will produce: iphone16-Black.png, iphone16-Silver-gray.png, iphone16-Pink.png
-                                newImageFileName = `${modelName}-${selectedColor}`;
-                                fileExtension = '.png';
+                                newImageFileName = `${modelName}-${selectedColor}`; // e.g., iphone16-Black
                                 break;
                             case 'iphone15promax':
-                                // Explicit names for iPhone 15 Pro Max
                                 if (selectedColor === 'naturaltitanium') {
                                     newImageFileName = 'iPhone 15 Pro Max Natural Titanium';
                                 } else if (selectedColor === 'blue') {
                                     newImageFileName = 'iPhone 15 Pro Max Blue Titanium';
-                                } else if (selectedColor === 'black') { // Note lowercase 'black' in data-color and filename
+                                } else if (selectedColor === 'black') {
                                     newImageFileName = 'iPhone 15 Pro Max black';
                                 }
-                                fileExtension = '.png'; // All are .png
                                 break;
                             case 'iphone15pro':
-                                // Uses modelName (iphone15pro) for concatenation. E.g., iphone15pro-blacktitanium.png
-                                newImageFileName = `${modelName}-${selectedColor}`;
-                                fileExtension = '.png';
+                                // Uses data-color values that match parts of filenames: black titanium, white titanium, natural titanium
+                                if (selectedColor === 'black titanium') {
+                                    newImageFileName = 'iphone 15 pro black titanium';
+                                } else if (selectedColor === 'white titanium') {
+                                    newImageFileName = 'iphone 15 pro white titanium';
+                                } else if (selectedColor === 'natural titanium') {
+                                    newImageFileName = 'iphone 15 pro natural titanium';
+                                }
                                 break;
                             case 'iphone15':
-                                // Uses modelName (iphone15) for concatenation. E.g., iphone15-pink.png
-                                newImageFileName = `${modelName}-${selectedColor}`;
-                                fileExtension = '.png';
+                                // Uses data-color values that match parts of filenames: pink, black, blue
+                                if (selectedColor === 'pink') {
+                                    newImageFileName = 'iphone 15 pink';
+                                } else if (selectedColor === 'black') {
+                                    newImageFileName = 'iphone 15 black';
+                                } else if (selectedColor === 'blue') {
+                                    newImageFileName = 'iphone 15 blue';
+                                }
                                 break;
                             case 'iphonese':
-                                // Uses modelName (iphonese) for concatenation. E.g., iphonese-midnight.png
-                                newImageFileName = `${modelName}-${selectedColor}`;
-                                fileExtension = '.png';
+                                // Uses data-color values that match parts of filenames: midnight, starlight, red
+                                if (selectedColor === 'midnight') {
+                                    newImageFileName = 'iphone se 3rd gen midnight';
+                                } else if (selectedColor === 'starlight') {
+                                    newImageFileName = 'iphone se 3rd gen starlight';
+                                } else if (selectedColor === 'red') {
+                                    newImageFileName = 'iphone se 3rd gen red';
+                                }
                                 break;
                             case 'iphone14':
-                                // Uses modelName (iphone14) for concatenation. E.g., iphone14-blue.png
-                                newImageFileName = `${modelName}-${selectedColor}`;
-                                fileExtension = '.png';
+                                // Uses data-color values that match parts of filenames: blue, purple, midnight
+                                if (selectedColor === 'blue') {
+                                    newImageFileName = 'iPhone 14 blue';
+                                } else if (selectedColor === 'purple') {
+                                    newImageFileName = 'iPhone 14 purple';
+                                } else if (selectedColor === 'midnight') {
+                                    newImageFileName = 'iphone 14 midnight';
+                                }
                                 break;
                             default:
                                 console.warn("Unknown model or color combination for image path generation.");
                                 return;
                         }
-
+                        
                         productImage.src = `${imageBaseDir}${newImageFileName}${fileExtension}`;
                         productImage.alt = `${productCard.querySelector('h3').textContent} ${selectedColor}`;
 

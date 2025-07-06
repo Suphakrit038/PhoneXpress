@@ -2,48 +2,24 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="ร้านขาย iPhone แท้ ออนไลน์ สั่งง่าย ส่งไว ปลอดภัย มีให้เลือกหลายรุ่น" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PhoneXpress</title>
-  <link rel="icon" type="image/png" href="assets/image/favicon.png" />
+  <link rel="icon" href="assets/image/favicon.png" />
   <link rel="stylesheet" href="assets/css/styles.css" />
   <style>
     @keyframes floatInUp {
-      0% {
-        transform: translateY(60px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-    @keyframes floatFadeIn {
-      0% {
-        transform: translateY(40px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
+      0% { transform: translateY(60px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
     }
     .animate-float {
       animation: floatInUp 0.9s ease-out forwards;
     }
-    .animate-fade {
-      animation: floatFadeIn 0.8s ease-out forwards;
-    }
   </style>
 </head>
 <body>
-  <div class="gold-glow"></div>
-
   <header class="navbar">
     <div class="logo">
-      <a href="#">
-        <img src="assets/image/logo.png" alt="PhoneXpress Logo" class="logo-img" />
-      </a>
+      <a href="#"><img src="assets/image/logo.png" alt="PhoneXpress Logo" class="logo-img" /></a>
     </div>
     <nav class="menu">
       <a href="#">สินค้า</a>
@@ -51,18 +27,16 @@
     </nav>
   </header>
 
-  <!-- Hero -->
   <section class="hero">
     <h1>ซื้อ iPhone แท้ ง่าย ปลอดภัย และเหนือระดับ</h1>
-    <p>รุ่น สี ความจุ พร้อมชำระเงินในคลิกเดียว</p>
+    <p>เปรียบเทียบรุ่น สี ความจุ พร้อมชำระเงินในคลิกเดียว</p>
     <a href="#" class="btn">ดูสินค้าทั้งหมด</a>
   </section>
 
-  <!-- Products -->
   <section class="product-section">
-    <!-- iPhone 16 -->
+    <!-- ตัวอย่างสินค้า 1 ชิ้น -->
     <article class="product-card left">
-      <img src="assets/image/iphone/iphone16-black.png" alt="iPhone 16" id="preview-iphone16" class="product-image" />
+      <img src="assets/image/iphone/iphone16-black.png" alt="iPhone 16" id="preview-iphone16" class="product-image animate-float" />
       <div class="content">
         <h3>iPhone 16</h3>
         <strong>“ก้าวสู่ยุคใหม่แห่งความแรงเหนือชั้น”</strong>
@@ -72,90 +46,40 @@
           <li>แบตเตอรี่ยาวนาน</li>
         </ul>
         <ul class="colornav">
-          <li><input type="radio" id="iphone16-black" name="color-iphone16" value="black" hidden checked><label for="iphone16-black" class="colornav-link">Black Titanium</label></li>
-          <li><input type="radio" id="iphone16-silver" name="color-iphone16" value="Silver" hidden><label for="iphone16-silver" class="colornav-link">Silver Gray</label></li>
-          <li><input type="radio" id="iphone16-white" name="color-iphone16" value="white" hidden><label for="iphone16-white" class="colornav-link">สีขาว</label></li>
+          <li><input type="radio" id="iphone16-black" name="color-iphone16" value="black" hidden checked>
+            <label for="iphone16-black" class="colornav-link">Black Titanium</label></li>
+          <li><input type="radio" id="iphone16-silver" name="color-iphone16" value="Silver" hidden>
+            <label for="iphone16-silver" class="colornav-link">Silver Gray</label></li>
+          <li><input type="radio" id="iphone16-white" name="color-iphone16" value="white" hidden>
+            <label for="iphone16-white" class="colornav-link">สีขาว</label></li>
         </ul>
         <a href="#" class="btn">ดูรายละเอียด</a>
       </div>
     </article>
 
-    <!-- iPhone 16 Pro Max -->
-    <article class="product-card right">
-      <img src="assets/image/iphone/iphone16-pro-mex-black.png" alt="iPhone 16 Pro Max" id="preview-iphone16-promax" class="product-image" />
-      <div class="content">
-        <h3>iPhone 16 Pro Max</h3>
-        <strong>“สุดยอดประสบการณ์ภาพและความลึกที่คุณสัมผัสได้”</strong>
-        <ul>
-          <li>กล้อง Periscope Zoom 5×</li>
-          <li>จอ ProMotion 120Hz</li>
-          <li>ตัวเครื่องไทเทเนียม</li>
-        </ul>
-        <ul class="colornav">
-          <li><input type="radio" id="iphone16-pro-max-black" name="color-iphone16-promax" value="black" hidden checked><label for="iphone16-pro-max-black" class="colornav-link">สีดำ</label></li>
-          <li><input type="radio" id="iphone16-pro-max-desert" name="color-iphone16-promax" value="desert" hidden><label for="iphone16-pro-max-desert" class="colornav-link">สีทอง</label></li>
-          <li><input type="radio" id="iphone16-pro-mex-white" name="color-iphone16-promax" value="white" hidden><label for="iphone16-pro-mex-white" class="colornav-link">ขาว</label></li>
-        </ul>
-        <a href="#" class="btn">ดูรายละเอียด</a>
-      </div>
-    </article>
-
-    <!-- iPhone 16 Pro -->
-    <article class="product-card left">
-      <img src="assets/image/iphone/iphone16-pro-black.png" alt="iPhone 16 Pro" id="preview-iphone16-pro" class="product-image" />
-      <div class="content">
-        <h3>iPhone 16 Pro</h3>
-        <strong>“ดีไซน์อันปราณีต พลังแรงเกินบรรยาย”</strong>
-        <ul>
-          <li>Dynamic Island</li>
-          <li>จอ OLED HDR</li>
-          <li>Neural Engine รุ่นล่าสุด</li>
-        </ul>
-        <ul class="colornav">
-          <li><input type="radio" id="iphone16-pro-black" name="color-iphone16-pro" value="black" hidden checked><label for="iphone16-pro-black" class="colornav-link">สีดำ</label></li>
-          <li><input type="radio" id="iphone16-pro-blue" name="color-iphone16-pro" value="blue" hidden><label for="iphone16-pro-blue" class="colornav-link">สีน้ำเงิน</label></li>
-          <li><input type="radio" id="iphone16-pro-titanium" name="color-iphone16-pro" value="titanium" hidden><label for="iphone16-pro-titanium" class="colornav-link">ไทเทเนียม</label></li>
-        </ul>
-        <a href="#" class="btn">ดูรายละเอียด</a>
-      </div>
-    </article>
-
-    <!-- iPhone 16e -->
-    <article class="product-card right">
-      <img src="assets/image/iphone/iphone16e-black.png" alt="iPhone 16e" id="preview-iphone16e" class="product-image" />
-      <div class="content">
-        <h3>iPhone 16e</h3>
-        <strong>“ประหยัดแต่ประสิทธิภาพไม่ลด”</strong>
-        <ul>
-          <li>ขนาดกะทัดรัด</li>
-          <li>ชิป A17 Bionic</li>
-          <li>กล้องคู่</li>
-        </ul>
-        <ul class="colornav">
-          <li><input type="radio" id="iphone16e-black" name="color-iphone16e" value="black" hidden checked><label for="iphone16e-black" class="colornav-link">สีดำ</label></li>
-          <li><input type="radio" id="iphone16e-starlight" name="color-iphone16e" value="starlight" hidden><label for="iphone16e-starlight" class="colornav-link">สีสตาร์ไลท์</label></li>
-          <li><input type="radio" id="iphone16e-red" name="color-iphone16e" value="red" hidden><label for="iphone16e-red" class="colornav-link">สีแดง</label></li>
-        </ul>
-        <a href="#" class="btn">ดูรายละเอียด</a>
-      </div>
-    </article>
+    <!-- เพิ่มสินค้าอื่น ๆ ตามแบบนี้ได้เลย -->
   </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 PhoneXpress. All rights reserved.</p>
+  </footer>
 
   <script>
     document.querySelectorAll(".product-card").forEach(card => {
-      const preview = card.querySelector(".product-image");
-      const name = preview.id.replace("preview-", "");
+      const img = card.querySelector(".product-image");
+      const name = img.id.replace("preview-", "");
       card.querySelectorAll(".colornav input").forEach(radio => {
         radio.addEventListener("change", () => {
-          preview.src = `assets/image/iphone/${name}-${radio.value}.png`;
+          // รีเซ็ตแอนิเมชันเพื่อเล่นใหม่
+          img.classList.remove("animate-float");
+          void img.offsetWidth; // trigger reflow
+          // เปลี่ยนรูป
+          img.src = `assets/image/iphone/${name}-${radio.value}.png`;
+          // เพิ่มแอนิเมชันกลับมาเล่นใหม่
+          img.classList.add("animate-float");
         });
       });
     });
   </script>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2025 PhoneXpress. All rights reserved.</p>
-  </footer>
 </body>
 </html>

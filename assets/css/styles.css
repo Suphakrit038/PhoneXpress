@@ -14,7 +14,11 @@ body {
   flex-direction: column;
   overflow-x: hidden;
 }
-
+.logo-img {
+  height: 40px;
+  width: auto;
+  vertical-align: middle;
+}
 /* Golden glow */
 .gold-glow {
   position: fixed;

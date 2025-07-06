@@ -434,7 +434,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphone15promax">
-                    <img class="product-image" src="../assets/image/iphone/iphone15promax-naturaltitanium.png" alt="iPhone 15 Pro Max Natural Titanium" data-model-name="iphone15promax" />
+                    <img class="product-image" src="../assets/image/iphone/iPhone 15 Pro Max Natural Titanium.png" alt="iPhone 15 Pro Max Natural Titanium" data-model-name="iPhone 15 Pro Max" />
                     <div class="product-info">
                         <h3>iPhone 15 Pro Max</h3>
                         <p class="price">฿ <span>48,900</span></p>
@@ -520,7 +520,7 @@
                         const productCard = this.closest('.product-card');
                         const productImage = productCard.querySelector('.product-image');
                         const model = productCard.dataset.model;
-                        const modelName = productImage.dataset.modelName;
+                        const modelName = productImage.dataset.modelName; // Now holds "iPhone 16 Pro Max", "iPhone 15 Pro Max", etc.
                         const selectedColor = this.dataset.color;
 
                         const imageBaseDir = '../assets/image/iphone/';
@@ -531,49 +531,57 @@
                             case 'iphone16promax':
                                 if (selectedColor === 'Natural Natural Titanium') {
                                     newImageFileName = 'iPhone 16 Pro Max Natural Natural Titanium';
-                                    fileExtension = '.png';
                                 } else if (selectedColor === 'Black Titanium') {
-                                    newImageFileName = 'iphone16-promax-Black'; // Updated name for Black Titanium
-                                    fileExtension = '.png'; // Updated extension as per request
+                                    newImageFileName = 'iphone 16 Pro Max Black Titanium'; // Updated to new request
                                 } else if (selectedColor === 'Desert Titanium') {
                                     newImageFileName = 'iPhone 16 Pro Max Desert Titanium';
-                                    fileExtension = '.png'; // Updated extension as per request
                                 }
+                                fileExtension = '.png'; // All are .png
                                 break;
                             case 'iphone16pro':
                                 if (selectedColor === 'Black Titanium') {
                                     newImageFileName = 'Phone 16 Pro Black Titanium';
-                                    fileExtension = '.png';
                                 } else if (selectedColor === 'Silver-gray') {
-                                    newImageFileName = 'iPhone 16 Pro Silver-gray'; // This file is still needed
-                                    fileExtension = '.png';
+                                    newImageFileName = 'iphone 16 pro silver grey'; // Updated name and case
                                 } else if (selectedColor === 'White') {
-                                    newImageFileName = 'iPhone 16 Pro White'; // This file is still needed
-                                    fileExtension = '.png';
+                                    newImageFileName = 'iphone 16 pro white'; // Updated name and case
                                 }
+                                fileExtension = '.png'; // All are .png
                                 break;
                             case 'iphone16':
+                                // For iPhone 16, using modelName and selectedColor for concatenation
+                                // Will produce: iphone16-Black.png, iphone16-Silver-gray.png, iphone16-Pink.png
                                 newImageFileName = `${modelName}-${selectedColor}`;
-                                // All listed iPhone 16 files (Black, Silver-gray, Pink, White) are now .png
                                 fileExtension = '.png';
                                 break;
                             case 'iphone15promax':
-                                newImageFileName = `${modelName}-${selectedColor}`;
-                                fileExtension = '.png';
+                                // Explicit names for iPhone 15 Pro Max
+                                if (selectedColor === 'naturaltitanium') {
+                                    newImageFileName = 'iPhone 15 Pro Max Natural Titanium';
+                                } else if (selectedColor === 'blue') {
+                                    newImageFileName = 'iPhone 15 Pro Max Blue Titanium';
+                                } else if (selectedColor === 'black') { // Note lowercase 'black' in data-color and filename
+                                    newImageFileName = 'iPhone 15 Pro Max black';
+                                }
+                                fileExtension = '.png'; // All are .png
                                 break;
                             case 'iphone15pro':
+                                // Uses modelName (iphone15pro) for concatenation. E.g., iphone15pro-blacktitanium.png
                                 newImageFileName = `${modelName}-${selectedColor}`;
                                 fileExtension = '.png';
                                 break;
                             case 'iphone15':
+                                // Uses modelName (iphone15) for concatenation. E.g., iphone15-pink.png
                                 newImageFileName = `${modelName}-${selectedColor}`;
                                 fileExtension = '.png';
                                 break;
                             case 'iphonese':
+                                // Uses modelName (iphonese) for concatenation. E.g., iphonese-midnight.png
                                 newImageFileName = `${modelName}-${selectedColor}`;
                                 fileExtension = '.png';
                                 break;
                             case 'iphone14':
+                                // Uses modelName (iphone14) for concatenation. E.g., iphone14-blue.png
                                 newImageFileName = `${modelName}-${selectedColor}`;
                                 fileExtension = '.png';
                                 break;

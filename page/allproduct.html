@@ -227,7 +227,7 @@
         .color-natural-titanium { background-color: #a8a39d; }
         .color-red { background-color: #db0000; }
         .color-green { background-color: #2e4a3e; }
-        .color-purple { background-color: #6a4d70; } /* Added for iPhone 14 */
+        .color-purple { background-color: #6a4d70; }
 
 
         .btn-add-to-cart {
@@ -281,17 +281,17 @@
 
         .filter-sort-bar label {
             font-size: 1.05rem;
-            color: var(--black); /* เปลี่ยนสีตัวอักษรเป็นสีดำ */
+            color: var(--black);
             font-weight: 500;
         }
 
         .filter-sort-bar select,
         .filter-sort-bar input[type="text"] {
-            background-color: rgba(133, 133, 133, 0.9); /* เปลี่ยนพื้นหลังให้สว่างขึ้นเล็กน้อย */
-            border: 1px solid rgba(0, 0, 0, 0.2); /* เปลี่ยนสีขอบให้เข้ากับสีดำ */
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.2);
             border-radius: 8px;
             padding: 0.6rem 1rem;
-            color: var(--black); /* เปลี่ยนสีตัวอักษรเป็นสีดำ */
+            color: var(--black);
             font-size: 1rem;
             transition: border-color 0.3s ease, background-color 0.3s ease;
             -webkit-appearance: none;
@@ -304,7 +304,7 @@
         .filter-sort-bar input[type="text"]:focus {
             outline: none;
             border-color: var(--gold);
-            background-color: var( --black); /* พื้นหลังเป็นสีขาวเมื่อโฟกัส */
+            background-color: var(--white);
         }
 
         /* Custom arrow for select */
@@ -314,7 +314,7 @@
         .select-wrapper::after {
             content: '▼';
             font-size: 0.8em;
-            color: var(--black); /* เปลี่ยนสีลูกศรเป็นสีดำ */
+            color: var(--black);
             position: absolute;
             right: 12px;
             top: 50%;
@@ -405,8 +405,7 @@
                             <div class="color-option color-natural-titanium selected" data-color="NaturalTitanium"></div>
                             <div class="color-option color-blue" data-color="BlueTitanium"></div>
                             <div class="color-option color-black" data-color="BlackTitanium"></div>
-                            <div class="color-option color-white" data-color="WhiteTitanium"></div>
-                        </div>
+                            </div>
                         <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
                     </div>
                 </div>
@@ -420,8 +419,7 @@
                             <div class="color-option color-black selected" data-color="BlackTitanium"></div>
                             <div class="color-option color-white" data-color="WhiteTitanium"></div>
                             <div class="color-option color-blue" data-color="BlueTitanium"></div>
-                            <div class="color-option color-natural-titanium" data-color="NaturalTitanium"></div>
-                        </div>
+                            </div>
                         <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
                     </div>
                 </div>
@@ -434,10 +432,8 @@
                         <div class="colornav">
                             <div class="color-option color-black selected" data-color="Black"></div>
                             <div class="color-option color-white" data-color="White"></div>
-                            <div class="color-option color-blue" data-color="Blue"></div>
                             <div class="color-option color-pink" data-color="Pink"></div>
-                            <div class="color-option color-green" data-color="Green"></div>
-                        </div>
+                            </div>
                         <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
                     </div>
                 </div>
@@ -451,8 +447,7 @@
                             <div class="color-option color-natural-titanium selected" data-color="naturaltitanium"></div>
                             <div class="color-option color-blue" data-color="blue"></div>
                             <div class="color-option color-black" data-color="black"></div>
-                            <div class="color-option color-white" data-color="white"></div>
-                        </div>
+                            </div>
                         <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
                     </div>
                 </div>
@@ -465,7 +460,6 @@
                         <div class="colornav">
                             <div class="color-option color-black selected" data-color="blacktitanium"></div>
                             <div class="color-option color-white" data-color="whitetitanium"></div>
-                            <div class="color-option color-blue" data-color="bluetitanium"></div>
                             <div class="color-option color-natural-titanium" data-color="naturaltitanium"></div>
                         </div>
                         <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
@@ -480,10 +474,8 @@
                         <div class="colornav">
                             <div class="color-option color-pink selected" data-color="pink"></div>
                             <div class="color-option color-black" data-color="black"></div>
-                            <div class="color-option color-white" data-color="white"></div>
                             <div class="color-option color-blue" data-color="blue"></div>
-                            <div class="color-option color-green" data-color="green"></div>
-                        </div>
+                            </div>
                         <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
                     </div>
                 </div>
@@ -511,10 +503,7 @@
                             <div class="color-option color-blue selected" data-color="blue"></div>
                             <div class="color-option color-purple" data-color="purple"></div>
                             <div class="color-option color-black" data-color="midnight"></div>
-                            <div class="color-option color-white" data-color="starlight"></div>
-                            <div class="color-option color-red" data-color="red"></div>
-                            <div class="color-option color-pink" data-color="pink"></div>
-                        </div>
+                            </div>
                         <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
                     </div>
                 </div>
@@ -540,7 +529,11 @@
 
                         // Update image src
                         productImage.src = `${baseSrc}-${selectedColor}.png`;
-                        productImage.alt = `${productImage.alt.split(' ')[0]} ${productImage.alt.split(' ')[1]} ${selectedColor}`; // Update alt text
+                        // Update alt text (split by space to handle multi-word colors like "Natural Titanium")
+                        const altParts = productImage.alt.split(' ');
+                        altParts[altParts.length - 1] = selectedColor; // Replace the last part (color)
+                        productImage.alt = altParts.join(' ');
+
 
                         // Remove 'selected' class from siblings and add to clicked one
                         this.closest('.colornav').querySelectorAll('.color-option').forEach(option => {

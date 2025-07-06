@@ -26,7 +26,6 @@
             overflow-x: hidden;
         }
 
-        /* Golden glow */
         .gold-glow {
             position: fixed;
             top: 0;
@@ -49,7 +48,6 @@
             100% { opacity: 1; }
         }
 
-        /* Layout */
         .navbar, .footer {
             position: relative;
             z-index: 10;
@@ -128,7 +126,6 @@
             margin: 0 auto;
         }
 
-        /* Product Grid */
         .product-grid-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -161,8 +158,8 @@
 
         .product-card img {
             width: 100%;
-            height: 250px; /* กำหนดความสูงตายตัวเพื่อให้รูปภาพมีขนาดเท่ากัน */
-            object-fit: contain; /* ปรับให้รูปภาพอยู่ภายในกรอบโดยไม่บิดเบี้ยว */
+            height: 250px;
+            object-fit: contain;
             padding: 1rem;
             transition: transform 0.3s ease;
         }
@@ -219,7 +216,6 @@
             box-shadow: 0 0 8px rgba(212, 175, 55, 0.7);
         }
 
-        /* Specific colors */
         .color-black { background-color: #000000; }
         .color-white { background-color: #f0f0f0; }
         .color-blue { background-color: #27284b; }
@@ -228,8 +224,8 @@
         .color-red { background-color: #db0000; }
         .color-green { background-color: #2e4a3e; }
         .color-purple { background-color: #6a4d70; }
-        .color-desert-titanium { background-color: #bfa17c; } /* Example color for Desert Titanium */
-        .color-silver-gray { background-color: #c0c0c0; } /* Example color for Silver-gray */
+        .color-desert-titanium { background-color: #bfa17c; }
+        .color-silver-gray { background-color: #c0c0c0; }
 
 
         .btn-add-to-cart {
@@ -265,7 +261,6 @@
             width: 100%;
         }
 
-        /* Filter and Sort Section */
         .filter-sort-bar {
             background-color: rgba(255, 255, 255, 0.08);
             padding: 1.5rem 2rem;
@@ -309,7 +304,6 @@
             background-color: var(--white);
         }
 
-        /* Custom arrow for select */
         .select-wrapper {
             position: relative;
         }
@@ -324,7 +318,6 @@
             pointer-events: none;
         }
 
-        /* Alert message */
         #cart-alert {
             position: fixed;
             top: 20px;
@@ -521,53 +514,76 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Function to handle color selection
             document.querySelectorAll('.product-card .colornav').forEach(colornav => {
                 colornav.querySelectorAll('.color-option').forEach(colorOption => {
                     colorOption.addEventListener('click', function() {
                         const productCard = this.closest('.product-card');
                         const productImage = productCard.querySelector('.product-image');
-                        const model = productCard.dataset.model; // e.g., "iphone16promax", "iphone15"
-                        const modelName = productImage.dataset.modelName; // e.g., "iPhone 16 Pro Max", "iphone15"
-                        const selectedColor = this.dataset.color; // e.g., "Natural Natural Titanium", "Black", "pink"
+                        const model = productCard.dataset.model;
+                        const modelName = productImage.dataset.modelName;
+                        const selectedColor = this.dataset.color;
 
                         const imageBaseDir = '../assets/image/iphone/';
                         let newImageFileName;
+                        let fileExtension = '.png';
 
-                        // **Crucial: Define filename logic based on model and color, matching your actual file names**
-                        // All images are in the same folder: assets/image/iphone/
                         switch (model) {
                             case 'iphone16promax':
-                                // These file names are specific and full
                                 if (selectedColor === 'Natural Natural Titanium') {
-                                    newImageFileName = 'iPhone 16 Pro Max Natural Natural Titanium.png';
+                                    newImageFileName = 'iPhone 16 Pro Max Natural Natural Titanium';
+                                    fileExtension = '.png';
                                 } else if (selectedColor === 'Black Titanium') {
-                                    newImageFileName = 'iphone 16 Pro Max Black Titanium.png'; // Note 'iphone' lowercase
+                                    newImageFileName = 'iphone 16 Pro Max Black Titanium';
+                                    fileExtension = '.jpg';
                                 } else if (selectedColor === 'Desert Titanium') {
-                                    newImageFileName = 'iPhone 16 Pro Max Desert Titanium.png';
+                                    newImageFileName = 'iPhone 16 Pro Max Desert Titanium';
+                                    fileExtension = '.jpg';
                                 }
                                 break;
                             case 'iphone16pro':
-                                // These file names are specific and full
                                 if (selectedColor === 'Black Titanium') {
-                                    newImageFileName = 'Phone 16 Pro Black Titanium.png'; // Note 'Phone' uppercase
+                                    newImageFileName = 'Phone 16 Pro Black Titanium';
+                                    fileExtension = '.png';
                                 } else if (selectedColor === 'Silver-gray') {
-                                    newImageFileName = 'iPhone 16 Pro Silver-gray.png'; // Make sure this file exists!
+                                    newImageFileName = 'iPhone 16 Pro Silver-gray';
+                                    fileExtension = '.png';
                                 } else if (selectedColor === 'White') {
-                                    newImageFileName = 'iPhone 16 Pro White.png'; // Make sure this file exists!
+                                    newImageFileName = 'iPhone 16 Pro White';
+                                    fileExtension = '.png';
                                 }
                                 break;
-                            default:
-                                // For all other models, assume the pattern [modelName]-[color].png
-                                // e.g., iphone16-Black.png, iphone15promax-naturaltitanium.png
-                                newImageFileName = `${modelName}-${selectedColor}.png`;
+                            case 'iphone16':
+                                newImageFileName = `${modelName}-${selectedColor}`;
+                                fileExtension = '.png';
                                 break;
+                            case 'iphone15promax':
+                                newImageFileName = `${modelName}-${selectedColor}`;
+                                fileExtension = '.png';
+                                break;
+                            case 'iphone15pro':
+                                newImageFileName = `${modelName}-${selectedColor}`;
+                                fileExtension = '.png';
+                                break;
+                            case 'iphone15':
+                                newImageFileName = `${modelName}-${selectedColor}`;
+                                fileExtension = '.png';
+                                break;
+                            case 'iphonese':
+                                newImageFileName = `${modelName}-${selectedColor}`;
+                                fileExtension = '.png';
+                                break;
+                            case 'iphone14':
+                                newImageFileName = `${modelName}-${selectedColor}`;
+                                fileExtension = '.png';
+                                break;
+                            default:
+                                console.warn("Unknown model or color combination for image path generation.");
+                                return;
                         }
 
-                        productImage.src = `${imageBaseDir}${newImageFileName}`;
+                        productImage.src = `${imageBaseDir}${newImageFileName}${fileExtension}`;
                         productImage.alt = `${productCard.querySelector('h3').textContent} ${selectedColor}`;
 
-                        // Remove 'selected' class from siblings and add to clicked one
                         this.closest('.colornav').querySelectorAll('.color-option').forEach(option => {
                             option.classList.remove('selected');
                         });
@@ -576,7 +592,6 @@
                 });
             });
 
-            // Function to handle Add to Cart button
             document.querySelectorAll('.btn-add-to-cart').forEach(button => {
                 button.addEventListener('click', function() {
                     const productCard = this.closest('.product-card');
@@ -595,7 +610,6 @@
                 });
             });
 
-            // Basic Filter/Sort (for demonstration, actual filtering would need more logic)
             const filterModelSelect = document.getElementById('filter-model');
             const searchProductInput = document.getElementById('search-product');
             const productCards = document.querySelectorAll('.product-grid .product-card');
@@ -612,9 +626,9 @@
                     const isSearchMatch = productName.includes(searchTerm);
 
                     if (isModelMatch && isSearchMatch) {
-                        card.style.display = 'flex'; // Show card
+                        card.style.display = 'flex';
                     } else {
-                        card.style.display = 'none'; // Hide card
+                        card.style.display = 'none';
                     }
                 });
             }

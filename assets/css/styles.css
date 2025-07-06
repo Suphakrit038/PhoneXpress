@@ -56,13 +56,6 @@ body {
     opacity: 1;
   }
 }
-.animate-float {
-  animation: floatInUp 0.9s ease-out forwards;
-}
-
-.animate-fade {
-  animation: floatFadeIn 0.8s ease-out forwards;
-}
 
 
 .product-card img {

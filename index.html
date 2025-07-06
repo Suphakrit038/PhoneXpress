@@ -7,6 +7,34 @@
   <title>PhoneXpress</title>
   <link rel="icon" type="image/png" href="assets/image/favicon.png" />
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    @keyframes floatInUp {
+      0% {
+        transform: translateY(60px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    @keyframes floatFadeIn {
+      0% {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    .animate-float {
+      animation: floatInUp 0.9s ease-out forwards;
+    }
+    .animate-fade {
+      animation: floatFadeIn 0.8s ease-out forwards;
+    }
+  </style>
 </head>
 <body>
   <div class="gold-glow"></div>

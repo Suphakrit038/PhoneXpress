@@ -262,9 +262,7 @@
     <!-- iPhone 16 -->
     <article class="product-card left">
       <div class="product-image-container">
-        <img src="assets/image/iphone/iphone16-black.png" alt="iPhone 16 สีดำ" class="product-image active" data-color="black" />
-        <img src="assets/image/iphone/iphone16-Silver-gray.png" alt="iPhone 16 สีเงิน" class="product-image" data-color="silver" />
-        <img src="assets/image/iphone/iphone16-White.png" alt="iPhone 16 สีขาว" class="product-image" data-color="white" />
+        <img src="assets/image/iphone/iphone16-black.png" alt="iPhone 16 สีดำ" class="product-image" />
       </div>
       <div class="content">
         <h3>iPhone 16</h3>
@@ -274,11 +272,6 @@
           <li>พอร์ต USB‑C ชาร์จไว</li>
           <li>แบตเตอรี่ยาวนาน</li>
         </ul>
-        <div class="colornav">
-          <button class="colornav-link active" data-color="black">Black Titanium</button>
-          <button class="colornav-link" data-color="silver">Silver Gray</button>
-          <button class="colornav-link" data-color="white">สีขาว</button>
-        </div>
         <a href="#" class="btn">ดูรายละเอียด</a>
       </div>
     </article>
@@ -286,9 +279,7 @@
     <!-- iPhone 16 Pro Max -->
     <article class="product-card right">
       <div class="product-image-container">
-        <img src="assets/image/iphone/iphone16-pro-mex-black.png" alt="iPhone 16 Pro Max สีดำ" class="product-image active" data-color="black" />
-        <img src="assets/image/iphone/iphone16-pro-mex-desert.png" alt="iPhone 16 Pro Max สีทอง" class="product-image" data-color="desert" />
-        <img src="assets/image/iphone/iphone16-pro-mex-white.png" alt="iPhone 16 Pro Max สีขาว" class="product-image" data-color="white" />
+        <img src="assets/image/iphone/iphone16-pro-max-black.png" alt="iPhone 16 Pro Max สีดำ" class="product-image" />
       </div>
       <div class="content">
         <h3>iPhone 16 Pro Max</h3>
@@ -298,11 +289,6 @@
           <li>จอ ProMotion 120Hz</li>
           <li>ตัวเครื่องไทเทเนียม</li>
         </ul>
-        <div class="colornav">
-          <button class="colornav-link active" data-color="black">สีดำ</button>
-          <button class="colornav-link" data-color="desert">สีทอง</button>
-          <button class="colornav-link" data-color="white">ขาว</button>
-        </div>
         <a href="#" class="btn">ดูรายละเอียด</a>
       </div>
     </article>
@@ -310,9 +296,7 @@
     <!-- iPhone 16 Pro -->
     <article class="product-card left">
       <div class="product-image-container">
-        <img src="assets/image/iphone/iphone16-pro-black.png" alt="iPhone 16 Pro สีดำ" class="product-image active" data-color="black" />
-        <img src="assets/image/iphone/iphone16-pro-blue.png" alt="iPhone 16 Pro สีน้ำเงิน" class="product-image" data-color="blue" />
-        <img src="assets/image/iphone/iphone16-pro-titanium.png" alt="iPhone 16 Pro ไทเทเนียม" class="product-image" data-color="titanium" />
+        <img src="assets/image/iphone/iphone16-pro-black.png" alt="iPhone 16 Pro สีดำ" class="product-image" />
       </div>
       <div class="content">
         <h3>iPhone 16 Pro</h3>
@@ -322,11 +306,6 @@
           <li>จอ OLED HDR</li>
           <li>Neural Engine รุ่นล่าสุด</li>
         </ul>
-        <div class="colornav">
-          <button class="colornav-link active" data-color="black">สีดำ</button>
-          <button class="colornav-link" data-color="blue">สีน้ำเงิน</button>
-          <button class="colornav-link" data-color="titanium">ไทเทเนียม</button>
-        </div>
         <a href="#" class="btn">ดูรายละเอียด</a>
       </div>
     </article>
@@ -334,9 +313,7 @@
     <!-- iPhone 16e -->
     <article class="product-card right">
       <div class="product-image-container">
-        <img src="assets/image/iphone/iphone16e-black.png" alt="iPhone 16e สีดำ" class="product-image active" data-color="black" />
-        <img src="assets/image/iphone/iphone16e-starlight.png" alt="iPhone 16e สตาร์ไลท์" class="product-image" data-color="starlight" />
-        <img src="assets/image/iphone/iphone16e-red.png" alt="iPhone 16e สีแดง" class="product-image" data-color="red" />
+        <img src="assets/image/iphone/iphone16e-black.png" alt="iPhone 16e สีดำ" class="product-image" />
       </div>
       <div class="content">
         <h3>iPhone 16e</h3>
@@ -346,35 +323,10 @@
           <li>ชิป A17 Bionic</li>
           <li>กล้องคู่</li>
         </ul>
-        <div class="colornav">
-          <button class="colornav-link active" data-color="black">สีดำ</button>
-          <button class="colornav-link" data-color="starlight">สีสตาร์ไลท์</button>
-          <button class="colornav-link" data-color="red">สีแดง</button>
-        </div>
         <a href="#" class="btn">ดูรายละเอียด</a>
       </div>
     </article>
   </section>
-
-  <script>
-    document.querySelectorAll('.product-card').forEach(card => {
-      const imageContainer = card.querySelector('.product-image-container');
-      const images = imageContainer.querySelectorAll('.product-image');
-      const colorButtons = card.querySelectorAll('.colornav-link');
-      
-      colorButtons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-          // Remove active class from all images and buttons
-          images.forEach(img => img.classList.remove('active'));
-          colorButtons.forEach(btn => btn.classList.remove('active'));
-          
-          // Add active class to clicked button and corresponding image
-          button.classList.add('active');
-          images[index].classList.add('active');
-        });
-      });
-    });
-  </script>
 
   <!-- Footer -->
   <footer class="footer">

@@ -36,6 +36,20 @@ body {
   0% { transform: translateX(-30%); }
   100% { transform: translateX(30%); }
 }
+@keyframes floatInUp {
+  0% {
+    transform: translateY(60px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.product-card img {
+  animation: floatInUp 0.8s ease-out 0.3s forwards;
+}
 
 /* Layout core */
 .navbar, .hero, .about, .footer {
@@ -149,9 +163,15 @@ body {
 }
 
 .product-card img {
-  width: 100%;
-  max-width: 400px;
-  object-fit: cover;
+  width: 320px;               /* กำหนดความกว้างเท่ากันทุกภาพ */
+  height: 320px;           /* กำหนดความสูงเท่ากันทุกภาพ */
+  background-color: #000;
+  object-fit: contain;
+  border-radius: 16px;
+  animation: floatInUp 0.8s ease-out 0.3s forwards;
+  opacity: 0;
+  transform: translateY(60px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
 }
 

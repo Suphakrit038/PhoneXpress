@@ -135,9 +135,9 @@
         /* --- Hero Section --- */
         .hero {
             text-align: center;
-            padding: 5rem 1.5rem;
+            padding: 3rem 1.5rem; /* ปรับลด padding */
             background: linear-gradient(180deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
-            min-height: 50vh;
+            min-height: 40vh; /* ปรับลดความสูงขั้นต่ำ */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -162,18 +162,18 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 2.8rem; /* ปรับลดขนาด font ของ h1 */
             color: var(--gold);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem; /* ปรับลด margin */
             text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
             max-width: 800px;
             line-height: 1.2;
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.1rem; /* ปรับลดขนาด font ของ p */
             color: var(--light-text-color);
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem; /* ปรับลด margin */
             max-width: 600px;
         }
 
@@ -309,18 +309,21 @@
             }
 
             .hero {
-                padding: 3rem 1rem;
+                padding: 2rem 1rem; /* ปรับลด padding สำหรับมือถือ */
+                min-height: 35vh; /* ปรับลดความสูงขั้นต่ำสำหรับมือถือ */
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2rem; /* ปรับลดขนาด font ของ h1 สำหรับมือถือ */
             }
 
             .hero p {
-                font-size: 1rem;
+                font-size: 0.9rem; /* ปรับลดขนาด font ของ p สำหรับมือถือ */
             }
+        }
 
-            .about, .featured-products {
+            .about, .featured-products 
+            {
                 padding: 2rem 1rem;
                 margin: 2rem auto;
             }
@@ -341,7 +344,7 @@
                 margin: 0 auto; /* Center single column cards */
                 max-width: 350px; /* Constrain width on small screens */
             }
-        }
+        
     </style>
 </head>
 <body>
@@ -359,11 +362,7 @@
             <a href="cart.html">ตะกร้า</a>
         </div>
     </nav>
- <section class="hero">
-            <h1>ซื้อ iPhone แท้ ง่าย ปลอดภัย และเหนือระดับ</h1>
-            <p>เปรียบเทียบรุ่น สี ความจุ พร้อมชำระเงินในคลิกเดียว</p>
-            <a href="allproduct.html" class="btn">ดูสินค้าทั้งหมด</a>
-        </section>
+
     <main>
         <section class="hero">
             <h1>ซื้อ iPhone แท้ ง่าย ปลอดภัย และเหนือระดับ</h1>

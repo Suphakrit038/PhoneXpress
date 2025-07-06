@@ -48,7 +48,7 @@ body {
 }
 
 .product-card img {
-  animation: floatInUp 0.2s ease-out 0.3s forwards;
+  animation: floatInUp 0.5s ease-out 0.3s forwards;
 }
 
 /* Layout core */
@@ -167,7 +167,7 @@ body {
   height: 400px;           /* กำหนดความสูงเท่ากันทุกภาพ */
   object-fit: contain;
   border-radius: 16px;
-  animation: floatInUp 0.2s ease-out 0.3s forwards;
+  animation: floatInUp 0.8s ease-out 0.3s forwards;
   opacity: 0;
   transform: translateY(60px);
   transition: transform 0.3s ease;

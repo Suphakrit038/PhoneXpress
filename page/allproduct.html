@@ -228,6 +228,9 @@
         .color-red { background-color: #db0000; }
         .color-green { background-color: #2e4a3e; }
         .color-purple { background-color: #6a4d70; }
+        /* Add new colors for consistency */
+        .color-desert-titanium { background-color: #bfa17c; /* Example color for Desert Titanium */ }
+        .color-silver-gray { background-color: #c0c0c0; /* Example color for Silver-gray */ }
 
 
         .btn-add-to-cart {
@@ -281,17 +284,17 @@
 
         .filter-sort-bar label {
             font-size: 1.05rem;
-            color: var(--black);
+            color: var(--white); /* เปลี่ยนสีตัวอักษรเป็นสีขาว */
             font-weight: 500;
         }
 
         .filter-sort-bar select,
         .filter-sort-bar input[type="text"] {
-            background-color: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.9); /* เปลี่ยนพื้นหลังให้สว่างขึ้นเล็กน้อย */
+            border: 1px solid rgba(0, 0, 0, 0.2); /* เปลี่ยนสีขอบให้เข้ากับสีดำ */
             border-radius: 8px;
             padding: 0.6rem 1rem;
-            color: var(--black);
+            color: var(--black); /* เปลี่ยนสีตัวอักษรเป็นสีดำ */
             font-size: 1rem;
             transition: border-color 0.3s ease, background-color 0.3s ease;
             -webkit-appearance: none;
@@ -304,7 +307,7 @@
         .filter-sort-bar input[type="text"]:focus {
             outline: none;
             border-color: var(--gold);
-            background-color: var(--white);
+            background-color: var(--white); /* พื้นหลังเป็นสีขาวเมื่อโฟกัส */
         }
 
         /* Custom arrow for select */
@@ -314,7 +317,7 @@
         .select-wrapper::after {
             content: '▼';
             font-size: 0.8em;
-            color: var(--black);
+            color: var(--black); /* เปลี่ยนสีลูกศรเป็นสีดำ */
             position: absolute;
             right: 12px;
             top: 50%;
@@ -397,29 +400,27 @@
         <section class="product-grid-container">
             <div class="product-grid">
                 <div class="product-card" data-model="iphone16promax">
-                    <img class="product-image" src="../assets/image/iphone/iphone16-promax-NaturalTitanium.png" alt="iPhone 16 Pro Max Natural Titanium" data-base-src="../assets/image/iphone/iphone16-promax" />
+                    <img class="product-image" src="../assets/image/iphone/iPhone 16 Pro Max Natural Natural Titanium.png" alt="iPhone 16 Pro Max Natural Titanium" data-base-src="../assets/image/iphone/iPhone 16 Pro Max" />
                     <div class="product-info">
                         <h3>iPhone 16 Pro Max</h3>
                         <p class="price">฿ <span>59,900</span></p>
                         <div class="colornav">
-                            <div class="color-option color-natural-titanium selected" data-color="NaturalTitanium"></div>
-                            <div class="color-option color-blue" data-color="Desert Titanium"></div>
-                            <div class="color-option color-black" data-color="BlackTitanium"></div>
-                            </div>
+                            <div class="color-option color-natural-titanium selected" data-color="Natural Natural Titanium"></div>
+                            <div class="color-option color-black" data-color="Black Titanium"></div>
+                            <div class="color-option color-desert-titanium" data-color="Desert Titanium"></div>
+                        </div>
                         <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
                     </div>
                 </div>
 
                 <div class="product-card" data-model="iphone16pro">
-                    <img class="product-image" src="../assets/image/iphone/iphone16-pro-BlackTitanium.png" alt="iPhone 16 Pro Black Titanium" data-base-src="../assets/image/iphone/iphone16-pro" />
+                    <img class="product-image" src="../assets/image/iphone/Phone 16 Pro Black Titanium.png" alt="iPhone 16 Pro Black Titanium" data-base-src="../assets/image/iphone/iPhone 16 Pro" />
                     <div class="product-info">
                         <h3>iPhone 16 Pro</h3>
                         <p class="price">฿ <span>52,900</span></p>
                         <div class="colornav">
-                            <div class="color-option color-black selected" data-color="BlackTitanium"></div>
-                            <div class="color-option color-white" data-color="WhiteTitanium"></div>
-                            <div class="color-option color-blue" data-color="BlueTitanium"></div>
-                            </div>
+                            <div class="color-option color-black selected" data-color="Black Titanium"></div>
+                            <div class="color-option color-silver-gray" data-color="Silver-gray"></div> <div class="color-option color-white" data-color="White"></div> </div>
                         <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
                     </div>
                 </div>
@@ -431,9 +432,9 @@
                         <p class="price">฿ <span>38,900</span></p>
                         <div class="colornav">
                             <div class="color-option color-black selected" data-color="Black"></div>
-                            <div class="color-option color-white" data-color="White"></div>
+                            <div class="color-option color-silver-gray" data-color="Silver-gray"></div>
                             <div class="color-option color-pink" data-color="Pink"></div>
-                            </div>
+                        </div>
                         <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
                     </div>
                 </div>
@@ -447,7 +448,7 @@
                             <div class="color-option color-natural-titanium selected" data-color="naturaltitanium"></div>
                             <div class="color-option color-blue" data-color="blue"></div>
                             <div class="color-option color-black" data-color="black"></div>
-                            </div>
+                        </div>
                         <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
                     </div>
                 </div>
@@ -475,7 +476,7 @@
                             <div class="color-option color-pink selected" data-color="pink"></div>
                             <div class="color-option color-black" data-color="black"></div>
                             <div class="color-option color-blue" data-color="blue"></div>
-                            </div>
+                        </div>
                         <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
                     </div>
                 </div>
@@ -503,7 +504,7 @@
                             <div class="color-option color-blue selected" data-color="blue"></div>
                             <div class="color-option color-purple" data-color="purple"></div>
                             <div class="color-option color-black" data-color="midnight"></div>
-                            </div>
+                        </div>
                         <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
                     </div>
                 </div>
@@ -523,16 +524,51 @@
             document.querySelectorAll('.product-card .colornav').forEach(colornav => {
                 colornav.querySelectorAll('.color-option').forEach(colorOption => {
                     colorOption.addEventListener('click', function() {
-                        const productImage = this.closest('.product-info').previousElementSibling; // Get the img element
+                        const productCard = this.closest('.product-card');
+                        const productImage = productCard.querySelector('.product-image'); // Get the img element
                         const baseSrc = productImage.dataset.baseSrc;
                         const selectedColor = this.dataset.color;
 
-                        // Update image src
-                        productImage.src = `${baseSrc}-${selectedColor}.png`;
-                        // Update alt text (split by space to handle multi-word colors like "Natural Titanium")
-                        const altParts = productImage.alt.split(' ');
-                        altParts[altParts.length - 1] = selectedColor; // Replace the last part (color)
-                        productImage.alt = altParts.join(' ');
+                        // Construct the new image filename based on the model and selected color
+                        // This logic needs to be robust for various naming conventions
+                        let newImageFileName;
+                        const model = productCard.dataset.model;
+
+                        // Specific logic for iPhone 16 series to match your provided file names
+                        if (model === 'iphone16promax') {
+                            // Example: iPhone 16 Pro Max Natural Natural Titanium.png
+                            // Example: iphone 16 Pro Max Black Titanium.png
+                            // Example: iPhone 16 Pro Max Desert Titanium.png
+                            if (selectedColor === 'Natural Natural Titanium') {
+                                newImageFileName = 'iPhone 16 Pro Max Natural Natural Titanium.png';
+                            } else if (selectedColor === 'Black Titanium') {
+                                newImageFileName = 'iphone 16 Pro Max Black Titanium.png'; // Note: your file has space
+                            } else if (selectedColor === 'Desert Titanium') {
+                                newImageFileName = 'iPhone 16 Pro Max Desert Titanium.png';
+                            }
+                        } else if (model === 'iphone16pro') {
+                            // Example: Phone 16 Pro Black Titanium.png
+                            // Assuming similar naming for Silver-gray and White if they exist
+                             if (selectedColor === 'Black Titanium') {
+                                newImageFileName = 'Phone 16 Pro Black Titanium.png'; // Note: your file has 'Phone' instead of 'iPhone'
+                            } else if (selectedColor === 'Silver-gray') {
+                                newImageFileName = 'iPhone 16 Pro Silver-gray.png'; // Assumption
+                            } else if (selectedColor === 'White') {
+                                newImageFileName = 'iPhone 16 Pro White.png'; // Assumption
+                            }
+                        } else if (model === 'iphone16') {
+                            // Example: iphone16-Black.png, iphone16-Silver-gray.png, iphone16-pink.png
+                            newImageFileName = `iphone16-${selectedColor}.png`;
+                        }
+                        // For other models, use the simpler baseSrc-color.png convention
+                        else {
+                            newImageFileName = `${baseSrc}-${selectedColor}.png`;
+                        }
+
+                        if (newImageFileName) {
+                            productImage.src = `${baseSrc.split('/').slice(0, -1).join('/')}/${newImageFileName}`;
+                            productImage.alt = `${productCard.querySelector('h3').textContent} ${selectedColor}`; // Update alt text
+                        }
 
 
                         // Remove 'selected' class from siblings and add to clicked one

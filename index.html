@@ -156,61 +156,53 @@
             box-shadow: 0 8px 20px rgba(212, 175, 55, 0.6);
         }
 
-        /* --- Product Section --- */
+        /* --- Product Section (GRID Layout) --- */
         .product-section {
-            display: flex;
-            flex-direction: column;
-            gap: 4rem; /* Space between product cards */
+            display: grid; /* Changed to grid */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid columns */
+            gap: 2.5rem; /* Space between product cards */
             padding: 5rem 1.5rem;
-            max-width: 1200px; /* Max width for desktop */
-            margin: 0 auto; /* Center the section */
-            align-items: center; /* Center cards horizontally */
+            max-width: 1200px;
+            margin: 0 auto;
+            /* Removed align-items: center; as grid handles alignment */
         }
 
         .product-card {
-            display: flex;
+            display: flex; /* Kept flex for stacking content inside card */
+            flex-direction: column; /* Stack image and content */
             background-color: var(--dark-gray-bg);
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(8px); /* Frosted glass effect */
+            backdrop-filter: blur(8px);
             overflow: hidden;
-            width: 100%;
-            max-width: 900px; /* Max width for individual cards */
-            padding: 2.5rem;
-            align-items: center;
+            width: 100%; /* Take full width of grid column */
+            padding: 1.5rem; /* Reduced padding for compact cards */
+            align-items: center; /* Center content horizontally within card */
+            text-align: center; /* Center text within card */
             transition: transform 0.3s ease;
         }
 
         .product-card:hover {
-            transform: translateY(-8px); /* Lift card on hover */
+            transform: translateY(-8px);
         }
 
-        /* Product card layout variations */
-        .product-card.left {
-            flex-direction: row; /* Image on left, content on right */
-            justify-content: flex-start;
-        }
-        .product-card.right {
-            flex-direction: row-reverse; /* Image on right, content on left */
-            justify-content: flex-end;
-        }
+        /* Removed .product-card.left/right specific styles */
 
         .product-image-container {
-            flex-shrink: 0; /* Prevent image from shrinking */
-            width: 40%;
-            min-width: 280px; /* Minimum width for image container */
-            max-width: 350px; /* Maximum width for image container */
-            height: 450px;
+            flex-shrink: 0;
+            width: 80%; /* Adjusted for a more compact card */
+            height: 300px; /* Fixed height for consistent image display in grid */
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 1rem;
+            margin-bottom: 1rem; /* Space between image and content */
         }
 
         .product-card img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Ensure image fits without cropping */
+            object-fit: contain;
             border-radius: 12px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
             animation: floatFadeIn 1s ease-out 0.3s forwards;
@@ -219,48 +211,47 @@
         }
 
         .product-card img:hover {
-            transform: scale(1.08); /* Zoom in effect on image hover */
+            transform: scale(1.08);
         }
 
         .content {
-            padding: 1.5rem 2rem;
+            padding: 0 0.5rem; /* Adjusted padding */
             display: flex;
             flex-direction: column;
             justify-content: center;
-            flex-grow: 1; /* Allow content to take available space */
-            text-align: left;
+            flex-grow: 1;
+            text-align: center; /* Center text within card */
         }
 
-        .product-card.right .content {
-            text-align: right; /* Align content to the right for "right" cards */
-        }
+        /* Removed .product-card.right .content specific styles */
 
         .product-card h3 {
-            font-size: 2.2rem;
+            font-size: 1.8rem; /* Slightly smaller for grid cards */
             font-weight: 700;
             color: var(--gold);
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
         }
 
         .product-card strong {
             font-weight: 600;
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.1rem; /* Slightly smaller */
+            margin-bottom: 1rem; /* Reduced margin */
             color: var(--light-text-color);
         }
 
         .product-card ul {
             margin: 0;
-            padding: 0;
-            list-style: none; /* Remove default bullet points */
-            margin-bottom: 2rem;
+            padding: 0 1rem 0 1.5rem; /* Padding for list items */
+            list-style: disc; /* Added bullet points for clarity in grid */
+            text-align: left; /* Keep list items left-aligned for readability */
+            margin-bottom: 1.5rem; /* Reduced margin */
         }
 
         .product-card li {
-            margin-bottom: 0.8rem;
-            font-size: 1rem;
+            margin-bottom: 0.5rem; /* Reduced margin */
+            font-size: 0.95rem; /* Slightly smaller */
             color: var(--light-text-color);
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         /* --- Footer --- */
@@ -274,7 +265,7 @@
             box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
         }
 
-        /* --- Responsive Adjustments (Basic) --- */
+        /* --- Responsive Adjustments (Grid specific) --- */
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
@@ -303,38 +294,22 @@
                 font-size: 1rem;
             }
 
-            .product-card,
-            .product-card.left,
-            .product-card.right {
-                flex-direction: column; /* Stack image and content vertically */
-                text-align: center;
-                padding: 1.5rem;
+            .product-section {
+                grid-template-columns: 1fr; /* Single column on small screens */
+                gap: 2rem;
+            }
+
+            .product-card {
+                padding: 1rem;
             }
 
             .product-image-container {
-                width: 80%; /* Adjust image container width for mobile */
-                min-width: unset;
-                max-width: 300px;
-                height: auto;
-                margin-bottom: 1.5rem;
-            }
-
-            .product-card img {
-                width: 100%;
-                height: auto;
-            }
-
-            .content {
-                padding: 0 0.5rem;
-                text-align: center;
-            }
-
-            .product-card.right .content {
-                text-align: center; /* Center content for "right" cards on mobile */
+                width: 90%;
+                height: 250px;
             }
 
             .product-card h3 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
 
             .product-card strong {
@@ -342,9 +317,11 @@
             }
 
             .product-card ul {
-                text-align: left; /* Keep list items left-aligned for readability */
-                padding-left: 1.5rem;
-                list-style: disc; /* Bring back bullets for clarity on mobile */
+                padding-left: 1.2rem;
+            }
+
+            .product-card li {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -372,69 +349,129 @@
     </header>
 
     <section class="product-section">
-        <article class="product-card right">
+        <article class="product-card">
             <div class="product-image-container">
                 <img src="assets/image/iphone/iphone16-promax-Black.png" alt="iPhone 16 Pro Max สีดำ" class="product-image" />
             </div>
             <div class="content">
-                <h3>iPhone 16 Pro Max</h3>
+                <h3>iPhone 16 Pro Max (Black)</h3>
                 <strong>"สุดยอดประสบการณ์ภาพและความลึกที่คุณสัมผัสได้"</strong>
                 <ul>
                     <li>กล้อง Telephoto 5× พร้อมเซ็นเซอร์ขนาดใหญ่</li>
                     <li>จอ ProMotion 120Hz พร้อม Dynamic Island</li>
                     <li>ชิป A18 Pro สุดแรง ประหยัดพลังงาน</li>
-                    <li>ตัวเครื่องไทเทเนียม เกรดการบิน ทนทานเป็นพิเศษ</li>
                 </ul>
                 <a href="#" class="btn">ดูรายละเอียด</a>
             </div>
         </article>
 
-        <article class="product-card left">
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="assets/image/iphone/iPhone 16 Pro Max Desert Titanium.jpg" alt="iPhone 16 Pro Max สี Desert Titanium" class="product-image" />
+            </div>
+            <div class="content">
+                <h3>iPhone 16 Pro Max (Desert Titanium)</h3>
+                <strong>"ความหรูหราแห่งอนาคต"</strong>
+                <ul>
+                    <li>ตัวเครื่องไทเทเนียม เกรดการบิน ทนทานเป็นพิเศษ</li>
+                    <li>กล้อง Pro ระดับสตูดิโอ</li>
+                    <li>ประสิทธิภาพแบตเตอรี่ที่ยาวนานที่สุด</li>
+                </ul>
+                <a href="#" class="btn">ดูรายละเอียด</a>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="assets/image/iphone/iPhone 16 Pro Max Natural Natural Titanium.png" alt="iPhone 16 Pro Max สี Natural Titanium" class="product-image" />
+            </div>
+            <div class="content">
+                <h3>iPhone 16 Pro Max (Natural Titanium)</h3>
+                <strong>"พลังและความงามที่แท้จริง"</strong>
+                <ul>
+                    <li>ดีไซน์ไทเทเนียมพร้อมพื้นผิวแบบปัดเงา</li>
+                    <li>จอภาพ Super Retina XDR ที่สว่างที่สุด</li>
+                    <li>ชิป A18 Pro พร้อมการประมวลผล AI ที่เหนือชั้น</li>
+                </ul>
+                <a href="#" class="btn">ดูรายละเอียด</a>
+            </div>
+        </article>
+
+        <article class="product-card">
             <div class="product-image-container">
                 <img src="assets/image/iphone/iphone16-Black.jpg" alt="iPhone 16 สีดำ" class="product-image" />
             </div>
             <div class="content">
-                <h3>iPhone 16</h3>
+                <h3>iPhone 16 (Black)</h3>
                 <strong>"ก้าวสู่ยุคใหม่แห่งความแรงเหนือชั้น"</strong>
                 <ul>
                     <li>ชิป A18 Bionic เร็วขึ้น 20% รองรับ AI เต็มรูปแบบ</li>
                     <li>พอร์ต USB‑C ชาร์จไวและถ่ายโอนข้อมูลรวดเร็ว</li>
                     <li>แบตเตอรี่ใช้งานได้ยาวนานกว่าเดิม ตลอดวัน</li>
-                    <li>ระบบกล้องคู่ 48MP พร้อมฟีเจอร์ใหม่ Photo Processing</li>
                 </ul>
                 <a href="#" class="btn">ดูรายละเอียด</a>
             </div>
         </article>
 
-        <article class="product-card right">
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="assets/image/iphone/iphone16-pink.png" alt="iPhone 16 สีชมพู" class="product-image" />
+            </div>
+            <div class="content">
+                <h3>iPhone 16 (Pink)</h3>
+                <strong>"สีสันแห่งความสดใสและพลัง"</strong>
+                <ul>
+                    <li>ระบบกล้องคู่ 48MP พร้อมฟีเจอร์ใหม่ Photo Processing</li>
+                    <li>Dynamic Island ที่ปรับปรุงใหม่</li>
+                    <li>หน้าจอ Super Retina XDR ที่สว่างยิ่งขึ้น</li>
+                </ul>
+                <a href="#" class="btn">ดูรายละเอียด</a>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="assets/image/iphone/iphone16-Silver-gray.png" alt="iPhone 16 สี Silver-gray" class="product-image" />
+            </div>
+            <div class="content">
+                <h3>iPhone 16 (Silver-gray)</h3>
+                <strong>"ความเรียบง่ายที่ลงตัว"</strong>
+                <ul>
+                    <li>ดีไซน์กระจกด้านหลังที่ทนทาน</li>
+                    <li>ชิป A18 Bionic อันทรงพลัง</li>
+                    <li>รองรับ 5G เพื่อการเชื่อมต่อที่รวดเร็ว</li>
+                </ul>
+                <a href="#" class="btn">ดูรายละเอียด</a>
+            </div>
+        </article>
+
+        <article class="product-card">
             <div class="product-image-container">
                 <img src="assets/image/iphone/iPhone 15 Pro Max Blue Titanium.png" alt="iPhone 15 Pro Max สีน้ำเงิน" class="product-image" />
             </div>
             <div class="content">
-                <h3>iPhone 15 Pro Max</h3>
+                <h3>iPhone 15 Pro Max (Blue Titanium)</h3>
                 <strong>"ขุมพลังและนวัตกรรมที่เหนือกว่า"</strong>
                 <ul>
                     <li>กล้องหลัก 48MP พร้อมเทเลโฟโต้ 5 เท่าแบบออปติคัล</li>
                     <li>ชิป A17 Pro พร้อม Ray Tracing ระดับฮาร์ดแวร์</li>
                     <li>ปุ่มแอ็กชันที่ปรับแต่งได้ตามใจคุณ</li>
-                    <li>วัสดุไทเทเนียมและหน้าจอ Super Retina XDR ProMotion</li>
                 </ul>
                 <a href="#" class="btn">ดูรายละเอียด</a>
             </div>
         </article>
 
-        <article class="product-card left">
+        <article class="product-card">
             <div class="product-image-container">
                 <img src="assets/image/iphone/iphone 15 pink.png" alt="iPhone 15 สีชมพู" class="product-image" />
             </div>
             <div class="content">
-                <h3>iPhone 15</h3>
+                <h3>iPhone 15 (Pink)</h3>
                 <strong>"ดีไซน์ที่ลงตัวและฟีเจอร์ที่ต้องมี"</strong>
                 <ul>
                     <li>Dynamic Island สำหรับแจ้งเตือนและกิจกรรมสด</li>
                     <li>กล้องหลัก 48MP ถ่ายภาพความละเอียดสูง</li>
                     <li>ชิป A16 Bionic ประมวลผลรวดเร็ว</li>
-                    <li>พอร์ต USB-C และแบตเตอรี่ที่ใช้งานได้ยาวนาน</li>
                 </ul>
                 <a href="#" class="btn">ดูรายละเอียด</a>
             </div>

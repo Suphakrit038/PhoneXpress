@@ -55,7 +55,7 @@
         }
 
         /* Layout */
-        .navbar, .hero, .footer, .product-section { /* เพิ่ม .product-section */
+        .navbar, .hero, .footer, .product-section {
             position: relative;
             z-index: 1;
         }
@@ -66,11 +66,11 @@
             align-items: center;
             padding: 1rem 1.5rem;
             background-color: rgba(0, 0, 0, 0.9);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); /* ปรับ shadow ให้ชัดขึ้น */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         }
 
         .logo-img {
-            height: 45px; /* ปรับขนาดโลโก้เล็กน้อย */
+            height: 45px;
             width: auto;
             transition: transform 0.3s ease;
         }
@@ -80,12 +80,12 @@
 
         .menu a {
             color: var(--white);
-            margin-left: 1.8rem; /* เพิ่มระยะห่างเมนู */
+            margin-left: 1.8rem;
             text-decoration: none;
             position: relative;
-            font-weight: 500; /* ทำให้ตัวอักษรหนาขึ้นเล็กน้อย */
+            font-weight: 500;
             font-size: 1.05rem;
-            padding-bottom: 5px; /* เพิ่มพื้นที่สำหรับ underline */
+            padding-bottom: 5px;
         }
 
         .menu a::after {
@@ -94,19 +94,19 @@
             width: 0;
             height: 2px;
             left: 0;
-            bottom: 0; /* ชิดขอบด้านล่างของ padding */
+            bottom: 0;
             background-color: var(--gold);
-            transition: width 0.3s ease-in-out; /* ปรับ transition */
+            transition: width 0.3s ease-in-out;
         }
 
         .menu a:hover { color: var(--gold); }
         .menu a:hover::after { width: 100%; }
-        .menu a.active::after { width: 100%; } /* สำหรับหน้าปัจจุบัน */
+        .menu a.active::after { width: 100%; }
 
         .hero {
             text-align: center;
-            padding: 5rem 1.5rem 6rem; /* เพิ่ม padding ด้านบนและล่าง */
-            background: url('assets/image/hero-bg.jpg') no-repeat center center/cover; /* เพิ่มรูปพื้นหลัง hero */
+            padding: 5rem 1.5rem 6rem;
+            background: url('assets/image/hero-bg.jpg') no-repeat center center/cover;
             min-height: 500px;
             display: flex;
             flex-direction: column;
@@ -115,16 +115,16 @@
         }
 
         .hero h1 {
-            font-size: 3.2rem; /* เพิ่มขนาดหัวข้อ */
-            font-weight: 700; /* ทำให้หนาขึ้น */
+            font-size: 3.2rem;
+            font-weight: 700;
             margin-bottom: 1.2rem;
             line-height: 1.2;
-            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); /* เพิ่มเงาให้ข้อความ */
-            animation: floatFadeIn 1s ease-out; /* ใช้ animation */
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            animation: floatFadeIn 1s ease-out;
         }
 
         .hero p {
-            font-size: 1.3rem; /* เพิ่มขนาดข้อความย่อหน้า */
+            font-size: 1.3rem;
             color: var(--light-text-color);
             margin-bottom: 2rem;
             max-width: 700px;
@@ -134,82 +134,82 @@
         }
 
         .btn {
-            padding: 0.8rem 2.5rem; /* เพิ่มขนาดปุ่ม */
+            padding: 0.8rem 2.5rem;
             border-radius: 9999px;
             background-color: var(--gold);
             color: var(--black);
             border: none;
             cursor: pointer;
             font-weight: bold;
-            font-size: 1.1rem; /* เพิ่มขนาดตัวอักษรปุ่ม */
-            text-decoration: none; /* ลบ underline สำหรับ tag <a> */
-            display: inline-block; /* ทำให้จัดตำแหน่งได้ */
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-block;
             transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4); /* เพิ่มเงาให้ปุ่ม */
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
             animation: floatFadeIn 1s ease-out 0.4s forwards;
             opacity: 0;
         }
 
         .btn:hover {
             background-color: #f6c84f;
-            transform: translateY(-4px); /* เพิ่มระยะยกเมื่อ hover */
+            transform: translateY(-4px);
             box-shadow: 0 8px 20px rgba(212, 175, 55, 0.6);
         }
 
         .product-section {
             display: flex;
             flex-direction: column;
-            gap: 4rem; /* เพิ่มระยะห่างระหว่าง Product Card */
-            padding: 5rem 1.5rem; /* เพิ่ม padding */
-            max-width: 1200px; /* เพิ่ม max-width เพื่อให้มีพื้นที่มากขึ้น */
+            gap: 4rem;
+            padding: 5rem 1.5rem;
+            max-width: 1200px; /* คง max-width สำหรับ Desktop */
             margin: 0 auto;
-            align-items: center; /* จัดให้อยู่กึ่งกลาง */
+            align-items: center;
         }
 
         .product-card {
             display: flex;
             background-color: var(--dark-gray-bg);
-            border-radius: 20px; /* เพิ่มความโค้งมน */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* เพิ่มเงาให้ชัดขึ้น */
-            backdrop-filter: blur(8px); /* เพิ่มความเบลอเล็กน้อย */
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
             overflow: hidden;
             width: 100%;
             max-width: 900px; /* จำกัดความกว้างของการ์ดแต่ละใบ */
-            padding: 2.5rem; /* เพิ่ม padding ภายใน */
+            padding: 2.5rem;
             align-items: center;
             transition: transform 0.3s ease;
         }
 
         .product-card:hover {
-            transform: translateY(-8px); /* ยกการ์ดขึ้นเมื่อ hover */
+            transform: translateY(-8px);
         }
 
-        .product-card.left { 
-            flex-direction: row; 
-            justify-content: flex-start; 
+        .product-card.left {
+            flex-direction: row;
+            justify-content: flex-start;
         }
-        .product-card.right { 
-            flex-direction: row-reverse; 
-            justify-content: flex-end; 
+        .product-card.right {
+            flex-direction: row-reverse;
+            justify-content: flex-end;
         }
 
         .product-image-container {
-            flex-shrink: 0; /* ป้องกันไม่ให้รูปภาพหดตัว */
-            width: 40%; /* กำหนดความกว้างของส่วนรูปภาพ */
-            min-width: 280px; /* กำหนดความกว้างขั้นต่ำ */
-            max-width: 350px; /* กำหนดความกว้างสูงสุด */
-            height: 450px; /* กำหนดความสูงของคอนเทนเนอร์รูปภาพ */
+            flex-shrink: 0;
+            width: 40%;
+            min-width: 280px;
+            max-width: 350px;
+            height: 450px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem; /* เพิ่ม padding ให้รูปภาพมีพื้นที่หายใจ */
+            padding: 1rem;
         }
 
         .product-card img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* รักษาอัตราส่วนและปรับขนาดให้พอดี */
-            border-radius: 12px; /* โค้งมนรูปภาพ */
+            object-fit: contain;
+            border-radius: 12px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
             animation: floatFadeIn 1s ease-out 0.3s forwards;
             opacity: 0;
@@ -217,33 +217,33 @@
         }
 
         .product-card img:hover {
-            transform: scale(1.08); /* ทำให้รูปภาพใหญ่ขึ้นเมื่อ hover */
+            transform: scale(1.08);
         }
 
         .content {
-            padding: 1.5rem 2rem; /* ปรับ padding ด้านใน content */
+            padding: 1.5rem 2rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            flex-grow: 1; /* ให้เนื้อหาขยายเต็มพื้นที่ที่เหลือ */
-            text-align: left; /* จัดข้อความชิดซ้าย */
+            flex-grow: 1;
+            text-align: left;
         }
 
         .product-card.right .content {
-            text-align: right; /* จัดข้อความชิดขวาเมื่อการ์ดอยู่ขวา */
+            text-align: right;
         }
 
         .product-card h3 {
-            font-size: 2.2rem; /* เพิ่มขนาดหัวข้อ */
+            font-size: 2.2rem;
             font-weight: 700;
             color: var(--gold);
             margin-bottom: 0.8rem;
         }
 
         .product-card strong {
-            font-weight: 600; /* ทำให้หนาขึ้น */
-            font-size: 1.2rem; /* เพิ่มขนาดข้อความ */
-            margin-bottom: 1.5rem; /* เพิ่มระยะห่างด้านล่าง */
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
             color: var(--light-text-color);
         }
 
@@ -251,106 +251,28 @@
             margin: 0;
             padding: 0;
             list-style: none;
-            margin-bottom: 2rem; /* เพิ่มระยะห่างด้านล่างของ ul */
+            margin-bottom: 2rem;
         }
 
         .product-card li {
-            margin-bottom: 0.8rem; /* เพิ่มระยะห่างระหว่าง list item */
+            margin-bottom: 0.8rem;
             font-size: 1rem;
             color: var(--light-text-color);
             line-height: 1.5;
         }
 
         .footer {
-            background-color: rgba(0, 0, 0, 0.9); /* ปรับ background */
+            background-color: rgba(0, 0, 0, 0.9);
             color: var(--light-text-color);
             text-align: center;
-            padding: 2.5rem 1.5rem; /* เพิ่ม padding */
+            padding: 2.5rem 1.5rem;
             font-size: 0.95rem;
             margin-top: auto;
-            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5); /* เพิ่ม shadow ด้านบน */
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
         }
 
-        /* Responsive Adjustments */
-        @media (max-width: 992px) { /* สำหรับหน้าจอแท็บเล็ตขนาดกลางขึ้นไป */
-            .product-section {
-                gap: 3rem;
-                padding: 4rem 1rem;
-            }
-            .product-card {
-                flex-direction: column !important; /* บังคับให้เรียงเป็น column */
-                text-align: center;
-                max-width: 500px;
-                padding: 1.5rem;
-            }
-            .product-image-container {
-                width: 80%; /* รูปภาพกว้างขึ้น */
-                height: 350px;
-                margin-bottom: 1.5rem; /* เพิ่มระยะห่างด้านล่างรูปภาพ */
-            }
-            .content {
-                padding: 1rem;
-                text-align: center !important; /* บังคับให้ข้อความอยู่ตรงกลาง */
-            }
-            .product-card ul {
-                text-align: center; /* จัด list item ตรงกลางบนมือถือ */
-            }
-            .product-card h3 {
-                font-size: 2rem;
-            }
-            .product-card strong {
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (max-width: 768px) { /* สำหรับหน้าจอแท็บเล็ตและมือถือ */
-            .navbar {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 1rem;
-            }
-            .menu {
-                margin-top: 1rem;
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            .menu a {
-                margin: 0.5rem 0;
-                font-size: 1rem;
-            }
-
-            .hero {
-                padding: 3rem 1rem 4rem;
-                min-height: 400px;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-            .btn {
-                padding: 0.6rem 2rem;
-                font-size: 1rem;
-            }
-            .product-section {
-                padding: 2.5rem 1rem;
-                gap: 2rem;
-            }
-            .product-card {
-                padding: 1rem;
-            }
-            .product-image-container {
-                height: 300px;
-                min-width: unset;
-                margin-bottom: 1rem;
-            }
-            .product-card h3 {
-                font-size: 1.8rem;
-            }
-        }
+        /* Responsive Adjustments Section REMOVED */
+        /* All @media queries have been removed to make it fixed for desktop */
     </style>
 </head>
 <body>
@@ -359,11 +281,13 @@
     <nav class="navbar">
         <div class="logo">
             <a href="#"><img src="assets/image/favicon.png" alt="PhoneXpress Logo" class="logo-img" /></a>
-            </div>
+        </div>
         <div class="menu">
-            <a href="#" class="active">หน้าแรก</a> <a href="page/allproduct.html">สินค้า</a>
+            <a href="#" class="active">หน้าแรก</a>
+            <a href="page/allproduct.html">สินค้า</a>
             <a href="#">ตะกร้า</a>
-            <a href="#">ติดต่อเรา</a> </div>
+            <a href="#">ติดต่อเรา</a>
+        </div>
     </nav>
 
     <header class="hero">
@@ -381,10 +305,10 @@
                 <h3>iPhone 16 Pro Max</h3>
                 <strong>"สุดยอดประสบการณ์ภาพและความลึกที่คุณสัมผัสได้"</strong>
                 <ul>
-                    <li>กล้อง Periscope Zoom 5× สำหรับภาพระยะไกล</li>
-                    <li>หน้าจอ ProMotion 120Hz ลื่นไหลไร้รอยต่อ</li>
-                    <li>ตัวเครื่องไทเทเนียม ทนทานและน้ำหนักเบา</li>
-                    <li>แบตเตอรี่อึด ใช้งานได้ตลอดวัน</li>
+                    <li>กล้อง Telephoto 5× พร้อมเซ็นเซอร์ขนาดใหญ่</li>
+                    <li>จอ ProMotion 120Hz พร้อม Dynamic Island</li>
+                    <li>ชิป A18 Pro สุดแรง ประหยัดพลังงาน</li>
+                    <li>ตัวเครื่องไทเทเนียม เกรดการบิน ทนทานเป็นพิเศษ</li>
                 </ul>
                 <a href="#" class="btn">ดูรายละเอียด</a>
             </div>
@@ -392,16 +316,16 @@
 
         <article class="product-card left">
             <div class="product-image-container">
-                <img src="assets/image/iphone/iphone16-black.png" alt="iPhone 16 สีดำ" class="product-image" />
+                <img src="assets/image/iphone/iphone16-Black.png" alt="iPhone 16 สีดำ" class="product-image" />
             </div>
             <div class="content">
                 <h3>iPhone 16</h3>
                 <strong>"ก้าวสู่ยุคใหม่แห่งความแรงเหนือชั้น"</strong>
                 <ul>
-                    <li>ชิป A18 Bionic เร็วขึ้นกว่าเดิม 20%</li>
-                    <li>พอร์ต USB‑C ชาร์จไว สะดวกทุกการเชื่อมต่อ</li>
-                    <li>แบตเตอรี่ใช้งานได้ยาวนานตลอดวัน</li>
-                    <li>ระบบกล้องคู่พร้อมฟีเจอร์ AI ใหม่</li>
+                    <li>ชิป A18 Bionic เร็วขึ้น 20% รองรับ AI เต็มรูปแบบ</li>
+                    <li>พอร์ต USB‑C ชาร์จไวและถ่ายโอนข้อมูลรวดเร็ว</li>
+                    <li>แบตเตอรี่ใช้งานได้ยาวนานกว่าเดิม ตลอดวัน</li>
+                    <li>ระบบกล้องคู่ 48MP พร้อมฟีเจอร์ใหม่ Photo Processing</li>
                 </ul>
                 <a href="#" class="btn">ดูรายละเอียด</a>
             </div>
@@ -409,16 +333,16 @@
 
         <article class="product-card right">
             <div class="product-image-container">
-                <img src="assets/image/iphone/iphone16-pro-mex-black.png" alt="iPhone 16 Pro สีดำ" class="product-image" />
+                <img src="assets/image/iphone/iphone15promax-blue.png" alt="iPhone 15 Pro Max สีน้ำเงิน" class="product-image" />
             </div>
             <div class="content">
-                <h3>iPhone 16 Pro</h3>
-                <strong>"ดีไซน์อันปราณีต พลังแรงเกินบรรยาย"</strong>
+                <h3>iPhone 15 Pro Max</h3>
+                <strong>"ขุมพลังและนวัตกรรมที่เหนือกว่า"</strong>
                 <ul>
-                    <li>Dynamic Island มิติใหม่ของการแจ้งเตือน</li>
-                    <li>จอ OLED HDR สีสันสดใส คมชัดทุกรายละเอียด</li>
-                    <li>Neural Engine รุ่นล่าสุด ประมวลผล AI ได้รวดเร็ว</li>
-                    <li>บันทึกวิดีโอระดับภาพยนตร์ Cinematic Mode</li>
+                    <li>กล้องหลัก 48MP พร้อมเทเลโฟโต้ 5 เท่าแบบออปติคัล</li>
+                    <li>ชิป A17 Pro พร้อม Ray Tracing ระดับฮาร์ดแวร์</li>
+                    <li>ปุ่มแอ็กชันที่ปรับแต่งได้ตามใจคุณ</li>
+                    <li>วัสดุไทเทเนียมและหน้าจอ Super Retina XDR ProMotion</li>
                 </ul>
                 <a href="#" class="btn">ดูรายละเอียด</a>
             </div>
@@ -426,16 +350,16 @@
 
         <article class="product-card left">
             <div class="product-image-container">
-                <img src="assets/image/iphone/iphone16e-black.png" alt="iPhone 16e สีดำ" class="product-image" />
+                <img src="assets/image/iphone/iphone15-pink.png" alt="iPhone 15 สีชมพู" class="product-image" />
             </div>
             <div class="content">
-                <h3>iPhone 16e</h3>
-                <strong>"ประหยัดแต่ประสิทธิภาพไม่ลด"</strong>
+                <h3>iPhone 15</h3>
+                <strong>"ดีไซน์ที่ลงตัวและฟีเจอร์ที่ต้องมี"</strong>
                 <ul>
-                    <li>ขนาดกะทัดรัด พกพาง่าย ถือสบายมือ</li>
-                    <li>ชิป A17 Bionic ทรงพลัง รองรับทุกการใช้งาน</li>
-                    <li>ระบบกล้องคู่ ถ่ายภาพสวยคมชัดทุกสถานการณ์</li>
-                    <li>รองรับ 5G เพื่อการเชื่อมต่อที่รวดเร็ว</li>
+                    <li>Dynamic Island สำหรับแจ้งเตือนและกิจกรรมสด</li>
+                    <li>กล้องหลัก 48MP ถ่ายภาพความละเอียดสูง</li>
+                    <li>ชิป A16 Bionic ประมวลผลรวดเร็ว</li>
+                    <li>พอร์ต USB-C และแบตเตอรี่ที่ใช้งานได้ยาวนาน</li>
                 </ul>
                 <a href="#" class="btn">ดูรายละเอียด</a>
             </div>

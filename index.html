@@ -28,7 +28,7 @@
             overflow-x: hidden;
         }
 
-        /* --- Animations (retained for consistency) --- */
+        /* --- Animations --- */
         .gold-glow {
             position: fixed;
             top: 0;
@@ -47,7 +47,7 @@
         }
 
         /* --- Layout & Z-index for content over glow --- */
-        .navbar, .hero, .about, .footer {
+        .navbar, .hero, .about, .featured-products, .footer {
             position: relative;
             z-index: 1;
         }
@@ -205,6 +205,77 @@
             margin-bottom: 1.5rem;
         }
 
+        /* --- Featured Products Section --- */
+        .featured-products {
+            padding: 4rem 1.5rem;
+            max-width: 1200px;
+            margin: 3rem auto;
+            background-color: var(--dark-gray-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+            text-align: center;
+        }
+
+        .featured-products h2 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 2.5rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            justify-content: center; /* Center items in grid */
+        }
+
+        .product-card {
+            background-color: rgba(0, 0, 0, 0.5); /* Slightly darker for contrast */
+            border-radius: 15px;
+            padding: 1.8rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-card img {
+            width: 100%;
+            max-height: 250px;
+            object-fit: contain;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 0.8rem;
+        }
+
+        .product-card .price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .product-card .btn {
+            width: 80%;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+        }
+
         /* --- Footer --- */
         .footer {
             background-color: rgba(0, 0, 0, 0.9);
@@ -249,17 +320,26 @@
                 font-size: 1rem;
             }
 
-            .about {
+            .about, .featured-products {
                 padding: 2rem 1rem;
                 margin: 2rem auto;
             }
 
-            .about h2 {
+            .about h2, .featured-products h2 {
                 font-size: 2rem;
             }
 
             .about p {
                 font-size: 0.9rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr; /* Stack products on small screens */
+            }
+
+            .product-card {
+                margin: 0 auto; /* Center single column cards */
+                max-width: 350px; /* Constrain width on small screens */
             }
         }
     </style>
@@ -301,6 +381,32 @@
                 ดีไซน์เรียบหรูด้วยโทนสีขาว–ทอง–ดำ รองรับทั้งคอมพิวเตอร์และมือถือ
                 มอบประสบการณ์ซื้อ iPhone ออนไลน์ที่ง่าย ปลอดภัย และเหนือระดับตั้งแต่ต้นจนจบ
             </p>
+        </section>
+
+        <section class="featured-products">
+            <h2>สินค้าแนะนำ</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="assets/image/iphone/iphone 16 Pro Max Black Titanium.jpg" alt="iPhone 16 Pro Max Black Titanium" />
+                    <h3>iPhone 16 Pro Max (Black)</h3>
+                    <div class="price">฿48,900</div>
+                    <a href="product-detail.html?model=iphone16promaxblack" class="btn">ดูรายละเอียด</a>
+                </div>
+
+                <div class="product-card">
+                    <img src="assets/image/iphone/iPhone 16 Pro Max Desert Titanium.jpg" alt="iPhone 16 Pro Max Desert Titanium" />
+                    <h3>iPhone 16 Pro Max (Desert)</h3>
+                    <div class="price">฿48,900</div>
+                    <a href="product-detail.html?model=iphone16promaxdesert" class="btn">ดูรายละเอียด</a>
+                </div>
+
+                <div class="product-card">
+                    <img src="assets/image/iphone/Phone 16 Pro Black Titanium.png" alt="iPhone 16 Pro Black Titanium" />
+                    <h3>iPhone 16 Pro (Black)</h3>
+                    <div class="price">฿42,900</div>
+                    <a href="product-detail.html?model=iphone16problack" class="btn">ดูรายละเอียด</a>
+                </div>
+            </div>
         </section>
     </main>
 

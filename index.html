@@ -2,30 +2,32 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8" />
-    <title>PhoneXpress</title>
+    <title>PhoneXpress - ซื้อ iPhone แท้</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="assets/image/favicon.png" />
     <style>
+        /* --- CSS Variables --- */
         :root {
             --gold: #d4af37;
             --black: #000000;
             --white: #ffffff;
-            --dark-gray-bg: rgba(255, 255, 255, 0.1); /* สีพื้นหลังการ์ด */
-            --light-text-color: #e5e7eb; /* สีข้อความรอง */
+            --dark-gray-bg: rgba(255, 255, 255, 0.1); /* Background color for cards */
+            --light-text-color: #e5e7eb; /* Secondary text color */
         }
 
+        /* --- Global Styles & Body --- */
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* เพิ่ม font-family ที่ดูทันสมัยขึ้น */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--black);
             color: var(--white);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Prevent horizontal scroll due to glow */
         }
 
-        /* Golden glow */
+        /* --- Animations --- */
         .gold-glow {
             position: fixed;
             top: 0;
@@ -34,7 +36,7 @@
             height: 100%;
             background: linear-gradient(120deg, transparent, rgba(212, 175, 55, 0.15), transparent);
             animation: glowMove 10s ease-in-out infinite alternate;
-            pointer-events: none;
+            pointer-events: none; /* Allows clicks to pass through */
             z-index: 0;
         }
 
@@ -44,22 +46,17 @@
         }
 
         @keyframes floatFadeIn {
-            0% {
-                transform: translateY(40px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            0% { transform: translateY(40px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
         }
 
-        /* Layout */
+        /* --- Layout & Z-index for content over glow --- */
         .navbar, .hero, .footer, .product-section {
             position: relative;
             z-index: 1;
         }
 
+        /* --- Navbar --- */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -74,6 +71,7 @@
             width: auto;
             transition: transform 0.3s ease;
         }
+
         .logo-img:hover {
             transform: scale(1.05);
         }
@@ -85,7 +83,7 @@
             position: relative;
             font-weight: 500;
             font-size: 1.05rem;
-            padding-bottom: 5px;
+            padding-bottom: 5px; /* Space for underline effect */
         }
 
         .menu a::after {
@@ -101,8 +99,9 @@
 
         .menu a:hover { color: var(--gold); }
         .menu a:hover::after { width: 100%; }
-        .menu a.active::after { width: 100%; }
+        .menu a.active::after { width: 100%; } /* Active link underline */
 
+        /* --- Hero Section --- */
         .hero {
             text-align: center;
             padding: 5rem 1.5rem 6rem;
@@ -130,40 +129,42 @@
             max-width: 700px;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
             animation: floatFadeIn 1s ease-out 0.2s forwards;
-            opacity: 0;
+            opacity: 0; /* Hidden initially for animation */
         }
 
+        /* --- Call-to-Action Button --- */
         .btn {
             padding: 0.8rem 2.5rem;
-            border-radius: 9999px;
+            border-radius: 9999px; /* Pill shape */
             background-color: var(--gold);
             color: var(--black);
             border: none;
             cursor: pointer;
             font-weight: bold;
             font-size: 1.1rem;
-            text-decoration: none;
+            text-decoration: none; /* Remove underline for links */
             display: inline-block;
             transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
             animation: floatFadeIn 1s ease-out 0.4s forwards;
-            opacity: 0;
+            opacity: 0; /* Hidden initially for animation */
         }
 
         .btn:hover {
-            background-color: #f6c84f;
-            transform: translateY(-4px);
+            background-color: #f6c84f; /* Lighter gold on hover */
+            transform: translateY(-4px); /* Slight lift effect */
             box-shadow: 0 8px 20px rgba(212, 175, 55, 0.6);
         }
 
+        /* --- Product Section --- */
         .product-section {
             display: flex;
             flex-direction: column;
-            gap: 4rem;
+            gap: 4rem; /* Space between product cards */
             padding: 5rem 1.5rem;
-            max-width: 1200px; /* คง max-width สำหรับ Desktop */
-            margin: 0 auto;
-            align-items: center;
+            max-width: 1200px; /* Max width for desktop */
+            margin: 0 auto; /* Center the section */
+            align-items: center; /* Center cards horizontally */
         }
 
         .product-card {
@@ -171,33 +172,34 @@
             background-color: var(--dark-gray-bg);
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px); /* Frosted glass effect */
             overflow: hidden;
             width: 100%;
-            max-width: 900px; /* จำกัดความกว้างของการ์ดแต่ละใบ */
+            max-width: 900px; /* Max width for individual cards */
             padding: 2.5rem;
             align-items: center;
             transition: transform 0.3s ease;
         }
 
         .product-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-8px); /* Lift card on hover */
         }
 
+        /* Product card layout variations */
         .product-card.left {
-            flex-direction: row;
+            flex-direction: row; /* Image on left, content on right */
             justify-content: flex-start;
         }
         .product-card.right {
-            flex-direction: row-reverse;
+            flex-direction: row-reverse; /* Image on right, content on left */
             justify-content: flex-end;
         }
 
         .product-image-container {
-            flex-shrink: 0;
+            flex-shrink: 0; /* Prevent image from shrinking */
             width: 40%;
-            min-width: 280px;
-            max-width: 350px;
+            min-width: 280px; /* Minimum width for image container */
+            max-width: 350px; /* Maximum width for image container */
             height: 450px;
             display: flex;
             align-items: center;
@@ -208,7 +210,7 @@
         .product-card img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: contain; /* Ensure image fits without cropping */
             border-radius: 12px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
             animation: floatFadeIn 1s ease-out 0.3s forwards;
@@ -217,7 +219,7 @@
         }
 
         .product-card img:hover {
-            transform: scale(1.08);
+            transform: scale(1.08); /* Zoom in effect on image hover */
         }
 
         .content {
@@ -225,12 +227,12 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            flex-grow: 1;
+            flex-grow: 1; /* Allow content to take available space */
             text-align: left;
         }
 
         .product-card.right .content {
-            text-align: right;
+            text-align: right; /* Align content to the right for "right" cards */
         }
 
         .product-card h3 {
@@ -250,7 +252,7 @@
         .product-card ul {
             margin: 0;
             padding: 0;
-            list-style: none;
+            list-style: none; /* Remove default bullet points */
             margin-bottom: 2rem;
         }
 
@@ -261,18 +263,90 @@
             line-height: 1.5;
         }
 
+        /* --- Footer --- */
         .footer {
             background-color: rgba(0, 0, 0, 0.9);
             color: var(--light-text-color);
             text-align: center;
             padding: 2.5rem 1.5rem;
             font-size: 0.95rem;
-            margin-top: auto;
+            margin-top: auto; /* Push footer to the bottom */
             box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
         }
 
-        /* Responsive Adjustments Section REMOVED */
-        /* All @media queries have been removed to make it fixed for desktop */
+        /* --- Responsive Adjustments (Basic) --- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-bottom: 1rem;
+            }
+
+            .menu {
+                margin-top: 1rem;
+                width: 100%;
+                justify-content: space-around;
+            }
+
+            .menu a {
+                margin-left: 0;
+                margin-right: 0;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .product-card,
+            .product-card.left,
+            .product-card.right {
+                flex-direction: column; /* Stack image and content vertically */
+                text-align: center;
+                padding: 1.5rem;
+            }
+
+            .product-image-container {
+                width: 80%; /* Adjust image container width for mobile */
+                min-width: unset;
+                max-width: 300px;
+                height: auto;
+                margin-bottom: 1.5rem;
+            }
+
+            .product-card img {
+                width: 100%;
+                height: auto;
+            }
+
+            .content {
+                padding: 0 0.5rem;
+                text-align: center;
+            }
+
+            .product-card.right .content {
+                text-align: center; /* Center content for "right" cards on mobile */
+            }
+
+            .product-card h3 {
+                font-size: 1.8rem;
+            }
+
+            .product-card strong {
+                font-size: 1rem;
+            }
+
+            .product-card ul {
+                text-align: left; /* Keep list items left-aligned for readability */
+                padding-left: 1.5rem;
+                list-style: disc; /* Bring back bullets for clarity on mobile */
+            }
+        }
     </style>
 </head>
 <body>
@@ -280,7 +354,9 @@
 
     <nav class="navbar">
         <div class="logo">
-            <a href="index.html"><img src="assets/image/favicon.png" alt="PhoneXpress Logo" class="logo-img" /></a>
+            <a href="index.html">
+                <img src="assets/image/favicon.png" alt="PhoneXpress Logo" class="logo-img" />
+            </a>
         </div>
         <div class="menu">
             <a href="index.html" class="active">หน้าแรก</a>
@@ -315,7 +391,7 @@
 
         <article class="product-card left">
             <div class="product-image-container">
-                <img src="assets/image/iphone/iphone16-Black.png" alt="iPhone 16 สีดำ" class="product-image" />
+                <img src="assets/image/iphone/iphone16-Black.jpg" alt="iPhone 16 สีดำ" class="product-image" />
             </div>
             <div class="content">
                 <h3>iPhone 16</h3>
@@ -332,7 +408,7 @@
 
         <article class="product-card right">
             <div class="product-image-container">
-                <img src="assets/image/iphone/iphone15promax-blue.png" alt="iPhone 15 Pro Max สีน้ำเงิน" class="product-image" />
+                <img src="assets/image/iphone/iPhone 15 Pro Max Blue Titanium.png" alt="iPhone 15 Pro Max สีน้ำเงิน" class="product-image" />
             </div>
             <div class="content">
                 <h3>iPhone 15 Pro Max</h3>
@@ -349,7 +425,7 @@
 
         <article class="product-card left">
             <div class="product-image-container">
-                <img src="assets/image/iphone/iphone15-pink.png" alt="iPhone 15 สีชมพู" class="product-image" />
+                <img src="assets/image/iphone/iphone 15 pink.png" alt="iPhone 15 สีชมพู" class="product-image" />
             </div>
             <div class="content">
                 <h3>iPhone 15</h3>
@@ -368,5 +444,6 @@
     <footer class="footer">
         <p>&copy; 2025 PhoneXpress. All rights reserved.</p>
     </footer>
-</body>
+
+    </body>
 </html>

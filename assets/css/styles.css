@@ -48,7 +48,7 @@ body {
 }
 
 .product-card img {
-  animation: floatInUp 0.=2s ease-out 0.3s forwards;
+  animation: floatInUp 0.2s ease-out 0.3s forwards;
 }
 
 /* Layout core */

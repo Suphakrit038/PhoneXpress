@@ -2,21 +2,22 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8" />
-    <title>PhoneXpress</title>
+    <title>PhoneXpress - สินค้าทั้งหมด</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="assets/image/favicon.png" />
+    <link rel="icon" type="image/png" href="../assets/image/favicon.png" />
     <style>
         :root {
             --gold: #d4af37;
             --black: #000000;
             --white: #ffffff;
-            --dark-gray-bg: rgba(255, 255, 255, 0.1); /* สีพื้นหลังการ์ด */
-            --light-text-color: #e5e7eb; /* สีข้อความรอง */
+            --dark-gray-bg: rgba(255, 255, 255, 0.1);
+            --light-text-color: #e5e7eb;
+            --dark-gold: #b8912e;
         }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* เพิ่ม font-family ที่ดูทันสมัยขึ้น */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--black);
             color: var(--white);
             min-height: 100vh;
@@ -43,21 +44,21 @@
             100% { transform: translateX(30%); }
         }
 
-        @keyframes floatFadeIn {
-            0% {
-                transform: translateY(40px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         /* Layout */
-        .navbar, .hero, .footer, .product-section {
+        .navbar, .footer {
+            position: relative;
+            z-index: 10; /* เพิ่ม z-index ให้สูงขึ้นเพื่อให้Navbarอยู่บนสุด */
+        }
+        .main-content {
             position: relative;
             z-index: 1;
+            flex-grow: 1; /* ให้เนื้อหาหลักขยายเต็มพื้นที่ที่เหลือ */
+            padding-bottom: 5rem; /* เผื่อพื้นที่ให้ footer */
         }
 
         .navbar {
@@ -103,162 +104,150 @@
         .menu a:hover::after { width: 100%; }
         .menu a.active::after { width: 100%; }
 
-        .hero {
+        .page-header {
             text-align: center;
-            padding: 5rem 1.5rem 6rem;
-            background: url('assets/image/hero-bg.jpg') no-repeat center center/cover;
-            min-height: 500px;
+            padding: 4rem 1.5rem;
+            margin-bottom: 2rem;
+            background: rgba(0, 0, 0, 0.7); /* พื้นหลัง Header */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.8rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--light-text-color);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Product Grid */
+        .product-grid-container {
+            max-width: 1400px; /* เพิ่มความกว้างสูงสุดของคอนเทนเนอร์สินค้า */
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* ปรับขนาดให้ยืดหยุ่นขึ้น */
+            gap: 2.5rem; /* เพิ่มระยะห่างระหว่างการ์ด */
+            padding: 2rem 0;
+        }
+
+        .product-card {
+            background-color: var(--dark-gray-bg);
+            border-radius: 18px; /* ปรับโค้งมนเล็กน้อย */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px); /* เบลอเล็กน้อย */
+            overflow: hidden;
+            text-align: center;
             display: flex;
             flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px); /* ยกการ์ดสูงขึ้นเมื่อ hover */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* เงาเข้มขึ้น */
+        }
+
+        .product-card img {
+            width: 100%;
+            max-height: 350px; /* จำกัดความสูงของรูปภาพ */
+            object-fit: contain; /* รักษาอัตราส่วน */
+            padding: 1rem; /* เพิ่ม padding รอบรูป */
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.03); /* ซูมรูปภาพเล็กน้อยเมื่อ hover */
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1; /* ให้ขยายเต็มพื้นที่ */
+            justify-content: space-between; /* จัดเนื้อหาให้กระจาย */
+        }
+
+        .product-info h3 {
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+        }
+
+        .product-info .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        .product-info .price span {
+            color: var(--gold);
+        }
+
+        .colornav {
+            display: flex;
             justify-content: center;
-            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
         }
 
-        .hero h1 {
-            font-size: 3.2rem;
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-            line-height: 1.2;
-            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-            animation: floatFadeIn 1s ease-out;
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+        .color-option.selected {
+            border-color: var(--gold);
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.7);
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            color: var(--light-text-color);
-            margin-bottom: 2rem;
-            max-width: 700px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-            animation: floatFadeIn 1s ease-out 0.2s forwards;
-            opacity: 0;
-        }
+        /* Specific colors */
+        .color-black { background-color: #000000; }
+        .color-white { background-color: #f0f0f0; }
+        .color-blue { background-color: #27284b; } /* Deep Blue */
+        .color-pink { background-color: #f7d4e3; }
+        .color-natural-titanium { background-color: #a8a39d; } /* iPhone 15 Pro Titanium */
+        .color-red { background-color: #db0000; } /* Product (RED) */
+        .color-green { background-color: #2e4a3e; } /* Midnight Green-like */
 
-        .btn {
-            padding: 0.8rem 2.5rem;
+        .btn-add-to-cart {
+            padding: 0.7rem 1.8rem;
             border-radius: 9999px;
             background-color: var(--gold);
             color: var(--black);
             border: none;
             cursor: pointer;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1rem;
             text-decoration: none;
             display: inline-block;
             transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
-            animation: floatFadeIn 1s ease-out 0.4s forwards;
-            opacity: 0;
+            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+            margin-top: auto; /* จัดให้อยู่ด้านล่างสุดของการ์ด */
         }
 
-        .btn:hover {
+        .btn-add-to-cart:hover {
             background-color: #f6c84f;
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.6);
-        }
-
-        .product-section {
-            display: flex;
-            flex-direction: column;
-            gap: 4rem;
-            padding: 5rem 1.5rem;
-            max-width: 1200px; /* คง max-width สำหรับ Desktop */
-            margin: 0 auto;
-            align-items: center;
-        }
-
-        .product-card {
-            display: flex;
-            background-color: var(--dark-gray-bg);
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(8px);
-            overflow: hidden;
-            width: 100%;
-            max-width: 900px; /* จำกัดความกว้างของการ์ดแต่ละใบ */
-            padding: 2.5rem;
-            align-items: center;
-            transition: transform 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-        }
-
-        .product-card.left {
-            flex-direction: row;
-            justify-content: flex-start;
-        }
-        .product-card.right {
-            flex-direction: row-reverse;
-            justify-content: flex-end;
-        }
-
-        .product-image-container {
-            flex-shrink: 0;
-            width: 40%;
-            min-width: 280px;
-            max-width: 350px;
-            height: 450px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-            animation: floatFadeIn 1s ease-out 0.3s forwards;
-            opacity: 0;
-            transition: transform 0.4s ease;
-        }
-
-        .product-card img:hover {
-            transform: scale(1.08);
-        }
-
-        .content {
-            padding: 1.5rem 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            flex-grow: 1;
-            text-align: left;
-        }
-
-        .product-card.right .content {
-            text-align: right;
-        }
-
-        .product-card h3 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--gold);
-            margin-bottom: 0.8rem;
-        }
-
-        .product-card strong {
-            font-weight: 600;
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            color: var(--light-text-color);
-        }
-
-        .product-card ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .product-card li {
-            margin-bottom: 0.8rem;
-            font-size: 1rem;
-            color: var(--light-text-color);
-            line-height: 1.5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.6);
         }
 
         .footer {
@@ -269,10 +258,88 @@
             font-size: 0.95rem;
             margin-top: auto;
             box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
+            width: 100%; /* ทำให้ footer กว้างเต็มหน้าจอ */
         }
 
-        /* Responsive Adjustments Section REMOVED */
-        /* All @media queries have been removed to make it fixed for desktop */
+        /* Filter and Sort Section */
+        .filter-sort-bar {
+            background-color: rgba(255, 255, 255, 0.08);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: flex-end; /* จัดไปทางขวา */
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .filter-sort-bar label {
+            font-size: 1.05rem;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .filter-sort-bar select,
+        .filter-sort-bar input[type="text"] {
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            color: var(--white);
+            font-size: 1rem;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+            -webkit-appearance: none; /* Remove default select arrow for better styling */
+            -moz-appearance: none;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .filter-sort-bar select:focus,
+        .filter-sort-bar input[type="text"]:focus {
+            outline: none;
+            border-color: var(--gold);
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Custom arrow for select */
+        .select-wrapper {
+            position: relative;
+        }
+        .select-wrapper::after {
+            content: '▼'; /* Unicode down arrow */
+            font-size: 0.8em;
+            color: var(--white);
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        /* Alert message */
+        #cart-alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s, visibility 0.5s;
+            font-weight: bold;
+        }
+        #cart-alert.show {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
 <body>
@@ -280,161 +347,256 @@
 
     <nav class="navbar">
         <div class="logo">
-            <a href="index.html"><img src="assets/image/favicon.png" alt="PhoneXpress Logo" class="logo-img" /></a>
+            <a href="../index.html"><img src="../assets/image/favicon.png" alt="PhoneXpress Logo" class="logo-img" /></a>
         </div>
         <div class="menu">
-            <a href="index.html" class="active">หน้าแรก</a>
-            <a href="page/allproduct.html">สินค้า</a>
+            <a href="../index.html">หน้าแรก</a>
+            <a href="#" class="active">สินค้า</a>
             <a href="#">ตะกร้า</a>
             <a href="#">ติดต่อเรา</a>
         </div>
     </nav>
 
-    <header class="hero">
-        <h1>PhoneXpress: สุดยอดสมาร์ทโฟนเพื่อคุณ</h1>
-        <p>ค้นพบเทคโนโลยีล้ำสมัยและดีไซน์ที่โดดเด่น ในราคาที่ใช่สำหรับคุณ</p>
-        <button class="btn">เลือกซื้อเลย!</button>
+    <header class="page-header">
+        <h1>iPhone ทุกรุ่น พร้อมส่งถึงมือคุณ</h1>
+        <p>เลือกซื้อ iPhone รุ่นล่าสุดและรุ่นยอดนิยมจาก Apple ส่งตรงถึงคุณในราคาที่ดีที่สุด</p>
     </header>
 
-    <section class="product-section">
-        <div class="product-card">
-            <img src="assets/image/iphone/iphone16-promax-Black.png" alt="iPhone 16 Pro Max" />
-            <div class="content">
-                <h3>iPhone 16 Pro Max</h3>
-                <strong>ราคา: 52,900 บาท</strong>
-                <ul>
-                    <li>ชิป A18 Pro Max สุดแรง</li>
-                    <li>กล้อง Periscope Telephoto 6x</li>
-                    <li>หน้าจอ ProMotion XDR Display</li>
-                    <li>วัสดุ Titanium Grade 5</li>
-                </ul>
-                <button class="btn">ดูรายละเอียด</button>
+    <main class="main-content">
+        <section class="filter-sort-bar">
+            <label for="sort-by">เรียงตาม:</label>
+            <div class="select-wrapper">
+                <select id="sort-by">
+                    <option value="price-asc">ราคา: น้อยไปมาก</option>
+                    <option value="price-desc">ราคา: มากไปน้อย</option>
+                    <option value="newest">ใหม่ล่าสุด</option>
+                    <option value="oldest">เก่าที่สุด</option>
+                </select>
             </div>
-        </div>
+            <label for="filter-model">รุ่น:</label>
+            <div class="select-wrapper">
+                <select id="filter-model">
+                    <option value="all">ทั้งหมด</option>
+                    <option value="iphone16promax">iPhone 16 Pro Max</option>
+                    <option value="iphone16pro">iPhone 16 Pro</option>
+                    <option value="iphone16">iPhone 16</option>
+                    <option value="iphone15promax">iPhone 15 Pro Max</option>
+                    <option value="iphone15pro">iPhone 15 Pro</option>
+                    <option value="iphone15">iPhone 15</option>
+                    <option value="iphone14promax">iPhone 14 Pro Max</option>
+                    <option value="iphone14">iPhone 14</option>
+                    <option value="iphonese">iPhone SE</option>
+                </select>
+            </div>
+            <label for="search-product">ค้นหา:</label>
+            <input type="text" id="search-product" placeholder="ค้นหาชื่อสินค้า..." />
+        </section>
 
-        <div class="product-card">
-            <img src="assets/image/iphone/iphone16-Black.png" alt="iPhone 16" />
-            <div class="content">
-                <h3>iPhone 16</h3>
-                <strong>ราคา: 32,900 บาท</strong>
-                <ul>
-                    <li>ชิป A18 Bionic</li>
-                    <li>กล้องคู่ใหม่</li>
-                    <li>หน้าจอ Super Retina XDR</li>
-                    <li>ดีไซน์ขอบเรียบ</li>
-                </ul>
-                <button class="btn">ดูรายละเอียด</button>
-            </div>
-        </div>
+        <section class="product-grid-container">
+            <div class="product-grid">
+                <div class="product-card" data-model="iphone16promax">
+                    <img class="product-image" src="../assets/image/iphone/iphone16-promax-NaturalTitanium.png" alt="iPhone 16 Pro Max Natural Titanium" data-base-src="../assets/image/iphone/iphone16-promax" />
+                    <div class="product-info">
+                        <h3>iPhone 16 Pro Max</h3>
+                        <p class="price">฿ <span>59,900</span></p>
+                        <div class="colornav">
+                            <div class="color-option color-natural-titanium selected" data-color="NaturalTitanium"></div>
+                            <div class="color-option color-blue" data-color="BlueTitanium"></div>
+                            <div class="color-option color-black" data-color="BlackTitanium"></div>
+                            <div class="color-option color-white" data-color="WhiteTitanium"></div>
+                        </div>
+                        <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
+                    </div>
+                </div>
 
-        <div class="product-card">
-            <img src="assets/image/s24ultra-black.png" alt="Samsung Galaxy S24 Ultra" />
-            <div class="content">
-                <h3>Samsung Galaxy S24 Ultra</h3>
-                <strong>ราคา: 46,900 บาท</strong>
-                <ul>
-                    <li>AI อัจฉริยะ Galaxy AI</li>
-                    <li>กล้อง 200MP พร้อม Space Zoom 100x</li>
-                    <li>หน้าจอ Dynamic AMOLED 2X</li>
-                    <li>ปากกา S Pen ในตัว</li>
-                </ul>
-                <button class="btn">ดูรายละเอียด</button>
-            </div>
-        </div>
+                <div class="product-card" data-model="iphone16pro">
+                    <img class="product-image" src="../assets/image/iphone/iphone16-pro-BlackTitanium.png" alt="iPhone 16 Pro Black Titanium" data-base-src="../assets/image/iphone/iphone16-pro" />
+                    <div class="product-info">
+                        <h3>iPhone 16 Pro</h3>
+                        <p class="price">฿ <span>52,900</span></p>
+                        <div class="colornav">
+                            <div class="color-option color-black selected" data-color="BlackTitanium"></div>
+                            <div class="color-option color-white" data-color="WhiteTitanium"></div>
+                            <div class="color-option color-blue" data-color="BlueTitanium"></div>
+                            <div class="color-option color-natural-titanium" data-color="NaturalTitanium"></div>
+                        </div>
+                        <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
+                    </div>
+                </div>
 
-        <div class="product-card">
-            <img src="assets/image/pixel8pro-black.png" alt="Google Pixel 8 Pro" />
-            <div class="content">
-                <h3>Google Pixel 8 Pro</h3>
-                <strong>ราคา: 35,900 บาท</strong>
-                <ul>
-                    <li>ชิป Google Tensor G3</li>
-                    <li>กล้อง Pro-level พร้อม AI Photography</li>
-                    <li>หน้าจอ Super Actua Display</li>
-                    <li>อัปเดต Android 7 ปี</li>
-                </ul>
-                <button class="btn">ดูรายละเอียด</button>
-            </div>
-        </div>
+                <div class="product-card" data-model="iphone16">
+                    <img class="product-image" src="../assets/image/iphone/iphone16-Black.png" alt="iPhone 16 Black" data-base-src="../assets/image/iphone/iphone16" />
+                    <div class="product-info">
+                        <h3>iPhone 16</h3>
+                        <p class="price">฿ <span>38,900</span></p>
+                        <div class="colornav">
+                            <div class="color-option color-black selected" data-color="Black"></div>
+                            <div class="color-option color-white" data-color="White"></div>
+                            <div class="color-option color-blue" data-color="Blue"></div>
+                            <div class="color-option color-pink" data-color="Pink"></div>
+                            <div class="color-option color-green" data-color="Green"></div>
+                        </div>
+                        <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
+                    </div>
+                </div>
 
-        <div class="product-card">
-            <img src="assets/image/iphone14-purple.png" alt="iPhone 14" />
-            <div class="content">
-                <h3>iPhone 14</h3>
-                <strong>ราคา: 25,900 บาท</strong>
-                <ul>
-                    <li>ชิป A15 Bionic</li>
-                    <li>กล้องคู่สุดคมชัด</li>
-                    <li>โหมดภาพยนตร์และแอคชั่น</li>
-                    <li>แบตเตอรี่ใช้งานได้นานขึ้น</li>
-                </ul>
-                <button class="btn">ดูรายละเอียด</button>
-            </div>
-        </div>
+                <div class="product-card" data-model="iphone15promax">
+                    <img class="product-image" src="../assets/image/iphone/iphone15promax-naturaltitanium.png" alt="iPhone 15 Pro Max Natural Titanium" data-base-src="../assets/image/iphone/iphone15promax" />
+                    <div class="product-info">
+                        <h3>iPhone 15 Pro Max</h3>
+                        <p class="price">฿ <span>48,900</span></p>
+                        <div class="colornav">
+                            <div class="color-option color-natural-titanium selected" data-color="naturaltitanium"></div>
+                            <div class="color-option color-blue" data-color="blue"></div>
+                            <div class="color-option color-black" data-color="black"></div>
+                            <div class="color-option color-white" data-color="white"></div>
+                        </div>
+                        <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
+                    </div>
+                </div>
 
-        <div class="product-card">
-            <img src="assets/image/flip5-mint.png" alt="Samsung Galaxy Z Flip5" />
-            <div class="content">
-                <h3>Samsung Galaxy Z Flip5</h3>
-                <strong>ราคา: 33,900 บาท</strong>
-                <ul>
-                    <li>จอพับได้ Flex Window ขนาดใหญ่</li>
-                    <li>ดีไซน์กระทัดรัด พกพาง่าย</li>
-                    <li>กล้อง FlexCam ถ่ายภาพง่าย</li>
-                    <li>ทนทานด้วย Armor Aluminum</li>
-                </ul>
-                <button class="btn">ดูรายละเอียด</button>
-            </div>
-        </div>
+                <div class="product-card" data-model="iphone15pro">
+                    <img class="product-image" src="../assets/image/iphone/iphone15pro-blacktitanium.png" alt="iPhone 15 Pro Black Titanium" data-base-src="../assets/image/iphone/iphone15pro" />
+                    <div class="product-info">
+                        <h3>iPhone 15 Pro</h3>
+                        <p class="price">฿ <span>41,900</span></p>
+                        <div class="colornav">
+                            <div class="color-option color-black selected" data-color="blacktitanium"></div>
+                            <div class="color-option color-white" data-color="whitetitanium"></div>
+                            <div class="color-option color-blue" data-color="bluetitanium"></div>
+                            <div class="color-option color-natural-titanium" data-color="naturaltitanium"></div>
+                        </div>
+                        <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
+                    </div>
+                </div>
 
-        <div class="product-card">
-            <img src="assets/image/fold5-phantom.png" alt="Samsung Galaxy Z Fold5" />
-            <div class="content">
-                <h3>Samsung Galaxy Z Fold5</h3>
-                <strong>ราคา: 59,900 บาท</strong>
-                <ul>
-                    <li>จอใหญ่เต็มตา ทำงานได้หลายอย่าง</li>
-                    <li>น้ำหนักเบา พกพาสะดวก</li>
-                    <li>กล้องคุณภาพสูง ถ่ายสวยทุกมุม</li>
-                    <li>รองรับปากกา S Pen</li>
-                </ul>
-                <button class="btn">ดูรายละเอียด</button>
-            </div>
-        </div>
+                <div class="product-card" data-model="iphone15">
+                    <img class="product-image" src="../assets/image/iphone/iphone15-pink.png" alt="iPhone 15 Pink" data-base-src="../assets/image/iphone/iphone15" />
+                    <div class="product-info">
+                        <h3>iPhone 15</h3>
+                        <p class="price">฿ <span>32,900</span></p>
+                        <div class="colornav">
+                            <div class="color-option color-pink selected" data-color="pink"></div>
+                            <div class="color-option color-black" data-color="black"></div>
+                            <div class="color-option color-white" data-color="white"></div>
+                            <div class="color-option color-blue" data-color="blue"></div>
+                            <div class="color-option color-green" data-color="green"></div>
+                        </div>
+                        <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
+                    </div>
+                </div>
 
-        <div class="product-card">
-            <img src="assets/image/xiaomi14-black.png" alt="Xiaomi 14" />
-            <div class="content">
-                <h3>Xiaomi 14</h3>
-                <strong>ราคา: 27,990 บาท</strong>
-                <ul>
-                    <li>เลนส์ Leica สุดยอดคุณภาพ</li>
-                    <li>ชิป Snapdragon 8 Gen 3</li>
-                    <li>หน้าจอ AMOLED CrystalRes</li>
-                    <li>ระบบระบายความร้อน Loop LiquidCool</li>
-                </ul>
-                <button class="btn">ดูรายละเอียด</button>
-            </div>
-        </div>
+                <div class="product-card" data-model="iphonese">
+                    <img class="product-image" src="../assets/image/iphone/iphonese-midnight.png" alt="iPhone SE (3rd Gen) Midnight" data-base-src="../assets/image/iphone/iphonese" />
+                    <div class="product-info">
+                        <h3>iPhone SE (3rd Gen)</h3>
+                        <p class="price">฿ <span>17,900</span></p>
+                        <div class="colornav">
+                            <div class="color-option color-black selected" data-color="midnight"></div>
+                            <div class="color-option color-white" data-color="starlight"></div>
+                            <div class="color-option color-red" data-color="red"></div>
+                        </div>
+                        <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
+                    </div>
+                </div>
 
-        <div class="product-card">
-            <img src="assets/image/oppofindX7-black.png" alt="OPPO Find X7 Ultra" />
-            <div class="content">
-                <h3>OPPO Find X7 Ultra</h3>
-                <strong>ราคา: 38,990 บาท</strong>
-                <ul>
-                    <li>กล้อง Hasselblad Quad-Camera</li>
-                    <li>เซ็นเซอร์ 1-inch Sony LYT-900</li>
-                    <li>ชิป Snapdragon 8 Gen 3</li>
-                    <li>หน้าจอ ProXDR Display</li>
-                </ul>
-                <button class="btn">ดูรายละเอียด</button>
+                <div class="product-card" data-model="iphone14">
+                    <img class="product-image" src="../assets/image/iphone/iphone14-purple.png" alt="iPhone 14 Purple" data-base-src="../assets/image/iphone/iphone14" />
+                    <div class="product-info">
+                        <h3>iPhone 14</h3>
+                        <p class="price">฿ <span>26,900</span></p>
+                        <div class="colornav">
+                            <div class="color-option color-blue selected" data-color="blue"></div>
+                            <div class="color-option color-purple" data-color="purple"></div>
+                            <div class="color-option color-black" data-color="midnight"></div>
+                            <div class="color-option color-white" data-color="starlight"></div>
+                            <div class="color-option color-red" data-color="red"></div>
+                            <div class="color-option color-pink" data-color="pink"></div> </div>
+                        <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer class="footer">
         <p>&copy; 2025 PhoneXpress. All rights reserved.</p>
     </footer>
+
+    <div id="cart-alert"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to handle color selection
+            document.querySelectorAll('.product-card .colornav').forEach(colornav => {
+                colornav.querySelectorAll('.color-option').forEach(colorOption => {
+                    colorOption.addEventListener('click', function() {
+                        const productImage = this.closest('.product-info').previousElementSibling; // Get the img element
+                        const baseSrc = productImage.dataset.baseSrc;
+                        const selectedColor = this.dataset.color;
+
+                        // Update image src
+                        productImage.src = `${baseSrc}-${selectedColor}.png`;
+                        productImage.alt = `${productImage.alt.split(' ')[0]} ${productImage.alt.split(' ')[1]} ${selectedColor}`; // Update alt text
+
+                        // Remove 'selected' class from siblings and add to clicked one
+                        this.closest('.colornav').querySelectorAll('.color-option').forEach(option => {
+                            option.classList.remove('selected');
+                        });
+                        this.classList.add('selected');
+                    });
+                });
+            });
+
+            // Function to handle Add to Cart button
+            document.querySelectorAll('.btn-add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productCard = this.closest('.product-card');
+                    const productName = productCard.querySelector('h3').textContent;
+                    const productPrice = productCard.querySelector('.price span').textContent;
+                    const selectedColorElement = productCard.querySelector('.color-option.selected');
+                    const selectedColor = selectedColorElement ? selectedColorElement.dataset.color : 'Default Color'; // Get selected color
+                    
+                    const alertDiv = document.getElementById('cart-alert');
+                    alertDiv.textContent = `เพิ่ม ${productName} สี ${selectedColor} ราคา ${productPrice} บาท ลงตะกร้าแล้ว!`;
+                    alertDiv.classList.add('show');
+
+                    setTimeout(() => {
+                        alertDiv.classList.remove('show');
+                    }, 3000); // Hide after 3 seconds
+                });
+            });
+
+            // Basic Filter/Sort (for demonstration, actual filtering would need more logic)
+            const filterModelSelect = document.getElementById('filter-model');
+            const searchProductInput = document.getElementById('search-product');
+            const productCards = document.querySelectorAll('.product-grid .product-card');
+
+            function filterAndSortProducts() {
+                const selectedModel = filterModelSelect.value;
+                const searchTerm = searchProductInput.value.toLowerCase();
+
+                productCards.forEach(card => {
+                    const model = card.dataset.model;
+                    const productName = card.querySelector('h3').textContent.toLowerCase();
+
+                    const isModelMatch = selectedModel === 'all' || model === selectedModel;
+                    const isSearchMatch = productName.includes(searchTerm);
+
+                    if (isModelMatch && isSearchMatch) {
+                        card.style.display = 'flex'; // Show card
+                    } else {
+                        card.style.display = 'none'; // Hide card
+                    }
+                });
+
+                // Sorting logic (simplified, won't reorder HTML elements)
+                // For actual sorting, you'd need to convert productCards to an array, sort it, and re-append to the DOM
+            }
+
+            filterModelSelect.addEventListener('change', filterAndSortProducts);
+            searchProductInput.addEventListener('keyup', filterAndSortProducts);
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8" />
+    <title>PhoneXpress - รายละเอียดสินค้า</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="assets/image/favicon.png" />
+    <style>
+        /* --- CSS Variables --- */
+        :root {
+            --gold: #d4af37;
+            --black: #000000;
+            --white: #ffffff;
+            --dark-gray-bg: rgba(255, 255, 255, 0.1); /* Background color for cards/sections */
+            --light-text-color: #e5e7eb; /* Secondary text color */
+            --border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- Global Styles & Body --- */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* --- Animations (retained for consistency) --- */
+        .gold-glow {
+            position: fixed;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+            animation: glowMove 10s ease-in-out infinite alternate;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes glowMove {
+            0% { transform: translateX(-30%); }
+            100% { transform: translateX(30%); }
+        }
+
+        /* --- Layout & Z-index for content over glow --- */
+        .navbar, .product-detail-container, .footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- Navbar (reused from index.html) --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background-color: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-img {
+            height: 45px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+
+        .menu a {
+            color: var(--white);
+            margin-left: 1.8rem;
+            text-decoration: none;
+            position: relative;
+            font-weight: 500;
+            font-size: 1.05rem;
+            padding-bottom: 5px;
+        }
+
+        .menu a::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            left: 0;
+            bottom: 0;
+            background-color: var(--gold);
+            transition: width 0.3s ease-in-out;
+        }
+
+        .menu a:hover { color: var(--gold); }
+        .menu a:hover::after { width: 100%; }
+        /* No active state for product-detail as it's a dynamic page */
+
+        /* --- Call-to-Action Button (reused) --- */
+        .btn {
+            padding: 0.8rem 2.5rem;
+            border-radius: 9999px;
+            background-color: var(--gold);
+            color: var(--black);
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn:hover {
+            background-color: #f6c84f;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.6);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
+        }
+
+        /* --- Product Detail Section Specific Styles --- */
+        .product-detail-container {
+            flex-grow: 1; /* Allows container to take available space */
+            padding: 3rem 1.5rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            background-color: var(--dark-gray-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-wrap: wrap; /* Allows wrapping on smaller screens */
+            gap: 2.5rem;
+            align-items: flex-start; /* Align items to the top */
+        }
+
+        .product-image-area {
+            flex: 1;
+            min-width: 300px; /* Minimum width before wrapping */
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image-area img {
+            max-width: 100%;
+            max-height: 400px; /* Adjust as needed */
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .product-info-area {
+            flex: 2;
+            min-width: 400px; /* Minimum width before wrapping */
+            padding: 1rem;
+        }
+
+        .product-info-area h1 {
+            font-size: 2.8rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        .product-info-area .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .product-info-area .description {
+            font-size: 1.1rem;
+            color: var(--light-text-color);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .product-info-area .features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .product-info-area .features li {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.95rem;
+            color: var(--light-text-color);
+        }
+
+        .add-to-cart-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 9999px;
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .quantity-control button {
+            background-color: var(--gold);
+            color: var(--black);
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .quantity-control button:hover {
+            background-color: #f6c84f;
+        }
+
+        .quantity-control input {
+            width: 50px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-size: 1.2rem;
+            margin: 0 10px;
+            -moz-appearance: textfield; /* Firefox */
+        }
+        /* Hide arrows for Chrome, Safari, Edge, Opera */
+        .quantity-control input::-webkit-outer-spin-button,
+        .quantity-control input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* --- Footer (reused) --- */
+        .footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            font-size: 0.95rem;
+            margin-top: auto;
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-bottom: 1rem;
+            }
+
+            .menu {
+                margin-top: 1rem;
+                width: 100%;
+                justify-content: space-around;
+            }
+
+            .menu a {
+                margin-left: 0;
+                margin-right: 0;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            .product-detail-container {
+                flex-direction: column; /* Stack columns on small screens */
+                padding: 1.5rem;
+                margin: 1rem auto;
+            }
+
+            .product-image-area, .product-info-area {
+                min-width: unset; /* Remove min-width to allow full width */
+                width: 100%; /* Take full width */
+            }
+
+            .product-info-area h1 {
+                font-size: 2rem;
+            }
+
+            .product-info-area .price {
+                font-size: 2rem;
+            }
+
+            .product-info-area .description {
+                font-size: 1rem;
+            }
+
+            .add-to-cart-section {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+
+            .quantity-control {
+                justify-content: center; /* Center quantity controls */
+            }
+
+            .product-info-area .btn {
+                width: 100%; /* Full width button on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gold-glow"></div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/image/favicon.png" alt="PhoneXpress Logo" class="logo-img" />
+            </a>
+        </div>
+        <div class="menu">
+            <a href="index.html">หน้าแรก</a>
+            <a href="allproduct.html">สินค้า</a>
+            <a href="cart.html">ตะกร้า</a>
+        </div>
+    </nav>
+
+    <main class="product-detail-container">
+        <div class="product-image-area">
+            <img id="product-image" src="" alt="Product Image" />
+        </div>
+        <div class="product-info-area">
+            <h1 id="product-name"></h1>
+            <div class="price" id="product-price"></div>
+            <p class="description" id="product-description"></p>
+
+            <h3>คุณสมบัติหลัก:</h3>
+            <ul class="features">
+                <li>จอภาพ Super Retina XDR</li>
+                <li>ชิป A Bionic อันทรงพลัง</li>
+                <li>ระบบกล้องสุดล้ำ</li>
+                <li>แบตเตอรี่ใช้งานได้ยาวนาน</li>
+                <li>ดีไซน์ทนทานระดับพรีเมียม</li>
+                <li>รองรับ 5G</li>
+            </ul>
+
+            <div class="add-to-cart-section">
+                <div class="quantity-control">
+                    <button id="decrease-quantity">-</button>
+                    <input type="number" id="quantity" value="1" min="1" />
+                    <button id="increase-quantity">+</button>
+                </div>
+                <button class="btn">เพิ่มลงตะกร้า</button>
+            </div>
+            <button class="btn btn-secondary" style="margin-top: 1rem; width: 100%;">กลับไปดูสินค้าทั้งหมด</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 PhoneXpress. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const modelParam = urlParams.get('model');
+
+            const products = {
+                "iphone14purple": {
+                    name: "iPhone 14 (Purple)",
+                    price: "฿25,900",
+                    image: "assets/image/iphone/iPhone 14 purple.png",
+                    description: "iPhone 14 มาพร้อมคุณสมบัติใหม่ด้านความปลอดภัยที่สำคัญและกล้องที่น่าทึ่งสำหรับภาพถ่ายและวิดีโอในสภาพแสงน้อย"
+                },
+                "iphone15promaxbluetitanium": {
+                    name: "iPhone 15 Pro Max (Blue Titanium)",
+                    price: "฿45,900",
+                    image: "assets/image/iphone/iPhone 15 Pro Max Blue Titanium.png",
+                    description: "iPhone 15 Pro Max มาพร้อมดีไซน์ไทเทเนียม ทนทานเป็นพิเศษ ชิป A17 Pro และระบบกล้องที่ล้ำหน้าที่สุดของ iPhone"
+                },
+                "iphone15promaxnaturaltitanium": {
+                    name: "iPhone 15 Pro Max (Natural Titanium)",
+                    price: "฿45,900",
+                    image: "assets/image/iphone/iPhone 15 Pro Max Natural Titanium.png",
+                    description: "iPhone 15 Pro Max มาพร้อมดีไซน์ไทเทเนียม ทนทานเป็นพิเศษ ชิป A17 Pro และระบบกล้องที่ล้ำหน้าที่สุดของ iPhone"
+                },
+                "iphone15promaxblack": {
+                    name: "iPhone 15 Pro Max (Black)",
+                    price: "฿45,900",
+                    image: "assets/image/iphone/iPhone 15 Pro Max black.png",
+                    description: "iPhone 15 Pro Max มาพร้อมดีไซน์ไทเทเนียม ทนทานเป็นพิเศษ ชิป A17 Pro และระบบกล้องที่ล้ำหน้าที่สุดของ iPhone"
+                },
+                "iphone16promaxdeserttitanium": {
+                    name: "iPhone 16 Pro Max (Desert Titanium)",
+                    price: "฿48,900",
+                    image: "assets/image/iphone/iPhone 16 Pro Max Desert Titanium.png",
+                    description: "iPhone 16 Pro Max มอบประสิทธิภาพที่เหนือชั้น พร้อมจอแสดงผลที่น่าทึ่งและกล้องขั้นสุดยอดเพื่อประสบการณ์ที่ไม่เคยมีมาก่อน"
+                },
+                "iphone16promaxnaturaltitanium": {
+                    name: "iPhone 16 Pro Max (Natural Titanium)",
+                    price: "฿48,900",
+                    image: "assets/image/iphone/iPhone 16 Pro Max Natural Natural Titanium.png",
+                    description: "iPhone 16 Pro Max มอบประสิทธิภาพที่เหนือชั้น พร้อมจอแสดงผลที่น่าทึ่งและกล้องขั้นสุดยอดเพื่อประสบการณ์ที่ไม่เคยมีมาก่อน"
+                },
+                "iphone14midnight": {
+                    name: "iPhone 14 (Midnight)",
+                    price: "฿25,900",
+                    image: "assets/image/iphone/iphone 14 midnight.png",
+                    description: "iPhone 14 มาพร้อมคุณสมบัติใหม่ด้านความปลอดภัยที่สำคัญและกล้องที่น่าทึ่งสำหรับภาพถ่ายและวิดีโอในสภาพแสงน้อย"
+                },
+                "iphone15black": {
+                    name: "iPhone 15 (Black)",
+                    price: "฿32,900",
+                    image: "assets/image/iphone/iphone 15 black.png",
+                    description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์แบบกระจกแต่งสีและอะลูมิเนียม"
+                },
+                "iphone15blue": {
+                    name: "iPhone 15 (Blue)",
+                    price: "฿32,900",
+                    image: "assets/image/iphone/iphone 15 blue.png",
+                    description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์แบบกระจกแต่งสีและอะลูมิเนียม"
+                },
+                "iphone15pink": {
+                    name: "iPhone 15 (Pink)",
+                    price: "฿32,900",
+                    image: "assets/image/iphone/iphone 15 pink.png",
+                    description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์แบบกระจกแต่งสีและอะลูมิเนียม"
+                },
+                "iphone15problacktitanium": {
+                    name: "iPhone 15 Pro (Black Titanium)",
+                    price: "฿39,900",
+                    image: "assets/image/iphone/iphone 15 pro black titanium.png",
+                    description: "iPhone 15 Pro มาพร้อมดีไซน์ไทเทเนียมปุ่มแอ็คชั่นที่ปรับแต่งได้ และขีดความสามารถของกล้องระดับโปร"
+                },
+                "iphone15pronaturaltitanium": {
+                    name: "iPhone 15 Pro (Natural Titanium)",
+                    price: "฿39,900",
+                    image: "assets/image/iphone/iphone 15 pro natural titanium.png",
+                    description: "iPhone 15 Pro มาพร้อมดีไซน์ไทเทเนียมปุ่มแอ็คชั่นที่ปรับแต่งได้ และขีดความสามารถของกล้องระดับโปร"
+                },
+                "iphone15prowhitetitanium": {
+                    name: "iPhone 15 Pro (White Titanium)",
+                    price: "฿39,900",
+                    image: "assets/image/iphone/iphone 15 pro white titanium.png",
+                    description: "iPhone 15 Pro มาพร้อมดีไซน์ไทเทเนียมปุ่มแอ็คชั่นที่ปรับแต่งได้ และขีดความสามารถของกล้องระดับโปร"
+                },
+                "iphone16prosilvergrey": {
+                    name: "iPhone 16 Pro (Silver/Grey)",
+                    price: "฿42,900",
+                    image: "assets/image/iphone/iphone 16 pro silver grey.png",
+                    description: "iPhone 16 Pro ยกระดับประสบการณ์การใช้งานด้วยประสิทธิภาพที่ทรงพลังและระบบกล้องที่ได้รับการปรับปรุง"
+                },
+                "iphone16prowhite": {
+                    name: "iPhone 16 Pro (White)",
+                    price: "฿42,900",
+                    image: "assets/image/iphone/iphone 16 pro white.png",
+                    description: "iPhone 16 Pro ยกระดับประสบการณ์การใช้งานด้วยประสิทธิภาพที่ทรงพลังและระบบกล้องที่ได้รับการปรับปรุง"
+                },
+                "iphonese3rdgenmidnight": {
+                    name: "iPhone SE 3rd Gen (Midnight)",
+                    price: "฿15,900",
+                    image: "assets/image/iphone/iphone se 3rd gen midnight.png",
+                    description: "iPhone SE มาพร้อมชิป A15 Bionic และ 5G พร้อมดีไซน์ที่คุ้นเคยในราคาที่คุ้มค่า"
+                },
+                "iphonese3rdgenred": {
+                    name: "iPhone SE 3rd Gen (Red)",
+                    price: "฿15,900",
+                    image: "assets/image/iphone/iphone se 3rd gen red.png",
+                    description: "iPhone SE มาพร้อมชิป A15 Bionic และ 5G พร้อมดีไซน์ที่คุ้นเคยในราคาที่คุ้มค่า"
+                },
+                "iphonese3rdgenstarlight": {
+                    name: "iPhone SE 3rd Gen (Starlight)",
+                    price: "฿15,900",
+                    image: "assets/image/iphone/iphone se 3rd gen starlight.png",
+                    description: "iPhone SE มาพร้อมชิป A15 Bionic และ 5G พร้อมดีไซน์ที่คุ้นเคยในราคาที่คุ้มค่า"
+                },
+                "iphone16black": {
+                    name: "iPhone 16 (Black)",
+                    price: "฿32,900",
+                    image: "assets/image/iphone/iphone16-Black.png",
+                    description: "iPhone 16 นำเสนอการปรับปรุงที่สำคัญในด้านประสิทธิภาพและแบตเตอรี่ พร้อมกล้องที่ดียิ่งขึ้น"
+                },
+                "iphone16silvergray": {
+                    name: "iPhone 16 (Silver/Gray)",
+                    price: "฿32,900",
+                    image: "assets/image/iphone/iphone16-Silver-gray.png",
+                    description: "iPhone 16 นำเสนอการปรับปรุงที่สำคัญในด้านประสิทธิภาพและแบตเตอรี่ พร้อมกล้องที่ดียิ่งขึ้น"
+                },
+                "iphone16pink": {
+                    name: "iPhone 16 (Pink)",
+                    price: "฿32,900",
+                    image: "assets/image/iphone/iphone16-pink.png",
+                    description: "iPhone 16 นำเสนอการปรับปรุงที่สำคัญในด้านประสิทธิภาพและแบตเตอรี่ พร้อมกล้องที่ดียิ่งขึ้น"
+                },
+                "iphone16promaxblack": {
+                    name: "iPhone 16 Pro Max (Black)",
+                    price: "฿48,900",
+                    image: "assets/image/iphone/iphone16-promax-Black.png",
+                    description: "iPhone 16 Pro Max มอบประสิทธิภาพที่เหนือชั้น พร้อมจอแสดงผลที่น่าทึ่งและกล้องขั้นสุดยอดเพื่อประสบการณ์ที่ไม่เคยมีมาก่อน"
+                }
+            };
+
+            const product = products[modelParam];
+
+            if (product) {
+                document.getElementById('product-image').src = product.image;
+                document.getElementById('product-image').alt = product.name;
+                document.getElementById('product-name').textContent = product.name;
+                document.getElementById('product-price').textContent = product.price;
+                document.getElementById('product-description').textContent = product.description;
+            } else {
+                // Handle case where product is not found, e.g., redirect or show error
+                document.getElementById('product-name').textContent = 'ไม่พบสินค้า';
+                document.getElementById('product-price').textContent = '';
+                document.getElementById('product-description').textContent = 'ขออภัย ไม่พบรายละเอียดสำหรับสินค้านี้';
+                document.getElementById('product-image').src = ''; // Clear image
+                document.getElementById('product-image').alt = 'Product not found';
+            }
+
+            // Quantity control
+            const decreaseBtn = document.getElementById('decrease-quantity');
+            const increaseBtn = document.getElementById('increase-quantity');
+            const quantityInput = document.getElementById('quantity');
+
+            decreaseBtn.addEventListener('click', () => {
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+                }
+            });
+
+            increaseBtn.addEventListener('click', () => {
+                let currentValue = parseInt(quantityInput.value);
+                quantityInput.value = currentValue + 1;
+            });
+
+            // "กลับไปดูสินค้าทั้งหมด" button functionality
+            document.querySelector('.btn-secondary').addEventListener('click', () => {
+                window.location.href = 'allproduct.html';
+            });
+
+            // "เพิ่มลงตะกร้า" button functionality (placeholder)
+            document.querySelector('.add-to-cart-section .btn').addEventListener('click', () => {
+                alert('เพิ่ม ' + quantityInput.value + ' ชิ้นของ ' + product.name + ' ลงในตะกร้าแล้ว!');
+                // In a real application, you would add logic here to update a cart state or database.
+            });
+        });
+    </script>
+</body>
+</html>

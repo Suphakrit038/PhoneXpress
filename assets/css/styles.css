@@ -1,7 +1,13 @@
+/* Variables */
 :root {
   --gold: #d4af37;
   --black: #000000;
   --white: #ffffff;
+}
+
+/* Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 body {
@@ -14,41 +20,17 @@ body {
   flex-direction: column;
   overflow-x: hidden;
 }
+
 .logo-img {
   height: 40px;
   width: auto;
   vertical-align: middle;
-}
-/* Golden glow */
-.gold-glow {
-  position: fixed;
-  top: 0;
-  left: -50%;
-  width: 200%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(212, 175, 55, 0.15), transparent);
-  animation: glowMove 10s ease-in-out infinite alternate;
-  pointer-events: none;
-  z-index: 0;
+  transition: 0.3s ease;
 }
 
-@keyframes glowMove {
-  0% { transform: translateX(-30%); }
-  100% { transform: translateX(30%); }
-}
-@keyframes floatInUp {
-  0% {
-    transform: translateY(60px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.product-card img {
-  animation: floatInUp 0.9s ease-out 0.3s forwards;
+.logo-img:hover {
+  filter: drop-shadow(0 0 8px var(--gold));
+  transform: scale(1.05);
 }
 
 /* Layout core */
@@ -78,6 +60,7 @@ body {
   margin-left: 1.5rem;
   text-decoration: none;
   color: var(--white);
+  transition: color 0.3s;
 }
 
 .menu a::after {
@@ -133,20 +116,50 @@ body {
   transform: translateY(-2px);
 }
 
+/* About section */
+.about {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 1.8rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.about p {
+  color: #d1d5db;
+  margin-bottom: 1rem;
+}
+
+/* Footer */
+.footer {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: var(--white);
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
 /* Product Section */
 .product-section {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   padding: 3rem 1rem;
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
 }
 
 .product-card {
   display: flex;
-  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   backdrop-filter: blur(6px);
@@ -154,6 +167,7 @@ body {
 }
 
 .product-card.left {
+  flex-direction: row;
   justify-content: flex-start;
 }
 
@@ -163,14 +177,13 @@ body {
 }
 
 .product-card img {
-  width: 320px;               /* กำหนดความกว้างเท่ากันทุกภาพ */
-  height: 400px;           /* กำหนดความสูงเท่ากันทุกภาพ */
+  width: 320px;
+  height: 400px;
   object-fit: contain;
   border-radius: 16px;
-  animation: floatInUp 0.8s ease-out 0.3s forwards;
-  opacity: 0;
-  transform: translateY(60px);
-  transition: transform 0.3s ease;
+  animation: floatFadeIn 0.8s ease-out 0.3s forwards;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
 }
 
 .product-card img:hover {
@@ -201,60 +214,37 @@ body {
   align-self: flex-start;
 }
 
-/* About section */
-.about {
-  max-width: 768px;
-  margin: 0 auto;
-  padding: 3rem 1rem;
-  text-align: center;
+/* Animation */
+@keyframes glowMove {
+  0% { transform: translateX(-30%); }
+  100% { transform: translateX(30%); }
 }
 
-.about h2 {
-  font-size: 1.8rem;
-  color: var(--gold);
-  margin-bottom: 1rem;
+@keyframes floatFadeIn {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-.about p {
-  color: #d1d5db;
-  margin-bottom: 1rem;
+/* Golden glow background */
+.gold-glow {
+  position: fixed;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+  animation: glowMove 10s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* Footer */
-.footer {
-  background-color: rgba(0, 0, 0, 0.85);
-  color: var(--white);
-  text-align: center;
-  padding: 2rem 1rem;
-  font-size: 0.9rem;
-  margin-top: auto;
-}
-/* ปรับ product-section ไม่ให้กึ่งกลาง */
-.product-section {
-  padding: 3rem 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  width: 100%;
-}
-
-/* ให้การ์ดสินค้าเลื่อนไปซ้ายขวาจริง */
-.product-card.left {
-  justify-content: flex-start;
-}
-
-.product-card.right {
-  justify-content: flex-end;
-}
-
-/* กำหนดขนาดภายในการ์ดให้ไม่เกิน */
-.product-card.left > *,
-.product-card.right > * {
-  width: 700px;
-  margin: 1rem;
-  max-width: 100%;
-}
-/* ตัวเลือกสี */
+/* Color Selector */
 .colornav {
   display: flex;
   gap: 0.5rem;

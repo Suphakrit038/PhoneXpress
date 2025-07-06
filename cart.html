@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>PhoneXpress - ตะกร้าสินค้า</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="../assets/image/favicon.png" />
+    <link rel="icon" type="image/png" href="assets/image/favicon.png" />
     <style>
         /* --- CSS Variables --- */
         :root {
@@ -193,7 +193,7 @@
             font-size: 0.95rem;
         }
 
-        .cart-item-quantity {
+        .cart-item-quantity-control {
             display: flex;
             align-items: center;
             border: 1px solid var(--border-color);
@@ -201,7 +201,7 @@
             overflow: hidden;
         }
 
-        .cart-item-quantity button {
+        .cart-item-quantity-control button {
             background-color: rgba(255, 255, 255, 0.05);
             color: var(--white);
             border: none;
@@ -211,11 +211,11 @@
             transition: background-color 0.2s ease;
         }
 
-        .cart-item-quantity button:hover {
+        .cart-item-quantity-control button:hover {
             background-color: rgba(212, 175, 55, 0.2);
         }
 
-        .cart-item-quantity span {
+        .cart-item-quantity-control span {
             padding: 0.5rem 1rem;
             min-width: 30px;
             text-align: center;
@@ -344,7 +344,7 @@
                 width: 100%;
             }
 
-            .cart-item-quantity {
+            .cart-item-quantity-control {
                 margin-bottom: 1rem;
             }
 
@@ -403,7 +403,8 @@
         </div>
 
         <div class="checkout-actions">
-            <a href="#" class="btn" id="checkout-button">ดำเนินการชำระเงิน</a>
+            <button class="btn" id="checkout-button">ดำเนินการชำระเงิน</button>
+            <button class="btn btn-secondary" id="clear-cart-button">ล้างตะกร้าทั้งหมด</button>
             <a href="allproduct.html" class="btn btn-secondary">เลือกซื้อสินค้าต่อ</a>
         </div>
     </main>
@@ -412,6 +413,142 @@
         <p>&copy; 2025 PhoneXpress. All rights reserved.</p>
     </footer>
 
-    <script src="../assets/js/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const emptyCartMessage = document.getElementById('empty-cart-message');
+            const cartSubtotalSpan = document.getElementById('cart-subtotal');
+            const cartShippingSpan = document.getElementById('cart-shipping');
+            const cartTotalSpan = document.getElementById('cart-total');
+            const checkoutButton = document.getElementById('checkout-button');
+            const clearCartButton = document.getElementById('clear-cart-button');
+            const fixedShippingCost = 100; // ฿100
+
+            function formatPrice(price) {
+                return `฿${parseFloat(price).toLocaleString('th-TH', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+            }
+
+            function updateCartSummary() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                let subtotal = 0;
+
+                cart.forEach(item => {
+                    const priceValue = parseFloat(item.price.replace('฿', '').replace(/,/g, ''));
+                    subtotal += priceValue * item.quantity;
+                });
+
+                const total = subtotal + fixedShippingCost;
+
+                cartSubtotalSpan.textContent = formatPrice(subtotal);
+                cartShippingSpan.textContent = formatPrice(fixedShippingCost);
+                cartTotalSpan.textContent = formatPrice(total);
+
+                // Enable/disable checkout and clear buttons
+                if (cart.length === 0) {
+                    checkoutButton.disabled = true;
+                    checkoutButton.style.opacity = '0.5';
+                    checkoutButton.style.cursor = 'not-allowed';
+                    clearCartButton.disabled = true;
+                    clearCartButton.style.opacity = '0.5';
+                    clearCartButton.style.cursor = 'not-allowed';
+                } else {
+                    checkoutButton.disabled = false;
+                    checkoutButton.style.opacity = '1';
+                    checkoutButton.style.cursor = 'pointer';
+                    clearCartButton.disabled = false;
+                    clearCartButton.style.opacity = '1';
+                    clearCartButton.style.cursor = 'pointer';
+                }
+            }
+
+            function loadCartItems() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cartItemsContainer.innerHTML = ''; // Clear previous items
+
+                if (cart.length === 0) {
+                    emptyCartMessage.style.display = 'block';
+                } else {
+                    emptyCartMessage.style.display = 'none';
+                    cart.forEach(item => {
+                        const cartItemDiv = document.createElement('div');
+                        cartItemDiv.classList.add('cart-item');
+                        cartItemDiv.dataset.model = item.model; // Store model for easy access
+
+                        cartItemDiv.innerHTML = `
+                            <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                            <div class="cart-item-details">
+                                <h4>${item.name}</h4>
+                                <p>${item.price}</p>
+                                <div class="cart-item-quantity-control">
+                                    <button class="decrease-quantity-btn" data-model="${item.model}">-</button>
+                                    <span class="quantity-display">${item.quantity}</span>
+                                    <button class="increase-quantity-btn" data-model="${item.model}">+</button>
+                                </div>
+                            </div>
+                            <div class="cart-item-price">${formatPrice(parseFloat(item.price.replace('฿', '').replace(/,/g, '')) * item.quantity)}</div>
+                            <button class="remove-item-btn" data-model="${item.model}">ลบ</button>
+                        `;
+                        cartItemsContainer.appendChild(cartItemDiv);
+                    });
+                }
+                updateCartSummary();
+            }
+
+            function updateQuantity(model, change) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const itemIndex = cart.findIndex(item => item.model === model);
+
+                if (itemIndex > -1) {
+                    cart[itemIndex].quantity += change;
+                    if (cart[itemIndex].quantity < 1) {
+                        cart[itemIndex].quantity = 1; // Ensure quantity doesn't go below 1
+                    }
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    loadCartItems(); // Reload to update UI
+                }
+            }
+
+            function removeItem(model) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart = cart.filter(item => item.model !== model); // Remove the item
+                localStorage.setItem('cart', JSON.stringify(cart));
+                loadCartItems(); // Reload to update UI
+            }
+
+            function clearCart() {
+                if (confirm('คุณต้องการล้างตะกร้าสินค้าทั้งหมดใช่หรือไม่?')) {
+                    localStorage.removeItem('cart');
+                    loadCartItems(); // Reload to update UI
+                    alert('ตะกร้าสินค้าถูกล้างเรียบร้อยแล้ว!');
+                }
+            }
+
+            // Event Listeners
+            cartItemsContainer.addEventListener('click', (event) => {
+                const target = event.target;
+                const model = target.dataset.model;
+
+                if (target.classList.contains('decrease-quantity-btn')) {
+                    updateQuantity(model, -1);
+                } else if (target.classList.contains('increase-quantity-btn')) {
+                    updateQuantity(model, 1);
+                } else if (target.classList.contains('remove-item-btn')) {
+                    if (confirm('คุณต้องการลบสินค้านี้ออกจากตะกร้าใช่หรือไม่?')) {
+                        removeItem(model);
+                    }
+                }
+            });
+
+            checkoutButton.addEventListener('click', () => {
+                alert('ดำเนินการชำระเงิน (ยังไม่ได้เปิดใช้งาน)');
+                // In a real application, this would redirect to a checkout page or initiate payment.
+            });
+
+            clearCartButton.addEventListener('click', clearCart);
+
+            // Initial load
+            loadCartItems();
+        });
+    </script>
 </body>
 </html>

@@ -2,42 +2,258 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="ร้านขาย iPhone แท้ ออนไลน์ สั่งง่าย ส่งไว ปลอดภัย มีให้เลือกหลายรุ่น" />
-  <meta name="keywords" content="iPhone, ซื้อ iPhone, iPhone แท้, iPhone ราคาถูก">
-  <meta name="author" content="PhoneXpress">
   <title>PhoneXpress</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="assets/image/favicon.png" />
-  <link rel="stylesheet" href="assets/css/styles.css" />
-</head>
-<body>
+  <style>
+    :root {
+      --gold: #d4af37;
+      --black: #000000;
+      --white: #ffffff;
+    }
 
-  <header class="navbar">
-    <div class="logo">
-      <a href="#"><img src="assets/image/logo.png" alt="PhoneXpress Logo" class="logo-img" /></a>
-    </div>
-    <nav class="menu">
-      <a href="#">สินค้า</a>
-      <a href="#">ตะกร้า</a>
-    </nav>
-  </header>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Golden glow */
+    .gold-glow {
+      position: fixed;
+      top: 0;
+      left: -50%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+      animation: glowMove 10s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes glowMove {
+      0% { transform: translateX(-30%); }
+      100% { transform: translateX(30%); }
+    }
+
+    @keyframes floatFadeIn {
+      0% {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Layout */
+    .navbar, .hero, .footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      background-color: rgba(0, 0, 0, 0.9);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo-img {
+      height: 40px;
+      width: auto;
+    }
+
+    .menu a {
+      color: var(--white);
+      margin-left: 1.5rem;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .menu a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background-color: var(--gold);
+      transition: width 0.3s;
+    }
+
+    .menu a:hover { color: var(--gold); }
+    .menu a:hover::after { width: 100%; }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: #e5e7eb;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      padding: 0.5rem 1.5rem;
+      border-radius: 9999px;
+      background-color: var(--gold);
+      color: var(--black);
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #f6c84f;
+      transform: translateY(-2px);
+    }
+
+    .product-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      display: flex;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(6px);
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .product-card.left { justify-content: flex-start; }
+    .product-card.right { flex-direction: row-reverse; justify-content: flex-end; }
+
+    .product-card img {
+      width: 320px;
+      height: 400px;
+      object-fit: contain;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      animation: floatFadeIn 0.9s ease-out 0.3s forwards;
+      opacity: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card img:hover {
+      transform: scale(1.03);
+    }
+
+    .content {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 600px;
+    }
+
+    .product-card h3 {
+      font-size: 1.75rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .product-card strong {
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .product-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .product-card li {
+      margin-bottom: 0.5rem;
+    }
+
+    .colornav {
+      display: flex;
+      gap: 0.5rem;
+      margin: 1rem 0;
+      padding: 0;
+    }
+
+    input[type="radio"][hidden] {
+      opacity: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .colornav-link {
+      display: inline-block;
+      padding: 0.4rem 0.8rem;
+      background-color: rgba(255,255,255,0.15);
+      border: 1px solid #ccc;
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--white);
+      font-size: 0.875rem;
+      transition: all 0.3s ease;
+    }
+
+    .colornav-link:hover {
+      background-color: rgba(255,255,255,0.3);
+    }
+
+    input[type="radio"]:checked + .colornav-link {
+      background-color: var(--gold);
+      color: var(--black);
+      font-weight: bold;
+      border-color: var(--gold);
+    }
+
+    .footer {
+      background-color: rgba(0, 0, 0, 0.85);
+      color: var(--white);
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+  </style>
+</head>
 
   <section class="hero">
-    <div class="hero-content">
-      <h1>ซื้อ iPhone แท้ ง่าย ปลอดภัย และเหนือระดับ</h1>
-      <p>รุ่น สี ความจุ พร้อมชำระเงินในคลิกเดียว</p>
-      <a href="#" class="btn">ดูสินค้าทั้งหมด</a>
-    </div>
+    <h1>ซื้อ iPhone แท้ ง่าย ปลอดภัย และเหนือระดับ</h1>
+    <p>รุ่น สี ความจุ พร้อมชำระเงินในคลิกเดียว</p>
+    <a href="#" class="btn">ดูสินค้าทั้งหมด</a>
   </section>
 
-  <main class="product-section">
+  <!-- Products Section -->
+  <section class="product-section">
     <div class="product-row">
-      <!-- iPhone ตัวอย่าง -->
+      <!-- iPhone 16 -->
       <article class="product-card">
-        <img src="assets/image/iphone/iphone16-black.png" alt="iPhone 16" loading="lazy" />
-        <div class="product-info">
+        <img src="assets/image/iphone/iphone16-black.png" alt="iPhone 16" class="product-image" />
+        <div class="content">
           <h3>iPhone 16</h3>
-          <p class="tagline">"ก้าวสู่ยุคใหม่แห่งความแรงเหนือชั้น"</p>
+          <strong>"ก้าวสู่ยุคใหม่แห่งความแรงเหนือชั้น"</strong>
           <ul>
             <li>ชิป A18 Bionic เร็วขึ้นกว่าเดิม 20%</li>
             <li>พอร์ต USB‑C ชาร์จไว</li>
@@ -47,11 +263,91 @@
         </div>
       </article>
 
+      <!-- iPhone 16 Pro -->
       <article class="product-card">
-        <img src="assets/image/iphone/iphone15-pro-max-black.png" alt="iPhone 15 Pro Max" loading="lazy" />
-        <div class="product-info">
+        <img src="assets/image/iphone/iphone16-pro-black.png" alt="iPhone 16 Pro" class="product-image" />
+        <div class="content">
+          <h3>iPhone 16 Pro</h3>
+          <strong>"ดีไซน์อันปราณีต พลังแรงเกินบรรยาย"</strong>
+          <ul>
+            <li>Dynamic Island</li>
+            <li>จอ OLED HDR</li>
+            <li>Neural Engine รุ่นล่าสุด</li>
+          </ul>
+          <a href="#" class="btn">ดูรายละเอียด</a>
+        </div>
+      </article>
+
+      <!-- iPhone 16 Pro Max -->
+      <article class="product-card">
+        <img src="assets/image/iphone/iphone16-pro-max-black.png" alt="iPhone 16 Pro Max" class="product-image" />
+        <div class="content">
+          <h3>iPhone 16 Pro Max</h3>
+          <strong>"สุดยอดประสบการณ์ภาพและความลึกที่คุณสัมผัสได้"</strong>
+          <ul>
+            <li>กล้อง Periscope Zoom 5×</li>
+            <li>จอ ProMotion 120Hz</li>
+            <li>ตัวเครื่องไทเทเนียม</li>
+          </ul>
+          <a href="#" class="btn">ดูรายละเอียด</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="product-row">
+      <!-- iPhone 16e -->
+      <article class="product-card">
+        <img src="assets/image/iphone/iphone16e-black.png" alt="iPhone 16e" class="product-image" />
+        <div class="content">
+          <h3>iPhone 16e</h3>
+          <strong>"ประหยัดแต่ประสิทธิภาพไม่ลด"</strong>
+          <ul>
+            <li>ขนาดกะทัดรัด</li>
+            <li>ชิป A17 Bionic</li>
+            <li>กล้องคู่</li>
+          </ul>
+          <a href="#" class="btn">ดูรายละเอียด</a>
+        </div>
+      </article>
+
+      <!-- iPhone 15 -->
+      <article class="product-card">
+        <img src="assets/image/iphone/iphone15-black.png" alt="iPhone 15" class="product-image" />
+        <div class="content">
+          <h3>iPhone 15</h3>
+          <strong>"สมรรถนะครบครันในงบที่จับต้องได้"</strong>
+          <ul>
+            <li>ชิป A16 Bionic</li>
+            <li>กล้องหลัก 48MP</li>
+            <li>ดีไซน์อลูมิเนียม</li>
+          </ul>
+          <a href="#" class="btn">ดูรายละเอียด</a>
+        </div>
+      </article>
+
+      <!-- iPhone 15 Pro -->
+      <article class="product-card">
+        <img src="assets/image/iphone/iphone15-pro-black.png" alt="iPhone 15 Pro" class="product-image" />
+        <div class="content">
+          <h3>iPhone 15 Pro</h3>
+          <strong>"ประสิทธิภาพระดับโปรในมือคุณ"</strong>
+          <ul>
+            <li>ชิป A17 Pro</li>
+            <li>กล้อง 3 ตัว</li>
+            <li>วัสดุไทเทเนียมเกรด航空</li>
+          </ul>
+          <a href="#" class="btn">ดูรายละเอียด</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="product-row">
+      <!-- iPhone 15 Pro Max -->
+      <article class="product-card">
+        <img src="assets/image/iphone/iphone15-pro-max-black.png" alt="iPhone 15 Pro Max" class="product-image" />
+        <div class="content">
           <h3>iPhone 15 Pro Max</h3>
-          <p class="tagline">"สุดยอดสมาร์ทโฟนจาก Apple"</p>
+          <strong>"สุดยอดสมาร์ทโฟนจาก Apple"</strong>
           <ul>
             <li>กล้องเทเลโฟโต้ 5x</li>
             <li>จอ Super Retina XDR</li>
@@ -60,15 +356,41 @@
           <a href="#" class="btn">ดูรายละเอียด</a>
         </div>
       </article>
+
+      <!-- iPhone 14 -->
+      <article class="product-card">
+        <img src="assets/image/iphone/iphone14-black.png" alt="iPhone 14" class="product-image" />
+        <div class="content">
+          <h3>iPhone 14</h3>
+          <strong>"สมาร์ทโฟนคุณภาพในราคาจับต้องได้"</strong>
+          <ul>
+            <li>ชิป A15 Bionic</li>
+            <li>ระบบกล้องขั้นสูง</li>
+            <li>กันน้ำกันฝุ่น IP68</li>
+          </ul>
+          <a href="#" class="btn">ดูรายละเอียด</a>
+        </div>
+      </article>
+
+      <!-- iPhone 14 Pro -->
+      <article class="product-card">
+        <img src="assets/image/iphone/iphone14-pro-black.png" alt="iPhone 14 Pro" class="product-image" />
+        <div class="content">
+          <h3>iPhone 14 Pro</h3>
+          <strong>"นวัตกรรมล้ำสมัยในทุกการสัมผัส"</strong>
+          <ul>
+            <li>Dynamic Island</li>
+            <li>กล้องหลัก 48MP</li>
+            <li>Always-On Display</li>
+          </ul>
+          <a href="#" class="btn">ดูรายละเอียด</a>
+        </div>
+      </article>
     </div>
-
-    <!-- เพิ่มรุ่นอื่น ๆ ตามแบบเดียวกันได้ -->
-
-  </main>
+  </section>
 
   <footer class="footer">
     <p>&copy; 2025 PhoneXpress. All rights reserved.</p>
   </footer>
-
 </body>
 </html>

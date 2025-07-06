@@ -161,8 +161,8 @@
 
         .product-card img {
             width: 100%;
-            max-height: 350px;
-            object-fit: contain;
+            height: 250px; /* กำหนดความสูงตายตัวเพื่อให้รูปภาพมีขนาดเท่ากัน */
+            object-fit: contain; /* ปรับให้รูปภาพอยู่ภายในกรอบโดยไม่บิดเบี้ยว */
             padding: 1rem;
             transition: transform 0.3s ease;
         }
@@ -400,7 +400,7 @@
         <section class="product-grid-container">
             <div class="product-grid">
                 <div class="product-card" data-model="iphone16promax">
-                    <img class="product-image" src="assets/image/iphone/iPhone 16 Pro Max Natural Natural Titanium.png" alt="iPhone 16 Pro Max Natural Titanium" data-base-src="assets/image/iphone/iPhone 16 Pro Max" />
+                    <img class="product-image" src="../assets/image/iphone/iPhone 16 Pro Max Natural Natural Titanium.png" alt="iPhone 16 Pro Max Natural Titanium" data-base-src="../assets/image/iphone/iPhone 16 Pro Max" />
                     <div class="product-info">
                         <h3>iPhone 16 Pro Max</h3>
                         <p class="price">฿ <span>59,900</span></p>
@@ -414,7 +414,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphone16pro">
-                    <img class="product-image" src="assets/image/iphone/Phone 16 Pro Black Titanium.png" alt="iPhone 16 Pro Black Titanium" data-base-src="assets/image/iphone/iPhone 16 Pro" />
+                    <img class="product-image" src="../assets/image/iphone/Phone 16 Pro Black Titanium.png" alt="iPhone 16 Pro Black Titanium" data-base-src="../assets/image/iphone/iPhone 16 Pro" />
                     <div class="product-info">
                         <h3>iPhone 16 Pro</h3>
                         <p class="price">฿ <span>52,900</span></p>
@@ -426,7 +426,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphone16">
-                    <img class="product-image" src="assets/image/iphone/iphone16-Black.png" alt="iPhone 16 Black" data-base-src="assets/image/iphone/iphone16" />
+                    <img class="product-image" src="../assets/image/iphone/iphone16-Black.png" alt="iPhone 16 Black" data-base-src="../assets/image/iphone/iphone16" />
                     <div class="product-info">
                         <h3>iPhone 16</h3>
                         <p class="price">฿ <span>38,900</span></p>
@@ -562,11 +562,30 @@
                         }
                         // For other models, use the simpler baseSrc-color.png convention
                         else {
-                            newImageFileName = `${baseSrc}-${selectedColor}.png`;
+                            newImageFileName = `${baseSrc.split('/').pop()}-${selectedColor}.png`;
                         }
 
                         if (newImageFileName) {
-                            productImage.src = `${baseSrc.split('/').slice(0, -1).join('/')}/${newImageFileName}`;
+                            // Corrected path construction for baseSrc.
+                            // Assuming baseSrc is already up to the folder name, e.g., "../assets/image/iphone/iphone15promax"
+                            // We need to extract just the part after the last slash to join with the filename.
+                            const pathSegments = baseSrc.split('/');
+                            const folderName = pathSegments[pathSegments.length - 1]; // e.g., "iphone15promax"
+                            
+                            // Reconstruct the full path
+                            // This part handles the inconsistency in your naming.
+                            // If baseSrc is like "../assets/image/iphone/iPhone 16 Pro Max", then newImageFileName is already full.
+                            // If baseSrc is like "../assets/image/iphone/iphone15", then we need to add the folder name + selectedColor.
+                            let finalImagePath;
+                            if (model === 'iphone16promax' || model === 'iphone16pro' || model === 'iphone16') {
+                                // For iPhone 16 series, newImageFileName is already the full file name as per your list
+                                finalImagePath = `${baseSrc.split('/').slice(0, -1).join('/')}/${newImageFileName}`;
+                            } else {
+                                // For older models, follow the pattern: foldername-color.png
+                                finalImagePath = `${baseSrc}/${newImageFileName}`;
+                            }
+                            
+                            productImage.src = finalImagePath;
                             productImage.alt = `${productCard.querySelector('h3').textContent} ${selectedColor}`; // Update alt text
                         }
 

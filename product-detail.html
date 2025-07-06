@@ -359,13 +359,7 @@
 
             <h3>คุณสมบัติหลัก:</h3>
             <ul class="features">
-                <li>จอภาพ Super Retina XDR</li>
-                <li>ชิป A Bionic อันทรงพลัง</li>
-                <li>ระบบกล้องสุดล้ำ</li>
-                <li>แบตเตอรี่ใช้งานได้ยาวนาน</li>
-                <li>ดีไซน์ทนทานระดับพรีเมียม</li>
-                <li>รองรับ 5G</li>
-            </ul>
+                </ul>
 
             <div class="add-to-cart-section">
                 <div class="quantity-control">
@@ -387,195 +381,118 @@
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const modelParam = urlParams.get('model');
-
+    
+            // --- ฐานข้อมูลสินค้า (ชื่อ, ราคา, รูปภาพ, คำอธิบาย) ---
             const products = {
-                "iphone14purple": {
-                    name: "iPhone 14 (Purple)",
-                    price: "฿25,900",
-                    image: "assets/image/iphone/iPhone 14 purple.png",
-                    description: "iPhone 14 มาพร้อมคุณสมบัติใหม่ด้านความปลอดภัยที่สำคัญและกล้องที่น่าทึ่งสำหรับภาพถ่ายและวิดีโอในสภาพแสงน้อย"
-                },
-                "iphone15promaxbluetitanium": {
-                    name: "iPhone 15 Pro Max (Blue Titanium)",
-                    price: "฿45,900",
-                    image: "assets/image/iphone/iPhone 15 Pro Max Blue Titanium.png",
-                    description: "iPhone 15 Pro Max มาพร้อมดีไซน์ไทเทเนียม ทนทานเป็นพิเศษ ชิป A17 Pro และระบบกล้องที่ล้ำหน้าที่สุดของ iPhone"
-                },
-                "iphone15promaxnaturaltitanium": {
-                    name: "iPhone 15 Pro Max (Natural Titanium)",
-                    price: "฿45,900",
-                    image: "assets/image/iphone/iPhone 15 Pro Max Natural Titanium.png",
-                    description: "iPhone 15 Pro Max มาพร้อมดีไซน์ไทเทเนียม ทนทานเป็นพิเศษ ชิป A17 Pro และระบบกล้องที่ล้ำหน้าที่สุดของ iPhone"
-                },
-                "iphone15promaxblack": {
-                    name: "iPhone 15 Pro Max (Black)",
-                    price: "฿45,900",
-                    image: "assets/image/iphone/iPhone 15 Pro Max black.png",
-                    description: "iPhone 15 Pro Max มาพร้อมดีไซน์ไทเทเนียม ทนทานเป็นพิเศษ ชิป A17 Pro และระบบกล้องที่ล้ำหน้าที่สุดของ iPhone"
-                },
-                "iphone16promaxdeserttitanium": {
-                    name: "iPhone 16 Pro Max (Desert Titanium)",
-                    price: "฿48,900",
-                    image: "assets/image/iphone/iPhone 16 Pro Max Desert Titanium.png",
-                    description: "iPhone 16 Pro Max มอบประสิทธิภาพที่เหนือชั้น พร้อมจอแสดงผลที่น่าทึ่งและกล้องขั้นสุดยอดเพื่อประสบการณ์ที่ไม่เคยมีมาก่อน"
-                },
-                "iphone16promaxnaturaltitanium": {
-                    name: "iPhone 16 Pro Max (Natural Titanium)",
-                    price: "฿48,900",
-                    image: "assets/image/iphone/iPhone 16 Pro Max Natural Natural Titanium.png",
-                    description: "iPhone 16 Pro Max มอบประสิทธิภาพที่เหนือชั้น พร้อมจอแสดงผลที่น่าทึ่งและกล้องขั้นสุดยอดเพื่อประสบการณ์ที่ไม่เคยมีมาก่อน"
-                },
-                "iphone14midnight": {
-                    name: "iPhone 14 (Midnight)",
-                    price: "฿25,900",
-                    image: "assets/image/iphone/iphone 14 midnight.png",
-                    description: "iPhone 14 มาพร้อมคุณสมบัติใหม่ด้านความปลอดภัยที่สำคัญและกล้องที่น่าทึ่งสำหรับภาพถ่ายและวิดีโอในสภาพแสงน้อย"
-                },
-                "iphone15black": {
-                    name: "iPhone 15 (Black)",
-                    price: "฿32,900",
-                    image: "assets/image/iphone/iphone 15 black.png",
-                    description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์แบบกระจกแต่งสีและอะลูมิเนียม"
-                },
-                "iphone15blue": {
-                    name: "iPhone 15 (Blue)",
-                    price: "฿32,900",
-                    image: "assets/image/iphone/iphone 15 blue.png",
-                    description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์แบบกระจกแต่งสีและอะลูมิเนียม"
-                },
-                "iphone15pink": {
-                    name: "iPhone 15 (Pink)",
-                    price: "฿32,900",
-                    image: "assets/image/iphone/iphone 15 pink.png",
-                    description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์แบบกระจกแต่งสีและอะลูมิเนียม"
-                },
-                "iphone15problacktitanium": {
-                    name: "iPhone 15 Pro (Black Titanium)",
-                    price: "฿39,900",
-                    image: "assets/image/iphone/iphone 15 pro black titanium.png",
-                    description: "iPhone 15 Pro มาพร้อมดีไซน์ไทเทเนียมปุ่มแอ็คชั่นที่ปรับแต่งได้ และขีดความสามารถของกล้องระดับโปร"
-                },
-                "iphone15pronaturaltitanium": {
-                    name: "iPhone 15 Pro (Natural Titanium)",
-                    price: "฿39,900",
-                    image: "assets/image/iphone/iphone 15 pro natural titanium.png",
-                    description: "iPhone 15 Pro มาพร้อมดีไซน์ไทเทเนียมปุ่มแอ็คชั่นที่ปรับแต่งได้ และขีดความสามารถของกล้องระดับโปร"
-                },
-                "iphone15prowhitetitanium": {
-                    name: "iPhone 15 Pro (White Titanium)",
-                    price: "฿39,900",
-                    image: "assets/image/iphone/iphone 15 pro white titanium.png",
-                    description: "iPhone 15 Pro มาพร้อมดีไซน์ไทเทเนียมปุ่มแอ็คชั่นที่ปรับแต่งได้ และขีดความสามารถของกล้องระดับโปร"
-                },
-                "iphone16prosilvergrey": {
-                    name: "iPhone 16 Pro (Silver/Grey)",
-                    price: "฿42,900",
-                    image: "assets/image/iphone/iphone 16 pro silver grey.png",
-                    description: "iPhone 16 Pro ยกระดับประสบการณ์การใช้งานด้วยประสิทธิภาพที่ทรงพลังและระบบกล้องที่ได้รับการปรับปรุง"
-                },
-                "iphone16prowhite": {
-                    name: "iPhone 16 Pro (White)",
-                    price: "฿42,900",
-                    image: "assets/image/iphone/iphone 16 pro white.png",
-                    description: "iPhone 16 Pro ยกระดับประสบการณ์การใช้งานด้วยประสิทธิภาพที่ทรงพลังและระบบกล้องที่ได้รับการปรับปรุง"
-                },
-                "iphonese3rdgenmidnight": {
-                    name: "iPhone SE 3rd Gen (Midnight)",
-                    price: "฿15,900",
-                    image: "assets/image/iphone/iphone se 3rd gen midnight.png",
-                    description: "iPhone SE มาพร้อมชิป A15 Bionic และ 5G พร้อมดีไซน์ที่คุ้นเคยในราคาที่คุ้มค่า"
-                },
-                "iphonese3rdgenred": {
-                    name: "iPhone SE 3rd Gen (Red)",
-                    price: "฿15,900",
-                    image: "assets/image/iphone/iphone se 3rd gen red.png",
-                    description: "iPhone SE มาพร้อมชิป A15 Bionic และ 5G พร้อมดีไซน์ที่คุ้นเคยในราคาที่คุ้มค่า"
-                },
-                "iphonese3rdgenstarlight": {
-                    name: "iPhone SE 3rd Gen (Starlight)",
-                    price: "฿15,900",
-                    image: "assets/image/iphone/iphone se 3rd gen starlight.png",
-                    description: "iPhone SE มาพร้อมชิป A15 Bionic และ 5G พร้อมดีไซน์ที่คุ้มค่า"
-                },
-                "iphone16black": {
-                    name: "iPhone 16 (Black)",
-                    price: "฿32,900",
-                    image: "assets/image/iphone/iphone16-Black.png",
-                    description: "iPhone 16 นำเสนอการปรับปรุงที่สำคัญในด้านประสิทธิภาพและแบตเตอรี่ พร้อมกล้องที่ดียิ่งขึ้น"
-                },
-                "iphone16silvergray": {
-                    name: "iPhone 16 (Silver/Gray)",
-                    price: "฿32,900",
-                    image: "assets/image/iphone/iphone16-Silver-gray.png",
-                    description: "iPhone 16 นำเสนอการปรับปรุงที่สำคัญในด้านประสิทธิภาพและแบตเตอรี่ พร้อมกล้องที่ดียิ่งขึ้น"
-                },
-                "iphone16pink": {
-                    name: "iPhone 16 (Pink)",
-                    price: "฿32,900",
-                    image: "assets/image/iphone/iphone16-pink.png",
-                    description: "iPhone 16 นำเสนอการปรับปรุงที่สำคัญในด้านประสิทธิภาพและแบตเตอรี่ พร้อมกล้องที่ดียิ่งขึ้น"
-                },
-                "iphone16promaxblack": {
-                    name: "iPhone 16 Pro Max (Black)",
-                    price: "฿48,900",
-                    image: "assets/image/iphone/iphone16-promax-Black.png",
-                    description: "iPhone 16 Pro Max มอบประสิทธิภาพที่เหนือชั้น พร้อมจอแสดงผลที่น่าทึ่งและกล้องขั้นสุดยอดเพื่อประสบการณ์ที่ไม่เคยมีมาก่อน"
-                }
+                "iphone14purple": { name: "iPhone 14 (Purple)", price: "฿25,900", image: "assets/image/iphone/iPhone 14 purple.png", description: "iPhone 14 มาพร้อมระบบกล้องคู่ที่น่าทึ่งและชิป A15 Bionic ที่เร็วสุดแรง" },
+                "iphone14midnight": { name: "iPhone 14 (Midnight)", price: "฿25,900", image: "assets/image/iphone/iphone 14 midnight.png", description: "iPhone 14 มาพร้อมระบบกล้องคู่ที่น่าทึ่งและชิป A15 Bionic ที่เร็วสุดแรง" },
+                "iphone14blue": { name: "iPhone 14 (Blue)", price: "฿25,900", image: "assets/image/iphone/iphone-14-blue.png", description: "iPhone 14 มาพร้อมระบบกล้องคู่ที่น่าทึ่งและชิป A15 Bionic ที่เร็วสุดแรง" }, // เพิ่มสีฟ้า
+                "iphone15black": { name: "iPhone 15 (Black)", price: "฿32,900", image: "assets/image/iphone/iphone 15 black.png", description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์สุดทนทาน" },
+                "iphone15blue": { name: "iPhone 15 (Blue)", price: "฿32,900", image: "assets/image/iphone/iphone 15 blue.png", description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์สุดทนทาน" },
+                "iphone15pink": { name: "iPhone 15 (Pink)", price: "฿32,900", image: "assets/image/iphone/iphone 15 pink.png", description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์สุดทนทาน" },
+                "iphone15problacktitanium": { name: "iPhone 15 Pro (Black Titanium)", price: "฿39,900", image: "assets/image/iphone/iphone 15 pro black titanium.png", description: "iPhone 15 Pro ประสิทธิภาพระดับโปรในดีไซน์ไทเทเนียม พร้อมปุ่มแอ็คชั่นที่ปรับแต่งได้" },
+                "iphone15pronaturaltitanium": { name: "iPhone 15 Pro (Natural Titanium)", price: "฿39,900", image: "assets/image/iphone/iphone 15 pro natural titanium.png", description: "iPhone 15 Pro ประสิทธิภาพระดับโปรในดีไซน์ไทเทเนียม พร้อมปุ่มแอ็คชั่นที่ปรับแต่งได้" },
+                "iphone15prowhitetitanium": { name: "iPhone 15 Pro (White Titanium)", price: "฿39,900", image: "assets/image/iphone/iphone 15 pro white titanium.png", description: "iPhone 15 Pro ประสิทธิภาพระดับโปรในดีไซน์ไทเทเนียม พร้อมปุ่มแอ็คชั่นที่ปรับแต่งได้" },
+                "iphone15promaxbluetitanium": { name: "iPhone 15 Pro Max (Blue Titanium)", price: "฿45,900", image: "assets/image/iphone/iPhone 15 Pro Max Blue Titanium.png", description: "ที่สุดแห่ง iPhone พร้อมดีไซน์ไทเทเนียม, ชิป A17 Pro และระบบกล้องที่ทรงพลังที่สุด" },
+                "iphone15promaxnaturaltitanium": { name: "iPhone 15 Pro Max (Natural Titanium)", price: "฿45,900", image: "assets/image/iphone/iPhone 15 Pro Max Natural Titanium.png", description: "ที่สุดแห่ง iPhone พร้อมดีไซน์ไทเทเนียม, ชิป A17 Pro และระบบกล้องที่ทรงพลังที่สุด" },
+                "iphone15promaxblack": { name: "iPhone 15 Pro Max (Black)", price: "฿45,900", image: "assets/image/iphone/iPhone 15 Pro Max black.png", description: "ที่สุดแห่ง iPhone พร้อมดีไซน์ไทเทเนียม, ชิป A17 Pro และระบบกล้องที่ทรงพลังที่สุด" },
+                "iphone16black": { name: "iPhone 16 (Black)", price: "฿32,900", image: "assets/image/iphone/iphone16-Black.png", description: "iPhone 16 ก้าวกระโดดครั้งใหญ่ด้วยชิป A18 และฟีเจอร์กล้องอัจฉริยะ" },
+                "iphone16silvergray": { name: "iPhone 16 (Silver/Gray)", price: "฿32,900", image: "assets/image/iphone/iphone16-Silver-gray.png", description: "iPhone 16 ก้าวกระโดดครั้งใหญ่ด้วยชิป A18 และฟีเจอร์กล้องอัจฉริยะ" },
+                "iphone16pink": { name: "iPhone 16 (Pink)", price: "฿32,900", image: "assets/image/iphone/iphone16-pink.png", description: "iPhone 16 ก้าวกระโดดครั้งใหญ่ด้วยชิป A18 และฟีเจอร์กล้องอัจฉริยะ" },
+                "iphone16prosilvergrey": { name: "iPhone 16 Pro (Silver/Grey)", price: "฿42,900", image: "assets/image/iphone/iphone 16 pro silver grey.png", description: "iPhone 16 Pro นิยามใหม่ของพลังและความสามารถในการถ่ายภาพบนหน้าจอที่ใหญ่ขึ้น" },
+                "iphone16prowhite": { name: "iPhone 16 Pro (White)", price: "฿42,900", image: "assets/image/iphone/iphone 16 pro white.png", description: "iPhone 16 Pro นิยามใหม่ของพลังและความสามารถในการถ่ายภาพบนหน้าจอที่ใหญ่ขึ้น" },
+                "iphone16promaxdeserttitanium": { name: "iPhone 16 Pro Max (Desert Titanium)", price: "฿48,900", image: "assets/image/iphone/iPhone 16 Pro Max Desert Titanium.png", description: "ประสบการณ์ iPhone ที่สมบูรณ์แบบที่สุด ด้วยจอภาพใหญ่สุด, แบตฯอึดสุด และกล้องระดับปฏิวัติวงการ" },
+                "iphone16promaxnaturaltitanium": { name: "iPhone 16 Pro Max (Natural Titanium)", price: "฿48,900", image: "assets/image/iphone/iPhone 16 Pro Max Natural Natural Titanium.png", description: "ประสบการณ์ iPhone ที่สมบูรณ์แบบที่สุด ด้วยจอภาพใหญ่สุด, แบตฯอึดสุด และกล้องระดับปฏิวัติวงการ" },
+                "iphone16promaxblack": { name: "iPhone 16 Pro Max (Black)", price: "฿48,900", image: "assets/image/iphone/iphone16-promax-Black.png", description: "ประสบการณ์ iPhone ที่สมบูรณ์แบบที่สุด ด้วยจอภาพใหญ่สุด, แบตฯอึดสุด และกล้องระดับปฏิวัติวงการ" },
+                "iphonese3rdgenmidnight": { name: "iPhone SE 3rd Gen (Midnight)", price: "฿15,900", image: "assets/image/iphone/iphone se 3rd gen midnight.png", description: "พลังแรงจากชิป A15 Bionic ในดีไซน์กะทัดรัดสุดคลาสสิกที่ทุกคนคุ้นเคย" },
+                "iphonese3rdgenred": { name: "iPhone SE 3rd Gen (Red)", price: "฿15,900", image: "assets/image/iphone/iphone se 3rd gen red.png", description: "พลังแรงจากชิป A15 Bionic ในดีไซน์กะทัดรัดสุดคลาสสิกที่ทุกคนคุ้นเคย" },
+                "iphonese3rdgenstarlight": { name: "iPhone SE 3rd Gen (Starlight)", price: "฿15,900", image: "assets/image/iphone/iphone se 3rd gen starlight.png", description: "พลังแรงจากชิป A15 Bionic ในดีไซน์กะทัดรัดสุดคลาสสิกที่ทุกคนคุ้นเคย" },
             };
-
+    
+            // --- ฐานข้อมูลคุณสมบัติหลัก ---
+            const features = {
+                "iphone14": ["หน้าจอ Super Retina XDR 6.1″", "ชิป A15 Bionic (5-core GPU)", "กล้องหลังคู่ 12MP", "แบตฯ ดูวิดีโอสูงสุด 20 ชม.", "กันน้ำ-ฝุ่น IP68, Ceramic Shield"],
+                "iphone15": ["หน้าจอ Super Retina XDR 6.1″ พร้อม Dynamic Island", "ชิป A16 Bionic", "กล้องหลัก 48MP + Ultra-Wide", "พอร์ต USB-C", "แบตฯ ดูวิดีโอสูงสุด 20 ชม."],
+                "iphone15pro": ["จอ ProMotion 6.1″ (Adaptive 120Hz)", "ชิป A17 Pro (6-core GPU)", "กล้อง Pro มี Telephoto 3x", "ตัวเครื่องไทเทเนียม", "แบตฯ ดูวิดีโอสูงสุด 23 ชม."],
+                "iphone15promax": ["จอ ProMotion 6.7″ (Adaptive 120Hz)", "ชิป A17 Pro", "กล้อง Pro มี Telephoto 5x", "แบตฯ ดูวิดีโอสูงสุด 29 ชม.", "ตัวเครื่องไทเทเนียม"],
+                "iphone16": ["หน้าจอ Super Retina XDR 6.1″", "ชิป A18 พร้อม Action Button", "กล้อง 48MP พร้อม Camera Control", "แบตฯ ดูวิดีโอสูงสุด 24 ชม.", "ดีไซน์อะลูมิเนียม"],
+                "iphone16pro": ["จอ ProMotion 6.3″ (Adaptive 120Hz)", "ชิป A18 Pro", "กล้อง Pro 48MP + Telephoto 5x", "บันทึกวิดีโอ 4K@120fps", "Spatial Audio Recording"],
+                "iphone16promax": ["จอ ProMotion 6.9″ (Adaptive 120Hz)", "ชิป A18 Pro", "กล้องระดับโปรเหมือน 16 Pro", "แบตเตอรี่ความจุสูงสุดในไลน์อัพ", "ตัวเครื่องไทเทเนียม จอใหญ่สุด"],
+                "iphonese3rdgen": ["หน้าจอ Retina HD LCD 4.7″", "ชิป A15 Bionic", "กล้องเดี่ยว 12MP Wide", "Touch ID เพื่อความปลอดภัย", "กันน้ำ-ฝุ่น IP67"],
+            };
+            
+            // สร้าง key แบบสั้นสำหรับ features object (ถ้า modelParam มีค่า)
+            const featureKey = modelParam ? modelParam.replace(/(purple|midnight|blue|black|pink|titanium|natural|white|silvergrey|desert|red|starlight)/gi, '') : null;
+            
             const product = products[modelParam];
-
+            const productFeatures = featureKey ? features[featureKey] : null;
+    
             if (product) {
+                document.title = `PhoneXpress - ${product.name}`; // อัปเดต Title ของหน้าเว็บ
                 document.getElementById('product-image').src = product.image;
                 document.getElementById('product-image').alt = product.name;
                 document.getElementById('product-name').textContent = product.name;
                 document.getElementById('product-price').textContent = product.price;
                 document.getElementById('product-description').textContent = product.description;
+    
+                // --- ส่วนแสดงผลคุณสมบัติ ---
+                const featuresListElement = document.querySelector('.features');
+                const featuresHeader = document.querySelector('.product-info-area h3');
+                featuresListElement.innerHTML = ''; // ล้างค่าเริ่มต้นใน HTML
+    
+                if (productFeatures && productFeatures.length > 0) {
+                    featuresHeader.style.display = 'block';
+                    productFeatures.forEach(featureText => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = featureText;
+                        featuresListElement.appendChild(listItem);
+                    });
+                } else {
+                     featuresHeader.style.display = 'none'; // ซ่อนหัวข้อถ้าไม่มีข้อมูล
+                }
+    
             } else {
-                // Handle case where product is not found, e.g., redirect or show error
+                // กรณีไม่พบสินค้า
                 document.getElementById('product-name').textContent = 'ไม่พบสินค้า';
                 document.getElementById('product-price').textContent = '';
                 document.getElementById('product-description').textContent = 'ขออภัย ไม่พบรายละเอียดสำหรับสินค้านี้';
-                document.getElementById('product-image').src = ''; // Clear image
+                document.getElementById('product-image').src = '';
                 document.getElementById('product-image').alt = 'Product not found';
+                document.querySelector('.add-to-cart-section').style.display = 'none'; // ซ่อนส่วนเพิ่มลงตะกร้า
+                document.querySelector('.features').style.display = 'none'; // ซ่อนคุณสมบัติ
+                document.querySelector('.product-info-area h3').style.display = 'none';
             }
-
-            // Quantity control
+    
+            // --- ส่วนควบคุมจำนวนและตะกร้า (เหมือนเดิม) ---
             const decreaseBtn = document.getElementById('decrease-quantity');
             const increaseBtn = document.getElementById('increase-quantity');
             const quantityInput = document.getElementById('quantity');
-            const addToCartBtn = document.getElementById('add-to-cart-btn'); // Get the add to cart button
-
+            const addToCartBtn = document.getElementById('add-to-cart-btn');
+    
             decreaseBtn.addEventListener('click', () => {
                 let currentValue = parseInt(quantityInput.value);
                 if (currentValue > 1) {
                     quantityInput.value = currentValue - 1;
                 }
             });
-
+    
             increaseBtn.addEventListener('click', () => {
                 let currentValue = parseInt(quantityInput.value);
                 quantityInput.value = currentValue + 1;
             });
-
-            // "เพิ่มลงตะกร้า" button functionality
+    
             addToCartBtn.addEventListener('click', () => {
-                if (!product) { // Ensure product data is available
+                if (!product) {
                     alert('ไม่สามารถเพิ่มสินค้าลงตะกร้าได้: ไม่พบข้อมูลสินค้า');
                     return;
                 }
-
                 const quantity = parseInt(quantityInput.value);
-                let cart = JSON.parse(localStorage.getItem('cart')) || []; // Get cart or initialize empty array
-
-                // Check if product already exists in cart
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
                 const existingProductIndex = cart.findIndex(item => item.model === modelParam);
-
+    
                 if (existingProductIndex > -1) {
-                    // Update quantity if product exists
                     cart[existingProductIndex].quantity += quantity;
                 } else {
-                    // Add new product to cart
                     cart.push({
                         model: modelParam,
                         name: product.name,
@@ -584,14 +501,12 @@
                         quantity: quantity
                     });
                 }
-
-                localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart
-
-                alert('เพิ่ม ' + quantity + ' ชิ้นของ ' + product.name + ' ลงในตะกร้าแล้ว!');
-                window.location.href = 'cart.html'; // Redirect to cart page
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert(`เพิ่ม ${product.name} จำนวน ${quantity} ชิ้น ลงในตะกร้าแล้ว!`);
+                window.location.href = 'cart.html';
             });
-
-            // "กลับไปดูสินค้าทั้งหมด" button functionality
+    
+            // --- ปุ่มกลับไปดูสินค้าทั้งหมด (เหมือนเดิม) ---
             document.querySelector('.btn-secondary').addEventListener('click', () => {
                 window.location.href = 'allproduct.html';
             });

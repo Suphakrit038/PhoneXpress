@@ -56,28 +56,14 @@ body {
     opacity: 1;
   }
 }
-  @keyframes fade-nav-color {
-  0% {
-    background-color: rgba(255, 255, 255, 0.15);
-    color: var(--white);
-  }
-  100% {
-    background-color: var(--gold);
-    color: var(--black);
-  }
+.animate-float {
+  animation: floatInUp 0.9s ease-out forwards;
 }
 
-/* Apply transition on labels */
-.colornav-link {
-  transition: background-color 0.3s ease, color 0.3s ease;
+.animate-fade {
+  animation: floatFadeIn 0.8s ease-out forwards;
 }
 
-/* Trigger fade animation when radio is checked */
-input[type="radio"]:checked + .colornav-link {
-  animation: fade-nav-color 0.4s ease forwards;
-  border-color: var(--gold);
-  font-weight: bold;
-}
 
 .product-card img {
   animation: floatInUp 0.9s ease-out 0.3s forwards;

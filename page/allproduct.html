@@ -1,396 +1,585 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8" />
-  <title>PhoneXpress</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="assets/image/favicon.png" />
-  <style>
-    :root {
-      --gold: #d4af37;
-      --black: #000000;
-      --white: #ffffff;
-    }
+    <meta charset="UTF-8" />
+    <title>PhoneXpress</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="assets/image/favicon.png" />
+    <style>
+        :root {
+            --gold: #d4af37;
+            --black: #000000;
+            --white: #ffffff;
+            --dark-gray: rgba(255, 255, 255, 0.1); /* สีพื้นหลังการ์ด */
+            --light-gray: #e5e7eb; /* สีข้อความรอง */
+        }
 
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background-color: var(--black);
-      color: var(--white);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
-    }
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
 
-    /* Golden glow */
-    .gold-glow {
-      position: fixed;
-      top: 0;
-      left: -50%;
-      width: 200%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(212, 175, 55, 0.15), transparent);
-      animation: glowMove 10s ease-in-out infinite alternate;
-      pointer-events: none;
-      z-index: 0;
-    }
+        /* Golden glow */
+        .gold-glow {
+            position: fixed;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+            animation: glowMove 10s ease-in-out infinite alternate;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-    @keyframes glowMove {
-      0% { transform: translateX(-30%); }
-      100% { transform: translateX(30%); }
-    }
+        @keyframes glowMove {
+            0% { transform: translateX(-30%); }
+            100% { transform: translateX(30%); }
+        }
 
-    @keyframes floatFadeIn {
-      0% {
-        transform: translateY(40px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
+        @keyframes floatFadeIn {
+            0% {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
 
-    /* Layout */
-    .navbar, .hero, .footer {
-      position: relative;
-      z-index: 1;
-    }
+        /* Layout */
+        .navbar, .hero, .footer {
+            position: relative;
+            z-index: 1;
+        }
 
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 1.5rem;
-      background-color: rgba(0, 0, 0, 0.9);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background-color: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
 
-    .logo-img {
-      height: 40px;
-      width: auto;
-    }
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
 
-    .menu a {
-      color: var(--white);
-      margin-left: 1.5rem;
-      text-decoration: none;
-      position: relative;
-    }
+        .menu a {
+            color: var(--white);
+            margin-left: 1.5rem;
+            text-decoration: none;
+            position: relative;
+        }
 
-    .menu a::after {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 2px;
-      left: 0;
-      bottom: -4px;
-      background-color: var(--gold);
-      transition: width 0.3s;
-    }
+        .menu a::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            left: 0;
+            bottom: -4px;
+            background-color: var(--gold);
+            transition: width 0.3s;
+        }
 
-    .menu a:hover { color: var(--gold); }
-    .menu a:hover::after { width: 100%; }
+        .menu a:hover { color: var(--gold); }
+        .menu a:hover::after { width: 100%; }
 
-    .hero {
-      text-align: center;
-      padding: 4rem 1rem;
-    }
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+        }
 
-    .hero h1 {
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
 
-    .hero p {
-      font-size: 1.125rem;
-      color: #e5e7eb;
-      margin-bottom: 1.5rem;
-    }
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--light-gray);
+            margin-bottom: 1.5rem;
+        }
 
-    .btn {
-      padding: 0.5rem 1.5rem;
-      border-radius: 9999px;
-      background-color: var(--gold);
-      color: var(--black);
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s, transform 0.2s;
-    }
+        .btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            background-color: var(--gold);
+            color: var(--black);
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+        }
 
-    .btn:hover {
-      background-color: #f6c84f;
-      transform: translateY(-2px);
-    }
+        .btn:hover {
+            background-color: #f6c84f;
+            transform: translateY(-2px);
+        }
 
-    .product-section {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      padding: 3rem 1rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
+        .product-section {
+            display: grid; /* ใช้ Grid layout */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 คอลัมน์สำหรับหน้าจอใหญ่ */
+            gap: 2rem;
+            padding: 3rem 1rem;
+            max-width: 1200px; /* เพิ่มความกว้างสูงสุดเพื่อให้มีพื้นที่สำหรับ 3 คอลัมน์ */
+            margin: 0 auto;
+            flex-grow: 1; /* ทำให้ section ขยายเต็มพื้นที่ */
+        }
 
-    .product-card {
-      display: flex;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(6px);
-      overflow: hidden;
-      width: 100%;
-    }
+        .product-card {
+            display: flex;
+            flex-direction: column; /* เปลี่ยนเป็น column เพื่อให้รูปอยู่บน ข้อความอยู่ล่าง */
+            background-color: var(--dark-gray);
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(6px);
+            overflow: hidden;
+            width: 100%; /* ใช้ความกว้างเต็ม Grid item */
+            text-align: center; /* จัดเนื้อหาตรงกลาง */
+            padding-bottom: 1.5rem; /* เพิ่ม padding ด้านล่าง */
+        }
 
-    .product-card.left { justify-content: flex-start; }
-    .product-card.right { flex-direction: row-reverse; justify-content: flex-end; }
+        .product-card img {
+            width: 100%; /* เต็มความกว้างของการ์ด */
+            height: 300px; /* กำหนดความสูงคงที่ */
+            object-fit: contain; /* รักษาอัตราส่วนและปรับขนาดให้พอดี */
+            border-top-left-radius: 16px; /* โค้งมนเฉพาะด้านบน */
+            border-top-right-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            animation: floatFadeIn 0.9s ease-out 0.3s forwards;
+            opacity: 0;
+            transition: transform 0.3s ease;
+        }
 
-    .product-card img {
-      width: 320px;
-      height: 400px;
-      object-fit: contain;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      animation: floatFadeIn 0.9s ease-out 0.3s forwards;
-      opacity: 0;
-      transition: transform 0.3s ease;
-    }
+        .product-card img:hover {
+            transform: scale(1.03);
+        }
 
-    .product-card img:hover {
-      transform: scale(1.03);
-    }
+        .content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-grow: 1; /* ให้เนื้อหาขยายเต็มพื้นที่ */
+        }
 
-    .content {
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      max-width: 600px;
-    }
+        .product-card h3 {
+            font-size: 1.5rem; /* ลดขนาดหัวข้อเล็กน้อย */
+            color: var(--gold);
+            margin-bottom: 0.5rem; /* ลดระยะห่างด้านล่าง */
+        }
 
-    .product-card h3 {
-      font-size: 1.75rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
+        .product-card strong {
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: block; /* ทำให้ราคาขึ้นบรรทัดใหม่ */
+            font-size: 1.1rem; /* เพิ่มขนาดราคานิดหน่อย */
+        }
 
-    .product-card strong {
-      font-weight: 500;
-      margin-bottom: 1rem;
-    }
+        .product-card ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-align: left; /* จัดคุณสมบัติชิดซ้าย */
+            margin-bottom: 1rem;
+        }
 
-    .product-card ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
+        .product-card li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem; /* ลดขนาดตัวอักษรคุณสมบัติ */
+            color: var(--light-gray);
+        }
 
-    .product-card li {
-      margin-bottom: 0.5rem;
-    }
+        .colornav {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            padding: 0;
+            justify-content: center; /* จัดปุ่มสีให้อยู่กึ่งกลาง */
+        }
 
-    .colornav {
-      display: flex;
-      gap: 0.5rem;
-      margin: 1rem 0;
-      padding: 0;
-    }
+        input[type="radio"][hidden] {
+            opacity: 0;
+            position: absolute;
+            pointer-events: none;
+        }
 
-    input[type="radio"][hidden] {
-      opacity: 0;
-      position: absolute;
-      pointer-events: none;
-    }
+        .colornav-link {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            background-color: rgba(255,255,255,0.15);
+            border: 1px solid #ccc;
+            border-radius: 999px;
+            cursor: pointer;
+            color: var(--white);
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
 
-    .colornav-link {
-      display: inline-block;
-      padding: 0.4rem 0.8rem;
-      background-color: rgba(255,255,255,0.15);
-      border: 1px solid #ccc;
-      border-radius: 999px;
-      cursor: pointer;
-      color: var(--white);
-      font-size: 0.875rem;
-      transition: all 0.3s ease;
-    }
+        .colornav-link:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
 
-    .colornav-link:hover {
-      background-color: rgba(255,255,255,0.3);
-    }
+        input[type="radio"]:checked + .colornav-link {
+            background-color: var(--gold);
+            color: var(--black);
+            font-weight: bold;
+            border-color: var(--gold);
+        }
 
-    input[type="radio"]:checked + .colornav-link {
-      background-color: var(--gold);
-      color: var(--black);
-      font-weight: bold;
-      border-color: var(--gold);
-    }
+        .footer {
+            background-color: rgba(0, 0, 0, 0.85);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
 
-    .footer {
-      background-color: rgba(0, 0, 0, 0.85);
-      color: var(--white);
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      margin-top: auto;
-    }
-  </style>
+        /* Responsive Adjustments */
+        @media (max-width: 768px) { /* สำหรับหน้าจอแท็บเล็ตและมือถือ */
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem;
+            }
+            .menu {
+                margin-top: 1rem;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .menu a {
+                margin: 0.5rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .product-section {
+                grid-template-columns: 1fr; /* 1 คอลัมน์สำหรับหน้าจอเล็ก */
+                padding: 2rem 1rem;
+            }
+
+            .product-card img {
+                height: 250px; /* ลดความสูงรูปภาพบนมือถือ */
+            }
+
+            .content {
+                padding: 1rem;
+            }
+
+            .product-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .colornav {
+                flex-wrap: wrap; /* ให้ปุ่มสีขึ้นบรรทัดใหม่ได้ถ้าเยอะ */
+            }
+        }
+    </style>
 </head>
+<body>
+    <div class="gold-glow"></div>
 
-  <section class="hero">
-    <h1>ซื้อ iPhone แท้ ง่าย ปลอดภัย และเหนือระดับ</h1>
-    <p>รุ่น สี ความจุ พร้อมชำระเงินในคลิกเดียว</p>
-    <a href="#" class="btn">ดูสินค้าทั้งหมด</a>
-  </section>
-
-  <!-- Products Section -->
-  <section class="product-section">
-    <div class="product-row">
-      <!-- iPhone 16 -->
-      <article class="product-card">
-        <img src="assets/image/iphone/iphone16-black.png" alt="iPhone 16" class="product-image" />
-        <div class="content">
-          <h3>iPhone 16</h3>
-          <strong>"ก้าวสู่ยุคใหม่แห่งความแรงเหนือชั้น"</strong>
-          <ul>
-            <li>ชิป A18 Bionic เร็วขึ้นกว่าเดิม 20%</li>
-            <li>พอร์ต USB‑C ชาร์จไว</li>
-            <li>แบตเตอรี่ยาวนาน</li>
-          </ul>
-          <a href="#" class="btn">ดูรายละเอียด</a>
+    <nav class="navbar">
+        <img src="assets/image/favicon.png" alt="PhoneXpress Logo" class="logo-img" />
+        <div class="menu">
+            <a href="#">หน้าแรก</a>
+            <a href="#">สินค้า</a>
+            <a href="#">โปรโมชั่น</a>
+            <a href="#">ติดต่อเรา</a>
         </div>
-      </article>
+    </nav>
 
-      <!-- iPhone 16 Pro -->
-      <article class="product-card">
-        <img src="assets/image/iphone/iphone16-pro-black.png" alt="iPhone 16 Pro" class="product-image" />
-        <div class="content">
-          <h3>iPhone 16 Pro</h3>
-          <strong>"ดีไซน์อันปราณีต พลังแรงเกินบรรยาย"</strong>
-          <ul>
-            <li>Dynamic Island</li>
-            <li>จอ OLED HDR</li>
-            <li>Neural Engine รุ่นล่าสุด</li>
-          </ul>
-          <a href="#" class="btn">ดูรายละเอียด</a>
+    <header class="hero">
+        <h1>PhoneXpress: สุดยอดสมาร์ทโฟนเพื่อคุณ</h1>
+        <p>ค้นพบเทคโนโลยีล้ำสมัยและดีไซน์ที่โดดเด่น ในราคาที่ใช่สำหรับคุณ</p>
+        <button class="btn">เลือกซื้อเลย!</button>
+    </header>
+
+    <section class="product-section">
+        <div class="product-card">
+            <img src="assets/image/iphone15pro-black.png" alt="iPhone 15 Pro Max" />
+            <div class="content">
+                <h3>iPhone 15 Pro Max</h3>
+                <strong>ราคา: 48,900 บาท</strong>
+                <ul>
+                    <li>ชิป A17 Pro สุดแรง</li>
+                    <li>กล้องหลัก 48MP พร้อม Telephoto 5x</li>
+                    <li>หน้าจอ Super Retina XDR ProMotion</li>
+                    <li>ไทเทเนียมดีไซน์ ทนทานและเบา</li>
+                </ul>
+                <div class="colornav">
+                    <label>
+                        <input type="radio" name="color-1" value="black" hidden checked />
+                        <span class="colornav-link">ดำ</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-1" value="white" hidden />
+                        <span class="colornav-link">ขาว</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-1" value="blue" hidden />
+                        <span class="colornav-link">น้ำเงิน</span>
+                    </label>
+                </div>
+                <button class="btn">ดูรายละเอียด</button>
+            </div>
         </div>
-      </article>
 
-      <!-- iPhone 16 Pro Max -->
-      <article class="product-card">
-        <img src="assets/image/iphone/iphone16-pro-max-black.png" alt="iPhone 16 Pro Max" class="product-image" />
-        <div class="content">
-          <h3>iPhone 16 Pro Max</h3>
-          <strong>"สุดยอดประสบการณ์ภาพและความลึกที่คุณสัมผัสได้"</strong>
-          <ul>
-            <li>กล้อง Periscope Zoom 5×</li>
-            <li>จอ ProMotion 120Hz</li>
-            <li>ตัวเครื่องไทเทเนียม</li>
-          </ul>
-          <a href="#" class="btn">ดูรายละเอียด</a>
+        <div class="product-card">
+            <img src="assets/image/s24ultra-black.png" alt="Samsung Galaxy S24 Ultra" />
+            <div class="content">
+                <h3>Samsung Galaxy S24 Ultra</h3>
+                <strong>ราคา: 46,900 บาท</strong>
+                <ul>
+                    <li>AI อัจฉริยะ Galaxy AI</li>
+                    <li>กล้อง 200MP พร้อม Space Zoom 100x</li>
+                    <li>หน้าจอ Dynamic AMOLED 2X</li>
+                    <li>ปากกา S Pen ในตัว</li>
+                </ul>
+                <div class="colornav">
+                    <label>
+                        <input type="radio" name="color-2" value="black" hidden checked />
+                        <span class="colornav-link">ดำ</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-2" value="grey" hidden />
+                        <span class="colornav-link">เทา</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-2" value="violet" hidden />
+                        <span class="colornav-link">ม่วง</span>
+                    </label>
+                </div>
+                <button class="btn">ดูรายละเอียด</button>
+            </div>
         </div>
-      </article>
-    </div>
 
-    <div class="product-row">
-      <!-- iPhone 16e -->
-      <article class="product-card">
-        <img src="assets/image/iphone/iphone16e-black.png" alt="iPhone 16e" class="product-image" />
-        <div class="content">
-          <h3>iPhone 16e</h3>
-          <strong>"ประหยัดแต่ประสิทธิภาพไม่ลด"</strong>
-          <ul>
-            <li>ขนาดกะทัดรัด</li>
-            <li>ชิป A17 Bionic</li>
-            <li>กล้องคู่</li>
-          </ul>
-          <a href="#" class="btn">ดูรายละเอียด</a>
+        <div class="product-card">
+            <img src="assets/image/pixel8pro-black.png" alt="Google Pixel 8 Pro" />
+            <div class="content">
+                <h3>Google Pixel 8 Pro</h3>
+                <strong>ราคา: 35,900 บาท</strong>
+                <ul>
+                    <li>ชิป Google Tensor G3</li>
+                    <li>กล้อง Pro-level พร้อม AI Photography</li>
+                    <li>หน้าจอ Super Actua Display</li>
+                    <li>อัปเดต Android 7 ปี</li>
+                </ul>
+                <div class="colornav">
+                    <label>
+                        <input type="radio" name="color-3" value="black" hidden checked />
+                        <span class="colornav-link">ดำ</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-3" value="bay" hidden />
+                        <span class="colornav-link">ฟ้า</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-3" value="obsidian" hidden />
+                        <span class="colornav-link">เข้ม</span>
+                    </label>
+                </div>
+                <button class="btn">ดูรายละเอียด</button>
+            </div>
         </div>
-      </article>
 
-      <!-- iPhone 15 -->
-      <article class="product-card">
-        <img src="assets/image/iphone/iphone15-black.png" alt="iPhone 15" class="product-image" />
-        <div class="content">
-          <h3>iPhone 15</h3>
-          <strong>"สมรรถนะครบครันในงบที่จับต้องได้"</strong>
-          <ul>
-            <li>ชิป A16 Bionic</li>
-            <li>กล้องหลัก 48MP</li>
-            <li>ดีไซน์อลูมิเนียม</li>
-          </ul>
-          <a href="#" class="btn">ดูรายละเอียด</a>
+        <div class="product-card">
+            <img src="assets/image/iphone14-purple.png" alt="iPhone 14" />
+            <div class="content">
+                <h3>iPhone 14</h3>
+                <strong>ราคา: 25,900 บาท</strong>
+                <ul>
+                    <li>ชิป A15 Bionic</li>
+                    <li>กล้องคู่สุดคมชัด</li>
+                    <li>โหมดภาพยนตร์และแอคชั่น</li>
+                    <li>แบตเตอรี่ใช้งานได้นานขึ้น</li>
+                </ul>
+                <div class="colornav">
+                    <label>
+                        <input type="radio" name="color-4" value="purple" hidden checked />
+                        <span class="colornav-link">ม่วง</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-4" value="blue" hidden />
+                        <span class="colornav-link">ฟ้า</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-4" value="starlight" hidden />
+                        <span class="colornav-link">ขาว</span>
+                    </label>
+                </div>
+                <button class="btn">ดูรายละเอียด</button>
+            </div>
         </div>
-      </article>
 
-      <!-- iPhone 15 Pro -->
-      <article class="product-card">
-        <img src="assets/image/iphone/iphone15-pro-black.png" alt="iPhone 15 Pro" class="product-image" />
-        <div class="content">
-          <h3>iPhone 15 Pro</h3>
-          <strong>"ประสิทธิภาพระดับโปรในมือคุณ"</strong>
-          <ul>
-            <li>ชิป A17 Pro</li>
-            <li>กล้อง 3 ตัว</li>
-            <li>วัสดุไทเทเนียมเกรด航空</li>
-          </ul>
-          <a href="#" class="btn">ดูรายละเอียด</a>
+        <div class="product-card">
+            <img src="assets/image/flip5-mint.png" alt="Samsung Galaxy Z Flip5" />
+            <div class="content">
+                <h3>Samsung Galaxy Z Flip5</h3>
+                <strong>ราคา: 33,900 บาท</strong>
+                <ul>
+                    <li>จอพับได้ Flex Window ขนาดใหญ่</li>
+                    <li>ดีไซน์กระทัดรัด พกพาง่าย</li>
+                    <li>กล้อง FlexCam ถ่ายภาพง่าย</li>
+                    <li>ทนทานด้วย Armor Aluminum</li>
+                </ul>
+                <div class="colornav">
+                    <label>
+                        <input type="radio" name="color-5" value="mint" hidden checked />
+                        <span class="colornav-link">เขียว</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-5" value="graphite" hidden />
+                        <span class="colornav-link">เทา</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-5" value="cream" hidden />
+                        <span class="colornav-link">ครีม</span>
+                    </label>
+                </div>
+                <button class="btn">ดูรายละเอียด</button>
+            </div>
         </div>
-      </article>
-    </div>
 
-    <div class="product-row">
-      <!-- iPhone 15 Pro Max -->
-      <article class="product-card">
-        <img src="assets/image/iphone/iphone15-pro-max-black.png" alt="iPhone 15 Pro Max" class="product-image" />
-        <div class="content">
-          <h3>iPhone 15 Pro Max</h3>
-          <strong>"สุดยอดสมาร์ทโฟนจาก Apple"</strong>
-          <ul>
-            <li>กล้องเทเลโฟโต้ 5x</li>
-            <li>จอ Super Retina XDR</li>
-            <li>แบตเตอรี่ใช้งานยาวนาน</li>
-          </ul>
-          <a href="#" class="btn">ดูรายละเอียด</a>
+        <div class="product-card">
+            <img src="assets/image/fold5-phantom.png" alt="Samsung Galaxy Z Fold5" />
+            <div class="content">
+                <h3>Samsung Galaxy Z Fold5</h3>
+                <strong>ราคา: 59,900 บาท</strong>
+                <ul>
+                    <li>จอใหญ่เต็มตา ทำงานได้หลายอย่าง</li>
+                    <li>น้ำหนักเบา พกพาสะดวก</li>
+                    <li>กล้องคุณภาพสูง ถ่ายสวยทุกมุม</li>
+                    <li>รองรับปากกา S Pen</li>
+                </ul>
+                <div class="colornav">
+                    <label>
+                        <input type="radio" name="color-6" value="phantom" hidden checked />
+                        <span class="colornav-link">ดำ</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-6" value="cream" hidden />
+                        <span class="colornav-link">ครีม</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-6" value="icyblue" hidden />
+                        <span class="colornav-link">ฟ้า</span>
+                    </label>
+                </div>
+                <button class="btn">ดูรายละเอียด</button>
+            </div>
         </div>
-      </article>
 
-      <!-- iPhone 14 -->
-      <article class="product-card">
-        <img src="assets/image/iphone/iphone14-black.png" alt="iPhone 14" class="product-image" />
-        <div class="content">
-          <h3>iPhone 14</h3>
-          <strong>"สมาร์ทโฟนคุณภาพในราคาจับต้องได้"</strong>
-          <ul>
-            <li>ชิป A15 Bionic</li>
-            <li>ระบบกล้องขั้นสูง</li>
-            <li>กันน้ำกันฝุ่น IP68</li>
-          </ul>
-          <a href="#" class="btn">ดูรายละเอียด</a>
+        <div class="product-card">
+            <img src="assets/image/xiaomi14-black.png" alt="Xiaomi 14" />
+            <div class="content">
+                <h3>Xiaomi 14</h3>
+                <strong>ราคา: 27,990 บาท</strong>
+                <ul>
+                    <li>เลนส์ Leica สุดยอดคุณภาพ</li>
+                    <li>ชิป Snapdragon 8 Gen 3</li>
+                    <li>หน้าจอ AMOLED CrystalRes</li>
+                    <li>ระบบระบายความร้อน Loop LiquidCool</li>
+                </ul>
+                <div class="colornav">
+                    <label>
+                        <input type="radio" name="color-7" value="black" hidden checked />
+                        <span class="colornav-link">ดำ</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-7" value="white" hidden />
+                        <span class="colornav-link">ขาว</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-7" value="green" hidden />
+                        <span class="colornav-link">เขียว</span>
+                    </label>
+                </div>
+                <button class="btn">ดูรายละเอียด</button>
+            </div>
         </div>
-      </article>
 
-      <!-- iPhone 14 Pro -->
-      <article class="product-card">
-        <img src="assets/image/iphone/iphone14-pro-black.png" alt="iPhone 14 Pro" class="product-image" />
-        <div class="content">
-          <h3>iPhone 14 Pro</h3>
-          <strong>"นวัตกรรมล้ำสมัยในทุกการสัมผัส"</strong>
-          <ul>
-            <li>Dynamic Island</li>
-            <li>กล้องหลัก 48MP</li>
-            <li>Always-On Display</li>
-          </ul>
-          <a href="#" class="btn">ดูรายละเอียด</a>
+        <div class="product-card">
+            <img src="assets/image/oppofindX7-black.png" alt="OPPO Find X7 Ultra" />
+            <div class="content">
+                <h3>OPPO Find X7 Ultra</h3>
+                <strong>ราคา: 38,990 บาท</strong>
+                <ul>
+                    <li>กล้อง Hasselblad Quad-Camera</li>
+                    <li>เซ็นเซอร์ 1-inch Sony LYT-900</li>
+                    <li>ชิป Snapdragon 8 Gen 3</li>
+                    <li>หน้าจอ ProXDR Display</li>
+                </ul>
+                <div class="colornav">
+                    <label>
+                        <input type="radio" name="color-8" value="black" hidden checked />
+                        <span class="colornav-link">ดำ</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-8" value="brown" hidden />
+                        <span class="colornav-link">น้ำตาล</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-8" value="blue" hidden />
+                        <span class="colornav-link">ฟ้า</span>
+                    </label>
+                </div>
+                <button class="btn">ดูรายละเอียด</button>
+            </div>
         </div>
-      </article>
-    </div>
-  </section>
 
-  <footer class="footer">
-    <p>&copy; 2025 PhoneXpress. All rights reserved.</p>
-  </footer>
+        <div class="product-card">
+            <img src="assets/image/vivoX100-black.png" alt="Vivo X100 Pro" />
+            <div class="content">
+                <h3>Vivo X100 Pro</h3>
+                <strong>ราคา: 37,999 บาท</strong>
+                <ul>
+                    <li>กล้อง ZEISS Optics พร้อม Telephoto</li>
+                    <li>ชิป Dimensity 9300</li>
+                    <li>หน้าจอ LTPO AMOLED 8T</li>
+                    <li>แบตเตอรี่ขนาดใหญ่ ชาร์จเร็ว</li>
+                </ul>
+                <div class="colornav">
+                    <label>
+                        <input type="radio" name="color-9" value="black" hidden checked />
+                        <span class="colornav-link">ดำ</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-9" value="white" hidden />
+                        <span class="colornav-link">ขาว</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-9" value="blue" hidden />
+                        <span class="colornav-link">ฟ้า</span>
+                    </label>
+                </div>
+                <button class="btn">ดูรายละเอียด</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 PhoneXpress. All rights reserved.</p>
+    </footer>
 </body>
 </html>

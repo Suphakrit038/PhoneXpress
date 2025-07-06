@@ -420,7 +420,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphone16">
-                    <img class="product-image" src="../assets/image/iphone/iphone16-Black.jpg" alt="iPhone 16 Black" data-model-name="iphone16" />
+                    <img class="product-image" src="../assets/image/iphone/iphone16-Black.png" alt="iPhone 16 Black" data-model-name="iphone16" />
                     <div class="product-info">
                         <h3>iPhone 16</h3>
                         <p class="price">฿ <span>38,900</span></p>
@@ -533,11 +533,11 @@
                                     newImageFileName = 'iPhone 16 Pro Max Natural Natural Titanium';
                                     fileExtension = '.png';
                                 } else if (selectedColor === 'Black Titanium') {
-                                    newImageFileName = 'iphone 16 Pro Max Black Titanium';
-                                    fileExtension = '.jpg';
+                                    newImageFileName = 'iphone16-promax-Black'; // Updated name for Black Titanium
+                                    fileExtension = '.png'; // Updated extension as per request
                                 } else if (selectedColor === 'Desert Titanium') {
                                     newImageFileName = 'iPhone 16 Pro Max Desert Titanium';
-                                    fileExtension = '.jpg';
+                                    fileExtension = '.png'; // Updated extension as per request
                                 }
                                 break;
                             case 'iphone16pro':
@@ -545,21 +545,17 @@
                                     newImageFileName = 'Phone 16 Pro Black Titanium';
                                     fileExtension = '.png';
                                 } else if (selectedColor === 'Silver-gray') {
-                                    newImageFileName = 'iPhone 16 Pro Silver-gray';
+                                    newImageFileName = 'iPhone 16 Pro Silver-gray'; // This file is still needed
                                     fileExtension = '.png';
                                 } else if (selectedColor === 'White') {
-                                    newImageFileName = 'iPhone 16 Pro White';
+                                    newImageFileName = 'iPhone 16 Pro White'; // This file is still needed
                                     fileExtension = '.png';
                                 }
                                 break;
                             case 'iphone16':
                                 newImageFileName = `${modelName}-${selectedColor}`;
-                                // Specific handling for iphone16-Black.jpg
-                                if (selectedColor === 'Black') {
-                                    fileExtension = '.jpg'; // It's iphone16-Black.jpg
-                                } else {
-                                    fileExtension = '.png'; // Default for other iphone16 colors
-                                }
+                                // All listed iPhone 16 files (Black, Silver-gray, Pink, White) are now .png
+                                fileExtension = '.png';
                                 break;
                             case 'iphone15promax':
                                 newImageFileName = `${modelName}-${selectedColor}`;

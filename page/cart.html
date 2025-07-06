@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>PhoneXpress - ตะกร้าสินค้า</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="assets/image/favicon.png" />
+    <link rel="icon" type="image/png" href="../assets/image/favicon.png" />
     <style>
         /* --- CSS Variables --- */
         :root {
@@ -374,65 +374,36 @@
             </a>
         </div>
         <div class="menu">
-            <a href="index.html"class="active">หน้าแรก</a>
-            <a href="page\allproduct.html">สินค้า</a>
-            <a href="page\cart.html">ตะกร้า</a>
+            <a href="../index.html">หน้าแรก</a>
+            <a href="allproduct.html">สินค้า</a>
+            <a href="cart.html" class="active">ตะกร้า</a>
         </div>
     </nav>
 
     <main class="cart-container">
         <h2>ตะกร้าสินค้าของคุณ</h2>
 
-        <div class="cart-items">
-            <div class="cart-item">
-                <img src="../assets/image/iphone/iphone16-promax-Black.png" alt="iPhone 16 Pro Max สีดำ" class="cart-item-image" />
-                <div class="cart-item-details">
-                    <h4>iPhone 16 Pro Max (Black)</h4>
-                    <p>ความจุ 256GB</p>
-                    <div class="cart-item-quantity">
-                        <button>-</button>
-                        <span>1</span>
-                        <button>+</button>
-                    </div>
-                </div>
-                <div class="cart-item-price">฿48,900</div>
-                <button class="remove-item-btn">ลบ</button>
-            </div>
-
-            <div class="cart-item">
-                <img src="../assets/image/iphone/iphone 15 pink.png" alt="iPhone 15 สีชมพู" class="cart-item-image" />
-                <div class="cart-item-details">
-                    <h4>iPhone 15 (Pink)</h4>
-                    <p>ความจุ 128GB</p>
-                    <div class="cart-item-quantity">
-                        <button>-</button>
-                        <span>1</span>
-                        <button>+</button>
-                    </div>
-                </div>
-                <div class="cart-item-price">฿29,900</div>
-                <button class="remove-item-btn">ลบ</button>
-            </div>
-
-            </div>
+        <div class="cart-items" id="cart-items-container">
+            <p id="empty-cart-message" style="text-align: center; color: var(--light-text-color);">ตะกร้าสินค้าว่างเปล่า</p>
+        </div>
 
         <div class="cart-summary">
             <div>
                 <span>ยอดรวมสินค้า</span>
-                <span>฿78,800</span>
+                <span id="cart-subtotal">฿0</span>
             </div>
             <div>
                 <span>ค่าจัดส่ง</span>
-                <span>฿100</span>
+                <span id="cart-shipping">฿100</span>
             </div>
             <div class="total">
                 <span>ยอดชำระทั้งหมด</span>
-                <span>฿78,900</span>
+                <span id="cart-total">฿0</span>
             </div>
         </div>
 
         <div class="checkout-actions">
-            <a href="#" class="btn">ดำเนินการชำระเงิน</a>
+            <a href="#" class="btn" id="checkout-button">ดำเนินการชำระเงิน</a>
             <a href="allproduct.html" class="btn btn-secondary">เลือกซื้อสินค้าต่อ</a>
         </div>
     </main>
@@ -441,5 +412,6 @@
         <p>&copy; 2025 PhoneXpress. All rights reserved.</p>
     </footer>
 
-    </body>
+    <script src="../assets/js/cart.js"></script>
+</body>
 </html>

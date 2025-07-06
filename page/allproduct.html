@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="../assets/image/favicon.png" />
     <style>
+        /* --- CSS Variables --- */
         :root {
             --gold: #d4af37;
             --black: #000000;
             --white: #ffffff;
-            --dark-gray-bg: rgba(255, 255, 255, 0.1);
-            --light-text-color: #e5e7eb;
-            --dark-gold: #b8912e;
+            --dark-gray-bg: rgba(255, 255, 255, 0.1); /* Background color for cards/sections */
+            --light-text-color: #e5e7eb; /* Secondary text color */
+            --border-color: rgba(255, 255, 255, 0.2);
         }
 
+        /* --- Global Styles & Body --- */
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -26,6 +28,7 @@
             overflow-x: hidden;
         }
 
+        /* --- Animations (retained for consistency) --- */
         .gold-glow {
             position: fixed;
             top: 0;
@@ -43,22 +46,13 @@
             100% { transform: translateX(30%); }
         }
 
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        .navbar, .footer {
-            position: relative;
-            z-index: 10;
-        }
-        .main-content {
+        /* --- Layout & Z-index for content over glow --- */
+        .navbar, .products-all-container, .footer {
             position: relative;
             z-index: 1;
-            flex-grow: 1;
-            padding-bottom: 5rem;
         }
 
+        /* --- Navbar (reused from index.html) --- */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -73,6 +67,7 @@
             width: auto;
             transition: transform 0.3s ease;
         }
+
         .logo-img:hover {
             transform: scale(1.05);
         }
@@ -102,154 +97,116 @@
         .menu a:hover::after { width: 100%; }
         .menu a.active::after { width: 100%; }
 
-        .page-header {
-            text-align: center;
-            padding: 4rem 1.5rem;
-            margin-bottom: 2rem;
-            background: rgba(0, 0, 0, 0.7);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 1s ease-out;
-        }
-
-        .page-header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--gold);
-            margin-bottom: 0.8rem;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-        }
-
-        .page-header p {
-            font-size: 1.2rem;
-            color: var(--light-text-color);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .product-grid-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            padding: 2rem 0;
-        }
-
-        .product-card {
-            background-color: var(--dark-gray-bg);
-            border-radius: 18px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(5px);
-            overflow: hidden;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: contain;
-            padding: 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .product-card:hover img {
-            transform: scale(1.03);
-        }
-
-        .product-info {
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            justify-content: space-between;
-        }
-
-        .product-info h3 {
-            font-size: 1.8rem;
-            color: var(--gold);
-            margin-top: 0;
-            margin-bottom: 0.75rem;
-        }
-
-        .product-info .price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--white);
-            margin-bottom: 1rem;
-        }
-        .product-info .price span {
-            color: var(--gold);
-        }
-
-        .colornav {
-            display: flex;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .color-option {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: border-color 0.2s ease, transform 0.2s ease;
-        }
-        .color-option:hover {
-            transform: scale(1.1);
-        }
-        .color-option.selected {
-            border-color: var(--gold);
-            box-shadow: 0 0 8px rgba(212, 175, 55, 0.7);
-        }
-
-        .color-black { background-color: #000000; }
-        .color-white { background-color: #f0f0f0; }
-        .color-blue { background-color: #27284b; }
-        .color-pink { background-color: #f7d4e3; }
-        .color-natural-titanium { background-color: #a8a39d; }
-        .color-red { background-color: #db0000; }
-        .color-green { background-color: #2e4a3e; }
-        .color-purple { background-color: #6a4d70; }
-        .color-desert-titanium { background-color: #bfa17c; }
-        .color-silver-gray { background-color: #c0c0c0; }
-
-
-        .btn-add-to-cart {
-            padding: 0.7rem 1.8rem;
+        /* --- Call-to-Action Button (reused) --- */
+        .btn {
+            padding: 0.8rem 2.5rem;
             border-radius: 9999px;
             background-color: var(--gold);
             color: var(--black);
             border: none;
             cursor: pointer;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 1.1rem;
             text-decoration: none;
             display: inline-block;
             transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
-            margin-top: auto;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
         }
 
-        .btn-add-to-cart:hover {
+        .btn:hover {
             background-color: #f6c84f;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.6);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.6);
         }
 
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
+        }
+
+        /* --- All Products Section Specific Styles --- */
+        .products-all-container {
+            flex-grow: 1; /* Allows container to take available space */
+            padding: 3rem 1.5rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            background-color: var(--dark-gray-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+        }
+
+        .products-all-container h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 2.5rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            justify-content: center; /* Center items in grid */
+        }
+
+        .product-card {
+            background-color: rgba(0, 0, 0, 0.5); /* Slightly darker for contrast */
+            border-radius: 15px;
+            padding: 1.8rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-card img {
+            width: 100%;
+            max-height: 250px;
+            object-fit: contain;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 0.8rem;
+        }
+
+        .product-card .price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .product-card .btn {
+            width: 80%;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+        }
+
+        /* --- Footer (reused) --- */
         .footer {
             background-color: rgba(0, 0, 0, 0.9);
             color: var(--light-text-color);
@@ -258,84 +215,47 @@
             font-size: 0.95rem;
             margin-top: auto;
             box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
-            width: 100%;
         }
 
-        .filter-sort-bar {
-            background-color: rgba(255, 255, 255, 0.08);
-            padding: 1.5rem 2rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 1.5rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            max-width: 1400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-bottom: 1rem;
+            }
 
-        .filter-sort-bar label {
-            font-size: 1.05rem;
-            color: var(--white);
-            font-weight: 500;
-        }
+            .menu {
+                margin-top: 1rem;
+                width: 100%;
+                justify-content: space-around;
+            }
 
-        .filter-sort-bar select,
-        .filter-sort-bar input[type="text"] {
-            background-color: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            padding: 0.6rem 1rem;
-            color: var(--black);
-            font-size: 1rem;
-            transition: border-color 0.3s ease, background-color 0.3s ease;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            cursor: pointer;
-        }
+            .menu a {
+                margin-left: 0;
+                margin-right: 0;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
 
-        .filter-sort-bar select:focus,
-        .filter-sort-bar input[type="text"]:focus {
-            outline: none;
-            border-color: var(--gold);
-            background-color: var(--white);
-        }
+            .products-all-container {
+                padding: 1.5rem;
+                margin: 1rem auto;
+            }
 
-        .select-wrapper {
-            position: relative;
-        }
-        .select-wrapper::after {
-            content: '▼';
-            font-size: 0.8em;
-            color: var(--black);
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-        }
+            .products-all-container h2 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
 
-        #cart-alert {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s, visibility 0.5s;
-            font-weight: bold;
-        }
-        #cart-alert.show {
-            opacity: 1;
-            visibility: visible;
+            .product-grid {
+                grid-template-columns: 1fr; /* Stack products on small screens */
+            }
+
+            .product-card {
+                margin: 0 auto; /* Center single column cards */
+                max-width: 350px; /* Constrain width on small screens */
+            }
         }
     </style>
 </head>
@@ -344,319 +264,74 @@
 
     <nav class="navbar">
         <div class="logo">
-            <a href="../index.html"><img src="../assets/image/favicon.png" alt="PhoneXpress Logo" class="logo-img" /></a>
+            <a href="../index.html">
+                <img src="../assets/image/favicon.png" alt="PhoneXpress Logo" class="logo-img" />
+            </a>
         </div>
         <div class="menu">
-            <a href="index.html"class="active">หน้าแรก</a>
-            <a href="page/allproduct.html">สินค้า</a>
-            <a href="page/cart.html">ตะกร้า</a>
+            <a href="../index.html">หน้าแรก</a>
+            <a href="allproduct.html" class="active">สินค้า</a>
+            <a href="cart.html">ตะกร้า</a>
         </div>
     </nav>
 
-    <header class="page-header">
-        <h1>iPhone ทุกรุ่น พร้อมส่งถึงมือคุณ</h1>
-        <p>เลือกซื้อ iPhone รุ่นล่าสุดและรุ่นยอดนิยมจาก Apple ส่งตรงถึงคุณในราคาที่ดีที่สุด</p>
-    </header>
-
-    <main class="main-content">
-        <section class="filter-sort-bar">
-            <label for="sort-by">เรียงตาม:</label>
-            <div class="select-wrapper">
-                <select id="sort-by">
-                    <option value="price-asc">ราคา: น้อยไปมาก</option>
-                    <option value="price-desc">ราคา: มากไปน้อย</option>
-                    <option value="newest">ใหม่ล่าสุด</option>
-                    <option value="oldest">เก่าที่สุด</option>
-                </select>
+    <main class="products-all-container">
+        <h2>สินค้าทั้งหมด</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="../assets/image/iphone/iphone 16 Pro Max Black Titanium.jpg" alt="iPhone 16 Pro Max Black Titanium" />
+                <h3>iPhone 16 Pro Max (Black)</h3>
+                <div class="price">฿48,900</div>
+                <a href="product-detail.html?model=iphone16promaxblack" class="btn">ดูรายละเอียด</a>
             </div>
-            <label for="filter-model">รุ่น:</label>
-            <div class="select-wrapper">
-                <select id="filter-model">
-                    <option value="all">ทั้งหมด</option>
-                    <option value="iphone16promax">iPhone 16 Pro Max</option>
-                    <option value="iphone16pro">iPhone 16 Pro</option>
-                    <option value="iphone16">iPhone 16</option>
-                    <option value="iphone15promax">iPhone 15 Pro Max</option>
-                    <option value="iphone15pro">iPhone 15 Pro</option>
-                    <option value="iphone15">iPhone 15</option>
-                    <option value="iphone14promax">iPhone 14 Pro Max</option>
-                    <option value="iphone14">iPhone 14</option>
-                    <option value="iphonese">iPhone SE</option>
-                </select>
+
+            <div class="product-card">
+                <img src="../assets/image/iphone/iPhone 16 Pro Max Desert Titanium.jpg" alt="iPhone 16 Pro Max Desert Titanium" />
+                <h3>iPhone 16 Pro Max (Desert)</h3>
+                <div class="price">฿48,900</div>
+                <a href="product-detail.html?model=iphone16promaxdesert" class="btn">ดูรายละเอียด</a>
             </div>
-            <label for="search-product">ค้นหา:</label>
-            <input type="text" id="search-product" placeholder="ค้นหาชื่อสินค้า..." />
-        </section>
 
-        <section class="product-grid-container">
-            <div class="product-grid">
-                <div class="product-card" data-model="iphone16promax">
-                    <img class="product-image" src="../assets/image/iphone/iPhone 16 Pro Max Natural Natural Titanium.png" alt="iPhone 16 Pro Max Natural Titanium" data-model-name="iPhone 16 Pro Max" />
-                    <div class="product-info">
-                        <h3>iPhone 16 Pro Max</h3>
-                        <p class="price">฿ <span>59,900</span></p>
-                        <div class="colornav">
-                            <div class="color-option color-natural-titanium selected" data-color="Natural Natural Titanium"></div>
-                            <div class="color-option color-black" data-color="Black Titanium"></div>
-                            <div class="color-option color-desert-titanium" data-color="Desert Titanium"></div>
-                        </div>
-                        <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
-                    </div>
-                </div>
-
-                <div class="product-card" data-model="iphone16pro">
-                    <img class="product-image" src="../assets/image/iphone/Phone 16 Pro Black Titanium.png" alt="iPhone 16 Pro Black Titanium" data-model-name="Phone 16 Pro" />
-                    <div class="product-info">
-                        <h3>iPhone 16 Pro</h3>
-                        <p class="price">฿ <span>52,900</span></p>
-                        <div class="colornav">
-                            <div class="color-option color-black selected" data-color="Black Titanium"></div>
-                            <div class="color-option color-silver-gray" data-color="Silver-gray"></div>
-                            <div class="color-option color-white" data-color="White"></div>
-                        </div>
-                        <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
-                    </div>
-                </div>
-
-                <div class="product-card" data-model="iphone16">
-                    <img class="product-image" src="../assets/image/iphone/iphone16-Black.png" alt="iPhone 16 Black" data-model-name="iphone16" />
-                    <div class="product-info">
-                        <h3>iPhone 16</h3>
-                        <p class="price">฿ <span>38,900</span></p>
-                        <div class="colornav">
-                            <div class="color-option color-black selected" data-color="Black"></div>
-                            <div class="color-option color-silver-gray" data-color="Silver-gray"></div>
-                            <div class="color-option color-pink" data-color="Pink"></div>
-                        </div>
-                        <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
-                    </div>
-                </div>
-
-                <div class="product-card" data-model="iphone15promax">
-                    <img class="product-image" src="../assets/image/iphone/iPhone 15 Pro Max Natural Titanium.png" alt="iPhone 15 Pro Max Natural Titanium" data-model-name="iPhone 15 Pro Max" />
-                    <div class="product-info">
-                        <h3>iPhone 15 Pro Max</h3>
-                        <p class="price">฿ <span>48,900</span></p>
-                        <div class="colornav">
-                            <div class="color-option color-natural-titanium selected" data-color="naturaltitanium"></div>
-                            <div class="color-option color-blue" data-color="blue"></div>
-                            <div class="color-option color-black" data-color="black"></div>
-                        </div>
-                        <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
-                    </div>
-                </div>
-
-                <div class="product-card" data-model="iphone15pro">
-                    <img class="product-image" src="../assets/image/iphone/iphone 15 pro black titanium.png" alt="iPhone 15 Pro Black Titanium" data-model-name="iphone 15 pro" />
-                    <div class="product-info">
-                        <h3>iPhone 15 Pro</h3>
-                        <p class="price">฿ <span>41,900</span></p>
-                        <div class="colornav">
-                            <div class="color-option color-black selected" data-color="black titanium"></div>
-                            <div class="color-option color-white" data-color="white titanium"></div>
-                            <div class="color-option color-natural-titanium" data-color="natural titanium"></div>
-                        </div>
-                        <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
-                    </div>
-                </div>
-
-                <div class="product-card" data-model="iphone15">
-                    <img class="product-image" src="../assets/image/iphone/iphone 15 pink.png" alt="iPhone 15 Pink" data-model-name="iphone 15" />
-                    <div class="product-info">
-                        <h3>iPhone 15</h3>
-                        <p class="price">฿ <span>32,900</span></p>
-                        <div class="colornav">
-                            <div class="color-option color-pink selected" data-color="pink"></div>
-                            <div class="color-option color-black" data-color="black"></div>
-                            <div class="color-option color-blue" data-color="blue"></div>
-                        </div>
-                        <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
-                    </div>
-                </div>
-
-                <div class="product-card" data-model="iphonese">
-                    <img class="product-image" src="../assets/image/iphone/iphone se 3rd gen midnight.png" alt="iPhone SE (3rd Gen) Midnight" data-model-name="iphone se 3rd gen" />
-                    <div class="product-info">
-                        <h3>iPhone SE (3rd Gen)</h3>
-                        <p class="price">฿ <span>17,900</span></p>
-                        <div class="colornav">
-                            <div class="color-option color-black selected" data-color="midnight"></div>
-                            <div class="color-option color-white" data-color="starlight"></div>
-                            <div class="color-option color-red" data-color="red"></div>
-                        </div>
-                        <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
-                    </div>
-                </div>
-
-                <div class="product-card" data-model="iphone14">
-                    <img class="product-image" src="../assets/image/iphone/iPhone 14 blue.png" alt="iPhone 14 Blue" data-model-name="iPhone 14" />
-                    <div class="product-info">
-                        <h3>iPhone 14</h3>
-                        <p class="price">฿ <span>26,900</span></p>
-                        <div class="colornav">
-                            <div class="color-option color-blue selected" data-color="blue"></div>
-                            <div class="color-option color-purple" data-color="purple"></div>
-                            <div class="color-option color-black" data-color="midnight"></div>
-                        </div>
-                        <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
-                    </div>
-                </div>
+            <div class="product-card">
+                <img src="../assets/image/iphone/iPhone 16 Pro Max Natural Natural Titanium.png" alt="iPhone 16 Pro Max Natural Titanium" />
+                <h3>iPhone 16 Pro Max (Natural)</h3>
+                <div class="price">฿48,900</div>
+                <a href="product-detail.html?model=iphone16promaxnatural" class="btn">ดูรายละเอียด</a>
             </div>
-        </section>
+
+            <div class="product-card">
+                <img src="../assets/image/iphone/Phone 16 Pro Black Titanium.png" alt="Phone 16 Pro Black Titanium" />
+                <h3>iPhone 16 Pro (Black)</h3>
+                <div class="price">฿42,900</div>
+                <a href="product-detail.html?model=iphone16problack" class="btn">ดูรายละเอียด</a>
+            </div>
+
+            <div class="product-card">
+                <img src="../assets/image/iphone/iphone16-Black.jpg" alt="iphone16-Black" />
+                <h3>iPhone 16 (Black)</h3>
+                <div class="price">฿32,900</div>
+                <a href="product-detail.html?model=iphone16black" class="btn">ดูรายละเอียด</a>
+            </div>
+
+            <div class="product-card">
+                <img src="../assets/image/iphone/iphone16-pink.png" alt="iphone16-pink" />
+                <h3>iPhone 16 (Pink)</h3>
+                <div class="price">฿32,900</div>
+                <a href="product-detail.html?model=iphone16pink" class="btn">ดูรายละเอียด</a>
+            </div>
+
+            <div class="product-card">
+                <img src="../assets/image/iphone/iphone16-Silver-gray.png" alt="iphone16-Silver-gray" />
+                <h3>iPhone 16 (Silver/Gray)</h3>
+                <div class="price">฿32,900</div>
+                <a href="product-detail.html?model=iphone16silvergray" class="btn">ดูรายละเอียด</a>
+            </div>
+
+            </div>
     </main>
 
     <footer class="footer">
         <p>&copy; 2025 PhoneXpress. All rights reserved.</p>
     </footer>
-
-    <div id="cart-alert"></div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.product-card .colornav').forEach(colornav => {
-                colornav.querySelectorAll('.color-option').forEach(colorOption => {
-                    colorOption.addEventListener('click', function() {
-                        const productCard = this.closest('.product-card');
-                        const productImage = productCard.querySelector('.product-image');
-                        const model = productCard.dataset.model;
-                        const modelName = productImage.dataset.modelName; // Now holds "iPhone 16 Pro Max", "iPhone 15 Pro Max", etc.
-                        const selectedColor = this.dataset.color;
-
-                        const imageBaseDir = '../assets/image/iphone/';
-                        let newImageFileName;
-                        let fileExtension = '.png'; // Default to PNG
-
-                        switch (model) {
-                            case 'iphone16promax':
-                                if (selectedColor === 'Natural Natural Titanium') {
-                                    newImageFileName = 'iPhone 16 Pro Max Natural Natural Titanium';
-                                } else if (selectedColor === 'Black Titanium') {
-                                    newImageFileName = 'iphone 16 Pro Max Black Titanium';
-                                } else if (selectedColor === 'Desert Titanium') {
-                                    newImageFileName = 'iPhone 16 Pro Max Desert Titanium';
-                                }
-                                break;
-                            case 'iphone16pro':
-                                if (selectedColor === 'Black Titanium') {
-                                    newImageFileName = 'Phone 16 Pro Black Titanium';
-                                } else if (selectedColor === 'Silver-gray') {
-                                    newImageFileName = 'iphone 16 pro silver grey';
-                                } else if (selectedColor === 'White') {
-                                    newImageFileName = 'iphone 16 pro white';
-                                }
-                                break;
-                            case 'iphone16':
-                                newImageFileName = `${modelName}-${selectedColor}`; // e.g., iphone16-Black
-                                break;
-                            case 'iphone15promax':
-                                if (selectedColor === 'naturaltitanium') {
-                                    newImageFileName = 'iPhone 15 Pro Max Natural Titanium';
-                                } else if (selectedColor === 'blue') {
-                                    newImageFileName = 'iPhone 15 Pro Max Blue Titanium';
-                                } else if (selectedColor === 'black') {
-                                    newImageFileName = 'iPhone 15 Pro Max black';
-                                }
-                                break;
-                            case 'iphone15pro':
-                                // Uses data-color values that match parts of filenames: black titanium, white titanium, natural titanium
-                                if (selectedColor === 'black titanium') {
-                                    newImageFileName = 'iphone 15 pro black titanium';
-                                } else if (selectedColor === 'white titanium') {
-                                    newImageFileName = 'iphone 15 pro white titanium';
-                                } else if (selectedColor === 'natural titanium') {
-                                    newImageFileName = 'iphone 15 pro natural titanium';
-                                }
-                                break;
-                            case 'iphone15':
-                                // Uses data-color values that match parts of filenames: pink, black, blue
-                                if (selectedColor === 'pink') {
-                                    newImageFileName = 'iphone 15 pink';
-                                } else if (selectedColor === 'black') {
-                                    newImageFileName = 'iphone 15 black';
-                                } else if (selectedColor === 'blue') {
-                                    newImageFileName = 'iphone 15 blue';
-                                }
-                                break;
-                            case 'iphonese':
-                                // Uses data-color values that match parts of filenames: midnight, starlight, red
-                                if (selectedColor === 'midnight') {
-                                    newImageFileName = 'iphone se 3rd gen midnight';
-                                } else if (selectedColor === 'starlight') {
-                                    newImageFileName = 'iphone se 3rd gen starlight';
-                                } else if (selectedColor === 'red') {
-                                    newImageFileName = 'iphone se 3rd gen red';
-                                }
-                                break;
-                            case 'iphone14':
-                                // Uses data-color values that match parts of filenames: blue, purple, midnight
-                                if (selectedColor === 'blue') {
-                                    newImageFileName = 'iPhone 14 blue';
-                                } else if (selectedColor === 'purple') {
-                                    newImageFileName = 'iPhone 14 purple';
-                                } else if (selectedColor === 'midnight') {
-                                    newImageFileName = 'iphone 14 midnight';
-                                }
-                                break;
-                            default:
-                                console.warn("Unknown model or color combination for image path generation.");
-                                return;
-                        }
-                        
-                        productImage.src = `${imageBaseDir}${newImageFileName}${fileExtension}`;
-                        productImage.alt = `${productCard.querySelector('h3').textContent} ${selectedColor}`;
-
-                        this.closest('.colornav').querySelectorAll('.color-option').forEach(option => {
-                            option.classList.remove('selected');
-                        });
-                        this.classList.add('selected');
-                    });
-                });
-            });
-
-            document.querySelectorAll('.btn-add-to-cart').forEach(button => {
-                button.addEventListener('click', function() {
-                    const productCard = this.closest('.product-card');
-                    const productName = productCard.querySelector('h3').textContent;
-                    const productPrice = productCard.querySelector('.price span').textContent;
-                    const selectedColorElement = productCard.querySelector('.color-option.selected');
-                    const selectedColor = selectedColorElement ? selectedColorElement.dataset.color : 'Default Color';
-
-                    const alertDiv = document.getElementById('cart-alert');
-                    alertDiv.textContent = `เพิ่ม ${productName} สี ${selectedColor} ราคา ${productPrice} บาท ลงตะกร้าแล้ว!`;
-                    alertDiv.classList.add('show');
-
-                    setTimeout(() => {
-                        alertDiv.classList.remove('show');
-                    }, 3000);
-                });
-            });
-
-            const filterModelSelect = document.getElementById('filter-model');
-            const searchProductInput = document.getElementById('search-product');
-            const productCards = document.querySelectorAll('.product-grid .product-card');
-
-            function filterAndSortProducts() {
-                const selectedModel = filterModelSelect.value;
-                const searchTerm = searchProductInput.value.toLowerCase();
-
-                productCards.forEach(card => {
-                    const model = card.dataset.model;
-                    const productName = card.querySelector('h3').textContent.toLowerCase();
-
-                    const isModelMatch = selectedModel === 'all' || model === selectedModel;
-                    const isSearchMatch = productName.includes(searchTerm);
-
-                    if (isModelMatch && isSearchMatch) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            }
-
-            filterModelSelect.addEventListener('change', filterAndSortProducts);
-            searchProductInput.addEventListener('keyup', filterAndSortProducts);
-        });
-    </script>
 </body>
 </html>

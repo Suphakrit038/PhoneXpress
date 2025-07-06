@@ -66,6 +66,22 @@ body {
   text-decoration: none;
   color: var(--white);
 }
+.menu a {
+  position: relative;
+}
+.menu a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: -4px;
+  background-color: var(--gold);
+  transition: width 0.3s;
+}
+.menu a:hover::after {
+  width: 100%;
+}
 
 .menu a:hover {
   color: var(--gold);
@@ -111,6 +127,10 @@ body {
   padding: 3rem 1rem;
   max-width: 1000px;
   margin: 0 auto;
+}
+.product-card img:hover {
+  transform: scale(1.03);
+  transition: transform 0.3s ease;
 }
 
 .product-card {

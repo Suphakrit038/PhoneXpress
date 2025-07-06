@@ -420,7 +420,7 @@
                 </div>
 
                 <div class="product-card" data-model="iphone16">
-                    <img class="product-image" src="../assets/image/iphone/iphone16-Black.png" alt="iPhone 16 Black" data-model-name="iphone16" />
+                    <img class="product-image" src="../assets/image/iphone/iphone16-Black.jpg" alt="iPhone 16 Black" data-model-name="iphone16" />
                     <div class="product-info">
                         <h3>iPhone 16</h3>
                         <p class="price">฿ <span>38,900</span></p>
@@ -554,7 +554,12 @@
                                 break;
                             case 'iphone16':
                                 newImageFileName = `${modelName}-${selectedColor}`;
-                                fileExtension = '.png';
+                                // Specific handling for iphone16-Black.jpg
+                                if (selectedColor === 'Black') {
+                                    fileExtension = '.jpg'; // It's iphone16-Black.jpg
+                                } else {
+                                    fileExtension = '.png'; // Default for other iphone16 colors
+                                }
                                 break;
                             case 'iphone15promax':
                                 newImageFileName = `${modelName}-${selectedColor}`;

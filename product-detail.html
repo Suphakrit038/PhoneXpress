@@ -373,7 +373,7 @@
                     <input type="number" id="quantity" value="1" min="1" />
                     <button id="increase-quantity">+</button>
                 </div>
-                <button class="btn">เพิ่มลงตะกร้า</button>
+                <button class="btn" id="add-to-cart-btn">เพิ่มลงตะกร้า</button>
             </div>
             <button class="btn btn-secondary" style="margin-top: 1rem; width: 100%;">กลับไปดูสินค้าทั้งหมด</button>
         </div>
@@ -495,7 +495,7 @@
                     name: "iPhone SE 3rd Gen (Starlight)",
                     price: "฿15,900",
                     image: "assets/image/iphone/iphone se 3rd gen starlight.png",
-                    description: "iPhone SE มาพร้อมชิป A15 Bionic และ 5G พร้อมดีไซน์ที่คุ้นเคยในราคาที่คุ้มค่า"
+                    description: "iPhone SE มาพร้อมชิป A15 Bionic และ 5G พร้อมดีไซน์ที่คุ้มค่า"
                 },
                 "iphone16black": {
                     name: "iPhone 16 (Black)",
@@ -544,6 +544,7 @@
             const decreaseBtn = document.getElementById('decrease-quantity');
             const increaseBtn = document.getElementById('increase-quantity');
             const quantityInput = document.getElementById('quantity');
+            const addToCartBtn = document.getElementById('add-to-cart-btn'); // Get the add to cart button
 
             decreaseBtn.addEventListener('click', () => {
                 let currentValue = parseInt(quantityInput.value);
@@ -557,15 +558,42 @@
                 quantityInput.value = currentValue + 1;
             });
 
+            // "เพิ่มลงตะกร้า" button functionality
+            addToCartBtn.addEventListener('click', () => {
+                if (!product) { // Ensure product data is available
+                    alert('ไม่สามารถเพิ่มสินค้าลงตะกร้าได้: ไม่พบข้อมูลสินค้า');
+                    return;
+                }
+
+                const quantity = parseInt(quantityInput.value);
+                let cart = JSON.parse(localStorage.getItem('cart')) || []; // Get cart or initialize empty array
+
+                // Check if product already exists in cart
+                const existingProductIndex = cart.findIndex(item => item.model === modelParam);
+
+                if (existingProductIndex > -1) {
+                    // Update quantity if product exists
+                    cart[existingProductIndex].quantity += quantity;
+                } else {
+                    // Add new product to cart
+                    cart.push({
+                        model: modelParam,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                        quantity: quantity
+                    });
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart
+
+                alert('เพิ่ม ' + quantity + ' ชิ้นของ ' + product.name + ' ลงในตะกร้าแล้ว!');
+                window.location.href = 'cart.html'; // Redirect to cart page
+            });
+
             // "กลับไปดูสินค้าทั้งหมด" button functionality
             document.querySelector('.btn-secondary').addEventListener('click', () => {
                 window.location.href = 'allproduct.html';
-            });
-
-            // "เพิ่มลงตะกร้า" button functionality (placeholder)
-            document.querySelector('.add-to-cart-section .btn').addEventListener('click', () => {
-                alert('เพิ่ม ' + quantityInput.value + ' ชิ้นของ ' + product.name + ' ลงในตะกร้าแล้ว!');
-                // In a real application, you would add logic here to update a cart state or database.
             });
         });
     </script>

@@ -52,13 +52,13 @@
         /* Layout */
         .navbar, .footer {
             position: relative;
-            z-index: 10; /* เพิ่ม z-index ให้สูงขึ้นเพื่อให้Navbarอยู่บนสุด */
+            z-index: 10;
         }
         .main-content {
             position: relative;
             z-index: 1;
-            flex-grow: 1; /* ให้เนื้อหาหลักขยายเต็มพื้นที่ที่เหลือ */
-            padding-bottom: 5rem; /* เผื่อพื้นที่ให้ footer */
+            flex-grow: 1;
+            padding-bottom: 5rem;
         }
 
         .navbar {
@@ -108,7 +108,7 @@
             text-align: center;
             padding: 4rem 1.5rem;
             margin-bottom: 2rem;
-            background: rgba(0, 0, 0, 0.7); /* พื้นหลัง Header */
+            background: rgba(0, 0, 0, 0.7);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             animation: fadeIn 1s ease-out;
         }
@@ -130,23 +130,23 @@
 
         /* Product Grid */
         .product-grid-container {
-            max-width: 1400px; /* เพิ่มความกว้างสูงสุดของคอนเทนเนอร์สินค้า */
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 1.5rem;
         }
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* ปรับขนาดให้ยืดหยุ่นขึ้น */
-            gap: 2.5rem; /* เพิ่มระยะห่างระหว่างการ์ด */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
             padding: 2rem 0;
         }
 
         .product-card {
             background-color: var(--dark-gray-bg);
-            border-radius: 18px; /* ปรับโค้งมนเล็กน้อย */
+            border-radius: 18px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(5px); /* เบลอเล็กน้อย */
+            backdrop-filter: blur(5px);
             overflow: hidden;
             text-align: center;
             display: flex;
@@ -155,28 +155,28 @@
         }
 
         .product-card:hover {
-            transform: translateY(-10px); /* ยกการ์ดสูงขึ้นเมื่อ hover */
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* เงาเข้มขึ้น */
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
 
         .product-card img {
             width: 100%;
-            max-height: 350px; /* จำกัดความสูงของรูปภาพ */
-            object-fit: contain; /* รักษาอัตราส่วน */
-            padding: 1rem; /* เพิ่ม padding รอบรูป */
+            max-height: 350px;
+            object-fit: contain;
+            padding: 1rem;
             transition: transform 0.3s ease;
         }
 
         .product-card:hover img {
-            transform: scale(1.03); /* ซูมรูปภาพเล็กน้อยเมื่อ hover */
+            transform: scale(1.03);
         }
 
         .product-info {
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
-            flex-grow: 1; /* ให้ขยายเต็มพื้นที่ */
-            justify-content: space-between; /* จัดเนื้อหาให้กระจาย */
+            flex-grow: 1;
+            justify-content: space-between;
         }
 
         .product-info h3 {
@@ -222,11 +222,13 @@
         /* Specific colors */
         .color-black { background-color: #000000; }
         .color-white { background-color: #f0f0f0; }
-        .color-blue { background-color: #27284b; } /* Deep Blue */
+        .color-blue { background-color: #27284b; }
         .color-pink { background-color: #f7d4e3; }
-        .color-natural-titanium { background-color: #a8a39d; } /* iPhone 15 Pro Titanium */
-        .color-red { background-color: #db0000; } /* Product (RED) */
-        .color-green { background-color: #2e4a3e; } /* Midnight Green-like */
+        .color-natural-titanium { background-color: #a8a39d; }
+        .color-red { background-color: #db0000; }
+        .color-green { background-color: #2e4a3e; }
+        .color-purple { background-color: #6a4d70; } /* Added for iPhone 14 */
+
 
         .btn-add-to-cart {
             padding: 0.7rem 1.8rem;
@@ -241,7 +243,7 @@
             display: inline-block;
             transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
-            margin-top: auto; /* จัดให้อยู่ด้านล่างสุดของการ์ด */
+            margin-top: auto;
         }
 
         .btn-add-to-cart:hover {
@@ -258,7 +260,7 @@
             font-size: 0.95rem;
             margin-top: auto;
             box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
-            width: 100%; /* ทำให้ footer กว้างเต็มหน้าจอ */
+            width: 100%;
         }
 
         /* Filter and Sort Section */
@@ -268,7 +270,7 @@
             border-radius: 12px;
             margin-bottom: 2rem;
             display: flex;
-            justify-content: flex-end; /* จัดไปทางขวา */
+            justify-content: flex-end;
             align-items: center;
             gap: 1.5rem;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -279,20 +281,20 @@
 
         .filter-sort-bar label {
             font-size: 1.05rem;
-            color: var(--white);
+            color: var(--black); /* เปลี่ยนสีตัวอักษรเป็นสีดำ */
             font-weight: 500;
         }
 
         .filter-sort-bar select,
         .filter-sort-bar input[type="text"] {
-            background-color: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.9); /* เปลี่ยนพื้นหลังให้สว่างขึ้นเล็กน้อย */
+            border: 1px solid rgba(0, 0, 0, 0.2); /* เปลี่ยนสีขอบให้เข้ากับสีดำ */
             border-radius: 8px;
             padding: 0.6rem 1rem;
-            color: var(--white);
+            color: var(--black); /* เปลี่ยนสีตัวอักษรเป็นสีดำ */
             font-size: 1rem;
             transition: border-color 0.3s ease, background-color 0.3s ease;
-            -webkit-appearance: none; /* Remove default select arrow for better styling */
+            -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
             cursor: pointer;
@@ -302,7 +304,7 @@
         .filter-sort-bar input[type="text"]:focus {
             outline: none;
             border-color: var(--gold);
-            background-color: rgba(255, 255, 255, 0.25);
+            background-color: var(--white); /* พื้นหลังเป็นสีขาวเมื่อโฟกัส */
         }
 
         /* Custom arrow for select */
@@ -310,9 +312,9 @@
             position: relative;
         }
         .select-wrapper::after {
-            content: '▼'; /* Unicode down arrow */
+            content: '▼';
             font-size: 0.8em;
-            color: var(--white);
+            color: var(--black); /* เปลี่ยนสีลูกศรเป็นสีดำ */
             position: absolute;
             right: 12px;
             top: 50%;
@@ -325,7 +327,7 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background-color: #4CAF50; /* Green */
+            background-color: #4CAF50;
             color: white;
             padding: 15px 20px;
             border-radius: 8px;
@@ -347,11 +349,11 @@
 
     <nav class="navbar">
         <div class="logo">
-            <a href="index.html"><img src="assets/image/favicon.png" alt="PhoneXpress Logo" class="logo-img" /></a>
+            <a href="../index.html"><img src="../assets/image/favicon.png" alt="PhoneXpress Logo" class="logo-img" /></a>
         </div>
         <div class="menu">
-            <a href="index.html">หน้าแรก</a>
-            <a href="page/allproduct.html" class="active">สินค้า</a>
+            <a href="../index.html">หน้าแรก</a>
+            <a href="#" class="active">สินค้า</a>
             <a href="#">ตะกร้า</a>
             <a href="#">ติดต่อเรา</a>
         </div>
@@ -511,7 +513,8 @@
                             <div class="color-option color-black" data-color="midnight"></div>
                             <div class="color-option color-white" data-color="starlight"></div>
                             <div class="color-option color-red" data-color="red"></div>
-                            <div class="color-option color-pink" data-color="pink"></div> </div>
+                            <div class="color-option color-pink" data-color="pink"></div>
+                        </div>
                         <button class="btn-add-to-cart">เพิ่มลงตะกร้า</button>
                     </div>
                 </div>
@@ -555,15 +558,15 @@
                     const productName = productCard.querySelector('h3').textContent;
                     const productPrice = productCard.querySelector('.price span').textContent;
                     const selectedColorElement = productCard.querySelector('.color-option.selected');
-                    const selectedColor = selectedColorElement ? selectedColorElement.dataset.color : 'Default Color'; // Get selected color
-                    
+                    const selectedColor = selectedColorElement ? selectedColorElement.dataset.color : 'Default Color';
+
                     const alertDiv = document.getElementById('cart-alert');
                     alertDiv.textContent = `เพิ่ม ${productName} สี ${selectedColor} ราคา ${productPrice} บาท ลงตะกร้าแล้ว!`;
                     alertDiv.classList.add('show');
 
                     setTimeout(() => {
                         alertDiv.classList.remove('show');
-                    }, 3000); // Hide after 3 seconds
+                    }, 3000);
                 });
             });
 
@@ -589,9 +592,6 @@
                         card.style.display = 'none'; // Hide card
                     }
                 });
-
-                // Sorting logic (simplified, won't reorder HTML elements)
-                // For actual sorting, you'd need to convert productCards to an array, sort it, and re-append to the DOM
             }
 
             filterModelSelect.addEventListener('change', filterAndSortProducts);

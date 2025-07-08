@@ -388,246 +388,31 @@
             const modelParam = urlParams.get('model');
 
             // ฐานข้อมูลสินค้า
-const products = {
-  "iphone14purple": {
-    name: "iPhone 14 (Purple)",
-    price: "฿25,900",
-    image: "assets/image/iphone/iPhone 14 purple.png",
-    description: "iPhone 14 มาพร้อมระบบกล้องคู่ที่น่าทึ่งและชิป A15 Bionic ที่เร็วสุดแรง"
-  },
-  "iphone14midnight": {
-    name: "iPhone 14 (Midnight)",
-    price: "฿25,900",
-    image: "assets/image/iphone/iphone 14 midnight.png",
-    description: "iPhone 14 มาพร้อมระบบกล้องคู่ที่น่าทึ่งและชิป A15 Bionic ที่เร็วสุดแรง"
-  },
-  "iphone14blue": {
-    name: "iPhone 14 (Blue)",
-    price: "฿25,900",
-    image: "assets/image/iphone/iphone-14-blue.png",
-    description: "iPhone 14 มาพร้อมระบบกล้องคู่ที่น่าทึ่งและชิป A15 Bionic ที่เร็วสุดแรง"
-  },
-  "iphone15black": {
-    name: "iPhone 15 (Black)",
-    price: "฿32,900",
-    image: "assets/image/iphone/iphone 15 black.png",
-    description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์สุดทนทาน"
-  },
-  "iphone15blue": {
-    name: "iPhone 15 (Blue)",
-    price: "฿32,900",
-    image: "assets/image/iphone/iphone 15 blue.png",
-    description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์สุดทนทาน"
-  },
-  "iphone15pink": {
-    name: "iPhone 15 (Pink)",
-    price: "฿32,900",
-    image: "assets/image/iphone/iphone 15 pink.png",
-    description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์สุดทนทาน"
-  },
-  "iphone15problacktitanium": {
-    name: "iPhone 15 Pro (Black Titanium)",
-    price: "฿39,900",
-    image: "assets/image/iphone/iphone 15 pro black titanium.png",
-    description: "iPhone 15 Pro ประสิทธิภาพระดับโปรในดีไซน์ไทเทเนียม พร้อมปุ่มแอ็คชั่นที่ปรับแต่งได้"
-  },
-  "iphone15pronaturaltitanium": {
-    name: "iPhone 15 Pro (Natural Titanium)",
-    price: "฿39,900",
-    image: "assets/image/iphone/iphone 15 pro natural titanium.png",
-    description: "iPhone 15 Pro ประสิทธิภาพระดับโปรในดีไซน์ไทเทเนียม พร้อมปุ่มแอ็คชั่นที่ปรับแต่งได้"
-  },
-  "iphone15prowhitetitanium": {
-    name: "iPhone 15 Pro (White Titanium)",
-    price: "฿39,900",
-    image: "assets/image/iphone/iphone 15 pro white titanium.png",
-    description: "iPhone 15 Pro ประสิทธิภาพระดับโปรในดีไซน์ไทเทเนียม พร้อมปุ่มแอ็คชั่นที่ปรับแต่งได้"
-  },
-  "iphone15promaxbluetitanium": {
-    name: "iPhone 15 Pro Max (Blue Titanium)",
-    price: "฿45,900",
-    image: "assets/image/iphone/iPhone 15 Pro Max Blue Titanium.png",
-    description: "ที่สุดแห่ง iPhone พร้อมดีไซน์ไทเทเนียม, ชิป A17 Pro และระบบกล้องที่ทรงพลังที่สุด"
-  },
-  "iphone15promaxnaturaltitanium": {
-    name: "iPhone 15 Pro Max (Natural Titanium)",
-    price: "฿45,900",
-    image: "assets/image/iphone/iPhone 15 Pro Max Natural Titanium.png",
-    description: "ที่สุดแห่ง iPhone พร้อมดีไซน์ไทเทเนียม, ชิป A17 Pro และระบบกล้องที่ทรงพลังที่สุด"
-  },
-  "iphone15promaxblack": {
-    name: "iPhone 15 Pro Max (Black)",
-    price: "฿45,900",
-    image: "assets/image/iphone/iPhone 15 Pro Max black.png",
-    description: "ที่สุดแห่ง iPhone พร้อมดีไซน์ไทเทเนียม, ชิป A17 Pro และระบบกล้องที่ทรงพลังที่สุด"
-  },
-  "iphone16black": {
-    name: "iPhone 16 (Black)",
-    price: "฿32,900",
-    image: "assets/image/iphone/iphone16-Black.png",
-    description: "iPhone 16 ก้าวกระโดดครั้งใหญ่ด้วยชิป A18 และฟีเจอร์กล้องอัจฉริยะ"
-  },
-  "iphone16silvergray": {
-    name: "iPhone 16 (Silver/Gray)",
-    price: "฿32,900",
-    image: "assets/image/iphone/iphone16-Silver-gray.png",
-    description: "iPhone 16 ก้าวกระโดดครั้งใหญ่ด้วยชิป A18 และฟีเจอร์กล้องอัจฉริยะ"
-  },
-  "iphone16pink": {
-    name: "iPhone 16 (Pink)",
-    price: "฿32,900",
-    image: "assets/image/iphone/iphone16-pink.png",
-    description: "iPhone 16 ก้าวกระโดดครั้งใหญ่ด้วยชิป A18 และฟีเจอร์กล้องอัจฉริยะ"
-  },
-  "iphone16prosilvergrey": {
-    name: "iPhone 16 Pro (Silver/Grey)",
-    price: "฿42,900",
-    image: "assets/image/iphone/iphone 16 pro silver grey.png",
-    description: "iPhone 16 Pro นิยามใหม่ของพลังและความสามารถในการถ่ายภาพบนหน้าจอที่ใหญ่ขึ้น"
-  },
-  "iphone16prowhite": {
-    name: "iPhone 16 Pro (White)",
-    price: "฿42,900",
-    image: "assets/image/iphone/iphone 16 pro white.png",
-    description: "iPhone 16 Pro นิยามใหม่ของพลังและความสามารถในการถ่ายภาพบนหน้าจอที่ใหญ่ขึ้น"
-  },
-  "iphone16promaxdeserttitanium": {
-    name: "iPhone 16 Pro Max (Desert Titanium)",
-    price: "฿48,900",
-    image: "assets/image/iphone/iPhone 16 Pro Max Desert Titanium.png",
-    description: "ประสบการณ์ iPhone ที่สมบูรณ์แบบที่สุด ด้วยจอภาพใหญ่สุด, แบตฯอึดสุด และกล้องระดับปฏิวัติวงการ"
-  },
-  "iphone16promaxnaturaltitanium": {
-    name: "iPhone 16 Pro Max (Natural Titanium)",
-    price: "฿48,900",
-    image: "assets/image/iphone/iPhone 16 Pro Max Natural Natural Titanium.png",
-    description: "ประสบการณ์ iPhone ที่สมบูรณ์แบบที่สุด ด้วยจอภาพใหญ่สุด, แบตฯอึดสุด และกล้องระดับปฏิวัติวงการ"
-  },
-  "iphone16promaxblack": {
-    name: "iPhone 16 Pro Max (Black)",
-    price: "฿48,900",
-    image: "assets/image/iphone/iphone16-promax-Black.png",
-    description: "ประสบการณ์ iPhone ที่สมบูรณ์แบบที่สุด ด้วยจอภาพใหญ่สุด, แบตฯอึดสุด และกล้องระดับปฏิวัติวงการ"
-  },
-  "iphonese3rdgenmidnight": {
-    name: "iPhone SE 3rd Gen (Midnight)",
-    price: "฿15,900",
-    image: "assets/image/iphone/iphone se 3rd gen midnight.png",
-    description: "พลังแรงจากชิป A15 Bionic ในดีไซน์กะทัดรัดสุดคลาสสิกที่ทุกคนคุ้นเคย"
-  },
-  "iphonese3rdgenred": {
-    name: "iPhone SE 3rd Gen (Red)",
-    price: "฿15,900",
-    image: "assets/image/iphone/iphone se 3rd gen red.png",
-    description: "พลังแรงจากชิป A15 Bionic ในดีไซน์กะทัดรัดสุดคลาสสิกที่ทุกคนคุ้นเคย"
-  },
-  "iphonese3rdgenstarlight": {
-    name: "iPhone SE 3rd Gen (Starlight)",
-    price: "฿15,900",
-    image: "assets/image/iphone/iphone se 3rd gen starlight.png",
-    description: "พลังแรงจากชิป A15 Bionic ในดีไซน์กะทัดรัดสุดคลาสสิกที่ทุกคนคุ้นเคย"
-  },
-  // เพิ่มข้อมูลอื่น ๆ ถ้าต้องการ
-};
-const products = {
-  "iphone13mini": {
-    name: "iPhone 13 mini",
-    price: "฿19,900",
-    image: "assets/image/iphone/iphone13-mini.png",
-    description: "iPhone 13 mini ขนาดกะทัดรัดพร้อมชิป A15 Bionic และกล้องคู่ที่ทรงพลัง"
-  },
-  "iphone13": {
-    name: "iPhone 13",
-    price: "฿22,900",
-    image: "assets/image/iphone/iphone13.png",
-    description: "iPhone 13 มาพร้อมชิป A15 Bionic และหน้าจอ Super Retina XDR"
-  },
-  "iphone13pro": {
-    name: "iPhone 13 Pro",
-    price: "฿28,900",
-    image: "assets/image/iphone/iphone13-pro.png",
-    description: "iPhone 13 Pro จอ ProMotion 120Hz, ชิป A15 และกล้อง Pro ระดับสูง"
-  },
-  "iphone13promax": {
-    name: "iPhone 13 Pro Max",
-    price: "฿32,900",
-    image: "assets/image/iphone/iphone13-pro-max.png",
-    description: "iPhone 13 Pro Max หน้าจอใหญ่ 6.7 นิ้ว พร้อมกล้องระดับโปรและแบตเตอรี่ที่อึดกว่า"
-  },
-  "iphone12": {
-    name: "iPhone 12",
-    price: "฿18,900",
-    image: "assets/image/iphone/iphone12.png",
-    description: "iPhone 12 ดีไซน์ใหม่แบบ Ceramic Shield พร้อมชิป A14 Bionic และกล้องคู่"
-  },
-  "iphone12mini": {
-    name: "iPhone 12 mini",
-    price: "฿15,900",
-    image: "assets/image/iphone/iphone12-mini.png",
-    description: "iPhone 12 mini ขนาดเล็กแต่แรงด้วยชิป A14 Bionic และกล้องคู่ 12MP"
-  },
-  "iphone11": {
-    name: "iPhone 11",
-    price: "฿12,900",
-    image: "assets/image/iphone/iphone11.png",
-    description: "iPhone 11 มาพร้อมชิป A13 Bionic และกล้องคู่ที่ถ่ายภาพยอดเยี่ยม"
-  },
-  "iphone11pro": {
-    name: "iPhone 11 Pro",
-    price: "฿18,900",
-    image: "assets/image/iphone/iphone11-pro.png",
-    description: "iPhone 11 Pro หน้าจอ OLED, กล้องสามตัว และชิป A13 Bionic"
-  },
-  "iphone11promax": {
-    name: "iPhone 11 Pro Max",
-    price: "฿20,900",
-    image: "assets/image/iphone/iphone11-pro-max.png",
-    description: "iPhone 11 Pro Max จอใหญ่ 6.5 นิ้ว พร้อมกล้องสามตัวและแบตเตอรี่ที่ใช้งานได้นาน"
-  },
-  "iphonexr": {
-    name: "iPhone XR",
-    price: "฿10,900",
-    image: "assets/image/iphone/iphonexr.png",
-    description: "iPhone XR สีสันสดใส พร้อมชิป A12 Bionic และหน้าจอ Liquid Retina"
-  },
-  "iphonexs": {
-    name: "iPhone XS",
-    price: "฿14,900",
-    image: "assets/image/iphone/iphonexs.png",
-    description: "iPhone XS จอ OLED, ชิป A12 Bionic และกล้องคู่ที่ยอดเยี่ยม"
-  },
-  "iphonexsmax": {
-    name: "iPhone XS Max",
-    price: "฿16,900",
-    image: "assets/image/iphone/iphonexsmax.png",
-    description: "iPhone XS Max หน้าจอใหญ่ 6.5 นิ้ว พร้อมชิป A12 Bionic และกล้องคู่"
-  },
-  "iphonex": {
-    name: "iPhone X",
-    price: "฿12,500",
-    image: "assets/image/iphone/iphonex.png",
-    description: "iPhone X รุ่นฉลองครบรอบ 10 ปี พร้อมดีไซน์ใหม่และหน้าจอ OLED แบบไร้ขอบ"
-  },
-  "iphonese2ndgen": {
-    name: "iPhone SE 2nd Gen",
-    price: "฿9,900",
-    image: "assets/image/iphone/iphonese2ndgen.png",
-    description: "iPhone SE รุ่นที่ 2 ดีไซน์คลาสสิกพร้อมชิป A13 Bionic ในราคาย่อมเยา"
-  },
-  "iphone8": {
-    name: "iPhone 8",
-    price: "฿7,900",
-    image: "assets/image/iphone/iphone8.png",
-    description: "iPhone 8 ดีไซน์กระจก พร้อมชาร์จไร้สายและกล้อง 12MP"
-  },
-  "iphone8plus": {
-    name: "iPhone 8 Plus",
-    price: "฿9,500",
-    image: "assets/image/iphone/iphone8plus.png",
-    description: "iPhone 8 Plus จอใหญ่ 5.5 นิ้ว พร้อมกล้องคู่และชาร์จไร้สาย"
-  }
-};
-
+            const products = {
+                "iphone14purple": { name: "iPhone 14 (Purple)", price: "฿25,900", image: "assets/image/iphone/iPhone 14 purple.png", description: "iPhone 14 มาพร้อมระบบกล้องคู่ที่น่าทึ่งและชิป A15 Bionic ที่เร็วสุดแรง" },
+                "iphone14midnight": { name: "iPhone 14 (Midnight)", price: "฿25,900", image: "assets/image/iphone/iphone 14 midnight.png", description: "iPhone 14 มาพร้อมระบบกล้องคู่ที่น่าทึ่งและชิป A15 Bionic ที่เร็วสุดแรง" },
+                "iphone14blue": { name: "iPhone 14 (Blue)", price: "฿25,900", image: "assets/image/iphone/iphone-14-blue.png", description: "iPhone 14 มาพร้อมระบบกล้องคู่ที่น่าทึ่งและชิป A15 Bionic ที่เร็วสุดแรง" },
+                "iphone15black": { name: "iPhone 15 (Black)", price: "฿32,900", image: "assets/image/iphone/iphone 15 black.png", description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์สุดทนทาน" },
+                "iphone15blue": { name: "iPhone 15 (Blue)", price: "฿32,900", image: "assets/image/iphone/iphone 15 blue.png", description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์สุดทนทาน" },
+                "iphone15pink": { name: "iPhone 15 (Pink)", price: "฿32,900", image: "assets/image/iphone/iphone 15 pink.png", description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์สุดทนทาน" },
+                "iphone15problacktitanium": { name: "iPhone 15 Pro (Black Titanium)", price: "฿39,900", image: "assets/image/iphone/iphone 15 pro black titanium.png", description: "iPhone 15 Pro ประสิทธิภาพระดับโปรในดีไซน์ไทเทเนียม พร้อมปุ่มแอ็คชั่นที่ปรับแต่งได้" },
+                "iphone15pronaturaltitanium": { name: "iPhone 15 Pro (Natural Titanium)", price: "฿39,900", image: "assets/image/iphone/iphone 15 pro natural titanium.png", description: "iPhone 15 Pro ประสิทธิภาพระดับโปรในดีไซน์ไทเทเนียม พร้อมปุ่มแอ็คชั่นที่ปรับแต่งได้" },
+                "iphone15prowhitetitanium": { name: "iPhone 15 Pro (White Titanium)", price: "฿39,900", image: "assets/image/iphone/iphone 15 pro white titanium.png", description: "iPhone 15 Pro ประสิทธิภาพระดับโปรในดีไซน์ไทเทเนียม พร้อมปุ่มแอ็คชั่นที่ปรับแต่งได้" },
+                "iphone15promaxbluetitanium": { name: "iPhone 15 Pro Max (Blue Titanium)", price: "฿45,900", image: "assets/image/iphone/iPhone 15 Pro Max Blue Titanium.png", description: "ที่สุดแห่ง iPhone พร้อมดีไซน์ไทเทเนียม, ชิป A17 Pro และระบบกล้องที่ทรงพลังที่สุด" },
+                "iphone15promaxnaturaltitanium": { name: "iPhone 15 Pro Max (Natural Titanium)", price: "฿45,900", image: "assets/image/iphone/iPhone 15 Pro Max Natural Titanium.png", description: "ที่สุดแห่ง iPhone พร้อมดีไซน์ไทเทเนียม, ชิป A17 Pro และระบบกล้องที่ทรงพลังที่สุด" },
+                "iphone15promaxblack": { name: "iPhone 15 Pro Max (Black)", price: "฿45,900", image: "assets/image/iphone/iPhone 15 Pro Max black.png", description: "ที่สุดแห่ง iPhone พร้อมดีไซน์ไทเทเนียม, ชิป A17 Pro และระบบกล้องที่ทรงพลังที่สุด" },
+                "iphone16black": { name: "iPhone 16 (Black)", price: "฿32,900", image: "assets/image/iphone/iphone16-Black.png", description: "iPhone 16 ก้าวกระโดดครั้งใหญ่ด้วยชิป A18 และฟีเจอร์กล้องอัจฉริยะ" },
+                "iphone16silvergray": { name: "iPhone 16 (Silver/Gray)", price: "฿32,900", image: "assets/image/iphone/iphone16-Silver-gray.png", description: "iPhone 16 ก้าวกระโดดครั้งใหญ่ด้วยชิป A18 และฟีเจอร์กล้องอัจฉริยะ" },
+                "iphone16pink": { name: "iPhone 16 (Pink)", price: "฿32,900", image: "assets/image/iphone/iphone16-pink.png", description: "iPhone 16 ก้าวกระโดดครั้งใหญ่ด้วยชิป A18 และฟีเจอร์กล้องอัจฉริยะ" },
+                "iphone16prosilvergrey": { name: "iPhone 16 Pro (Silver/Grey)", price: "฿42,900", image: "assets/image/iphone/iphone 16 pro silver grey.png", description: "iPhone 16 Pro นิยามใหม่ของพลังและความสามารถในการถ่ายภาพบนหน้าจอที่ใหญ่ขึ้น" },
+                "iphone16prowhite": { name: "iPhone 16 Pro (White)", price: "฿42,900", image: "assets/image/iphone/iphone 16 pro white.png", description: "iPhone 16 Pro นิยามใหม่ของพลังและความสามารถในการถ่ายภาพบนหน้าจอที่ใหญ่ขึ้น" },
+                "iphone16promaxdeserttitanium": { name: "iPhone 16 Pro Max (Desert Titanium)", price: "฿48,900", image: "assets/image/iphone/iPhone 16 Pro Max Desert Titanium.png", description: "ประสบการณ์ iPhone ที่สมบูรณ์แบบที่สุด ด้วยจอภาพใหญ่สุด, แบตฯอึดสุด และกล้องระดับปฏิวัติวงการ" },
+                "iphone16promaxnaturaltitanium": { name: "iPhone 16 Pro Max (Natural Titanium)", price: "฿48,900", image: "assets/image/iphone/iPhone 16 Pro Max Natural Natural Titanium.png", description: "ประสบการณ์ iPhone ที่สมบูรณ์แบบที่สุด ด้วยจอภาพใหญ่สุด, แบตฯอึดสุด และกล้องระดับปฏิวัติวงการ" },
+                "iphone16promaxblack": { name: "iPhone 16 Pro Max (Black)", price: "฿48,900", image: "assets/image/iphone/iphone16-promax-Black.png", description: "ประสบการณ์ iPhone ที่สมบูรณ์แบบที่สุด ด้วยจอภาพใหญ่สุด, แบตฯอึดสุด และกล้องระดับปฏิวัติวงการ" },
+                "iphonese3rdgenmidnight": { name: "iPhone SE 3rd Gen (Midnight)", price: "฿15,900", image: "assets/image/iphone/iphone se 3rd gen midnight.png", description: "พลังแรงจากชิป A15 Bionic ในดีไซน์กะทัดรัดสุดคลาสสิกที่ทุกคนคุ้นเคย" },
+                "iphonese3rdgenred": { name: "iPhone SE 3rd Gen (Red)", price: "฿15,900", image: "assets/image/iphone/iphone se 3rd gen red.png", description: "พลังแรงจากชิป A15 Bionic ในดีไซน์กะทัดรัดสุดคลาสสิกที่ทุกคนคุ้นเคย" },
+                "iphonese3rdgenstarlight": { name: "iPhone SE 3rd Gen (Starlight)", price: "฿15,900", image: "assets/image/iphone/iphone se 3rd gen starlight.png", description: "พลังแรงจากชิป A15 Bionic ในดีไซน์กะทัดรัดสุดคลาสสิกที่ทุกคนคุ้นเคย" },
+            };
 
             // ฐานข้อมูลคุณสมบัติหลัก
             const features = {

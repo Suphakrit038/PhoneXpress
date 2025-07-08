@@ -6,17 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="assets/image/favicon.png" />
     <style>
-        /* --- CSS Variables --- */
         :root {
             --gold: #d4af37;
             --black: #000000;
             --white: #ffffff;
-            --dark-gray-bg: rgba(255, 255, 255, 0.1); /* Background color for cards/sections */
-            --light-text-color: #e5e7eb; /* Secondary text color */
+            --dark-gray-bg: rgba(255, 255, 255, 0.1);
+            --light-text-color: #e5e7eb;
             --border-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* --- Global Styles & Body --- */
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -28,7 +26,6 @@
             overflow-x: hidden;
         }
 
-        /* --- Animations (retained for consistency) --- */
         .gold-glow {
             position: fixed;
             top: 0;
@@ -40,19 +37,16 @@
             pointer-events: none;
             z-index: 0;
         }
-
         @keyframes glowMove {
             0% { transform: translateX(-30%); }
             100% { transform: translateX(30%); }
         }
 
-        /* --- Layout & Z-index for content over glow --- */
         .navbar, .product-detail-container, .footer {
             position: relative;
             z-index: 1;
         }
 
-        /* --- Navbar (reused from index.html) --- */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -93,11 +87,14 @@
             transition: width 0.3s ease-in-out;
         }
 
-        .menu a:hover { color: var(--gold); }
-        .menu a:hover::after { width: 100%; }
-        /* No active state for product-detail as it's a dynamic page */
+        .menu a:hover {
+            color: var(--gold);
+        }
 
-        /* --- Call-to-Action Button (reused) --- */
+        .menu a:hover::after {
+            width: 100%;
+        }
+
         .btn {
             padding: 0.8rem 2.5rem;
             border-radius: 9999px;
@@ -124,6 +121,9 @@
             color: var(--gold);
             border: 1px solid var(--gold);
             box-shadow: none;
+            width: 100%;
+            padding: 0.8rem 0;
+            font-weight: 600;
         }
 
         .btn-secondary:hover {
@@ -132,9 +132,8 @@
             box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
         }
 
-        /* --- Product Detail Section Specific Styles --- */
         .product-detail-container {
-            flex-grow: 1; /* Allows container to take available space */
+            flex-grow: 1;
             padding: 3rem 1.5rem;
             max-width: 1200px;
             margin: 2rem auto;
@@ -143,14 +142,14 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(8px);
             display: flex;
-            flex-wrap: wrap; /* Allows wrapping on smaller screens */
+            flex-wrap: wrap;
             gap: 2.5rem;
-            align-items: flex-start; /* Align items to the top */
+            align-items: flex-start;
         }
 
         .product-image-area {
             flex: 1;
-            min-width: 300px; /* Minimum width before wrapping */
+            min-width: 300px;
             text-align: center;
             background-color: rgba(0, 0, 0, 0.3);
             border-radius: 15px;
@@ -161,15 +160,17 @@
 
         .product-image-area img {
             max-width: 100%;
-            max-height: 400px; /* Adjust as needed */
+            max-height: 400px;
             object-fit: contain;
             border-radius: 10px;
         }
 
         .product-info-area {
             flex: 2;
-            min-width: 400px; /* Minimum width before wrapping */
+            min-width: 400px;
             padding: 1rem;
+            display: flex;
+            flex-direction: column;
         }
 
         .product-info-area h1 {
@@ -193,7 +194,12 @@
             margin-bottom: 2rem;
         }
 
-        .product-info-area .features {
+        .product-info-area h3 {
+            margin-bottom: 0.8rem;
+            color: var(--gold);
+        }
+
+        .features {
             list-style: none;
             padding: 0;
             margin-bottom: 2rem;
@@ -202,7 +208,7 @@
             gap: 0.8rem;
         }
 
-        .product-info-area .features li {
+        .features li {
             background-color: rgba(0, 0, 0, 0.3);
             padding: 0.8rem 1.2rem;
             border-radius: 8px;
@@ -215,7 +221,7 @@
             display: flex;
             align-items: center;
             gap: 1.5rem;
-            margin-top: 1.5rem;
+            margin-top: auto; /* Push to bottom */
         }
 
         .quantity-control {
@@ -252,16 +258,15 @@
             color: var(--white);
             font-size: 1.2rem;
             margin: 0 10px;
-            -moz-appearance: textfield; /* Firefox */
+            -moz-appearance: textfield;
         }
-        /* Hide arrows for Chrome, Safari, Edge, Opera */
+
         .quantity-control input::-webkit-outer-spin-button,
         .quantity-control input::-webkit-inner-spin-button {
             -webkit-appearance: none;
             margin: 0;
         }
 
-        /* --- Footer (reused) --- */
         .footer {
             background-color: rgba(0, 0, 0, 0.9);
             color: var(--light-text-color);
@@ -272,7 +277,6 @@
             box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
         }
 
-        /* --- Responsive Adjustments --- */
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
@@ -294,14 +298,14 @@
             }
 
             .product-detail-container {
-                flex-direction: column; /* Stack columns on small screens */
+                flex-direction: column;
                 padding: 1.5rem;
                 margin: 1rem auto;
             }
 
             .product-image-area, .product-info-area {
-                min-width: unset; /* Remove min-width to allow full width */
-                width: 100%; /* Take full width */
+                min-width: unset;
+                width: 100%;
             }
 
             .product-info-area h1 {
@@ -323,11 +327,11 @@
             }
 
             .quantity-control {
-                justify-content: center; /* Center quantity controls */
+                justify-content: center;
             }
 
             .product-info-area .btn {
-                width: 100%; /* Full width button on mobile */
+                width: 100%;
             }
         }
     </style>
@@ -348,68 +352,284 @@
         </div>
     </nav>
 
-    <main class="product-detail-container">
+    <main class="product-detail-container" role="main" aria-label="รายละเอียดสินค้า">
         <div class="product-image-area">
-            <img id="product-image" src="" alt="Product Image" />
+            <img id="product-image" src="" alt="รูปสินค้าจะถูกแสดงที่นี่" />
         </div>
         <div class="product-info-area">
-            <h1 id="product-name"></h1>
+            <h1 id="product-name">กำลังโหลด...</h1>
             <div class="price" id="product-price"></div>
             <p class="description" id="product-description"></p>
 
             <h3>คุณสมบัติหลัก:</h3>
-            <ul class="features">
-                </ul>
+            <ul class="features"></ul>
 
             <div class="add-to-cart-section">
-                <div class="quantity-control">
-                    <button id="decrease-quantity">-</button>
-                    <input type="number" id="quantity" value="1" min="1" />
-                    <button id="increase-quantity">+</button>
+                <div class="quantity-control" role="group" aria-label="จำนวนสินค้า">
+                    <button id="decrease-quantity" aria-label="ลดจำนวนสินค้า">-</button>
+                    <input type="number" id="quantity" value="1" min="1" aria-live="polite" aria-atomic="true" />
+                    <button id="increase-quantity" aria-label="เพิ่มจำนวนสินค้า">+</button>
                 </div>
-                <button class="btn" id="add-to-cart-btn">เพิ่มลงตะกร้า</button>
+                <button class="btn" id="add-to-cart-btn" aria-live="polite" aria-atomic="true">เพิ่มลงตะกร้า</button>
             </div>
-            <button class="btn btn-secondary" style="margin-top: 1rem; width: 100%;">กลับไปดูสินค้าทั้งหมด</button>
+            <button class="btn btn-secondary" id="back-to-all-products" style="margin-top: 1rem;">กลับไปดูสินค้าทั้งหมด</button>
         </div>
     </main>
 
     <footer class="footer">
         <p>&copy; 2025 PhoneXpress. All rights reserved.</p>
+        <p>PhoneNumber: 082-691-5252</p>
+        <p>Email: iPhoneXpress@gmail.com</p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const modelParam = urlParams.get('model');
-    
-            // --- ฐานข้อมูลสินค้า (ชื่อ, ราคา, รูปภาพ, คำอธิบาย) ---
-            const products = {
-                "iphone14purple": { name: "iPhone 14 (Purple)", price: "฿25,900", image: "assets/image/iphone/iPhone 14 purple.png", description: "iPhone 14 มาพร้อมระบบกล้องคู่ที่น่าทึ่งและชิป A15 Bionic ที่เร็วสุดแรง" },
-                "iphone14midnight": { name: "iPhone 14 (Midnight)", price: "฿25,900", image: "assets/image/iphone/iphone 14 midnight.png", description: "iPhone 14 มาพร้อมระบบกล้องคู่ที่น่าทึ่งและชิป A15 Bionic ที่เร็วสุดแรง" },
-                "iphone14blue": { name: "iPhone 14 (Blue)", price: "฿25,900", image: "assets/image/iphone/iphone-14-blue.png", description: "iPhone 14 มาพร้อมระบบกล้องคู่ที่น่าทึ่งและชิป A15 Bionic ที่เร็วสุดแรง" }, // เพิ่มสีฟ้า
-                "iphone15black": { name: "iPhone 15 (Black)", price: "฿32,900", image: "assets/image/iphone/iphone 15 black.png", description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์สุดทนทาน" },
-                "iphone15blue": { name: "iPhone 15 (Blue)", price: "฿32,900", image: "assets/image/iphone/iphone 15 blue.png", description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์สุดทนทาน" },
-                "iphone15pink": { name: "iPhone 15 (Pink)", price: "฿32,900", image: "assets/image/iphone/iphone 15 pink.png", description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์สุดทนทาน" },
-                "iphone15problacktitanium": { name: "iPhone 15 Pro (Black Titanium)", price: "฿39,900", image: "assets/image/iphone/iphone 15 pro black titanium.png", description: "iPhone 15 Pro ประสิทธิภาพระดับโปรในดีไซน์ไทเทเนียม พร้อมปุ่มแอ็คชั่นที่ปรับแต่งได้" },
-                "iphone15pronaturaltitanium": { name: "iPhone 15 Pro (Natural Titanium)", price: "฿39,900", image: "assets/image/iphone/iphone 15 pro natural titanium.png", description: "iPhone 15 Pro ประสิทธิภาพระดับโปรในดีไซน์ไทเทเนียม พร้อมปุ่มแอ็คชั่นที่ปรับแต่งได้" },
-                "iphone15prowhitetitanium": { name: "iPhone 15 Pro (White Titanium)", price: "฿39,900", image: "assets/image/iphone/iphone 15 pro white titanium.png", description: "iPhone 15 Pro ประสิทธิภาพระดับโปรในดีไซน์ไทเทเนียม พร้อมปุ่มแอ็คชั่นที่ปรับแต่งได้" },
-                "iphone15promaxbluetitanium": { name: "iPhone 15 Pro Max (Blue Titanium)", price: "฿45,900", image: "assets/image/iphone/iPhone 15 Pro Max Blue Titanium.png", description: "ที่สุดแห่ง iPhone พร้อมดีไซน์ไทเทเนียม, ชิป A17 Pro และระบบกล้องที่ทรงพลังที่สุด" },
-                "iphone15promaxnaturaltitanium": { name: "iPhone 15 Pro Max (Natural Titanium)", price: "฿45,900", image: "assets/image/iphone/iPhone 15 Pro Max Natural Titanium.png", description: "ที่สุดแห่ง iPhone พร้อมดีไซน์ไทเทเนียม, ชิป A17 Pro และระบบกล้องที่ทรงพลังที่สุด" },
-                "iphone15promaxblack": { name: "iPhone 15 Pro Max (Black)", price: "฿45,900", image: "assets/image/iphone/iPhone 15 Pro Max black.png", description: "ที่สุดแห่ง iPhone พร้อมดีไซน์ไทเทเนียม, ชิป A17 Pro และระบบกล้องที่ทรงพลังที่สุด" },
-                "iphone16black": { name: "iPhone 16 (Black)", price: "฿32,900", image: "assets/image/iphone/iphone16-Black.png", description: "iPhone 16 ก้าวกระโดดครั้งใหญ่ด้วยชิป A18 และฟีเจอร์กล้องอัจฉริยะ" },
-                "iphone16silvergray": { name: "iPhone 16 (Silver/Gray)", price: "฿32,900", image: "assets/image/iphone/iphone16-Silver-gray.png", description: "iPhone 16 ก้าวกระโดดครั้งใหญ่ด้วยชิป A18 และฟีเจอร์กล้องอัจฉริยะ" },
-                "iphone16pink": { name: "iPhone 16 (Pink)", price: "฿32,900", image: "assets/image/iphone/iphone16-pink.png", description: "iPhone 16 ก้าวกระโดดครั้งใหญ่ด้วยชิป A18 และฟีเจอร์กล้องอัจฉริยะ" },
-                "iphone16prosilvergrey": { name: "iPhone 16 Pro (Silver/Grey)", price: "฿42,900", image: "assets/image/iphone/iphone 16 pro silver grey.png", description: "iPhone 16 Pro นิยามใหม่ของพลังและความสามารถในการถ่ายภาพบนหน้าจอที่ใหญ่ขึ้น" },
-                "iphone16prowhite": { name: "iPhone 16 Pro (White)", price: "฿42,900", image: "assets/image/iphone/iphone 16 pro white.png", description: "iPhone 16 Pro นิยามใหม่ของพลังและความสามารถในการถ่ายภาพบนหน้าจอที่ใหญ่ขึ้น" },
-                "iphone16promaxdeserttitanium": { name: "iPhone 16 Pro Max (Desert Titanium)", price: "฿48,900", image: "assets/image/iphone/iPhone 16 Pro Max Desert Titanium.png", description: "ประสบการณ์ iPhone ที่สมบูรณ์แบบที่สุด ด้วยจอภาพใหญ่สุด, แบตฯอึดสุด และกล้องระดับปฏิวัติวงการ" },
-                "iphone16promaxnaturaltitanium": { name: "iPhone 16 Pro Max (Natural Titanium)", price: "฿48,900", image: "assets/image/iphone/iPhone 16 Pro Max Natural Natural Titanium.png", description: "ประสบการณ์ iPhone ที่สมบูรณ์แบบที่สุด ด้วยจอภาพใหญ่สุด, แบตฯอึดสุด และกล้องระดับปฏิวัติวงการ" },
-                "iphone16promaxblack": { name: "iPhone 16 Pro Max (Black)", price: "฿48,900", image: "assets/image/iphone/iphone16-promax-Black.png", description: "ประสบการณ์ iPhone ที่สมบูรณ์แบบที่สุด ด้วยจอภาพใหญ่สุด, แบตฯอึดสุด และกล้องระดับปฏิวัติวงการ" },
-                "iphonese3rdgenmidnight": { name: "iPhone SE 3rd Gen (Midnight)", price: "฿15,900", image: "assets/image/iphone/iphone se 3rd gen midnight.png", description: "พลังแรงจากชิป A15 Bionic ในดีไซน์กะทัดรัดสุดคลาสสิกที่ทุกคนคุ้นเคย" },
-                "iphonese3rdgenred": { name: "iPhone SE 3rd Gen (Red)", price: "฿15,900", image: "assets/image/iphone/iphone se 3rd gen red.png", description: "พลังแรงจากชิป A15 Bionic ในดีไซน์กะทัดรัดสุดคลาสสิกที่ทุกคนคุ้นเคย" },
-                "iphonese3rdgenstarlight": { name: "iPhone SE 3rd Gen (Starlight)", price: "฿15,900", image: "assets/image/iphone/iphone se 3rd gen starlight.png", description: "พลังแรงจากชิป A15 Bionic ในดีไซน์กะทัดรัดสุดคลาสสิกที่ทุกคนคุ้นเคย" },
-            };
-    
-            // --- ฐานข้อมูลคุณสมบัติหลัก ---
+
+            // ฐานข้อมูลสินค้า
+const products = {
+  "iphone14purple": {
+    name: "iPhone 14 (Purple)",
+    price: "฿25,900",
+    image: "assets/image/iphone/iPhone 14 purple.png",
+    description: "iPhone 14 มาพร้อมระบบกล้องคู่ที่น่าทึ่งและชิป A15 Bionic ที่เร็วสุดแรง"
+  },
+  "iphone14midnight": {
+    name: "iPhone 14 (Midnight)",
+    price: "฿25,900",
+    image: "assets/image/iphone/iphone 14 midnight.png",
+    description: "iPhone 14 มาพร้อมระบบกล้องคู่ที่น่าทึ่งและชิป A15 Bionic ที่เร็วสุดแรง"
+  },
+  "iphone14blue": {
+    name: "iPhone 14 (Blue)",
+    price: "฿25,900",
+    image: "assets/image/iphone/iphone-14-blue.png",
+    description: "iPhone 14 มาพร้อมระบบกล้องคู่ที่น่าทึ่งและชิป A15 Bionic ที่เร็วสุดแรง"
+  },
+  "iphone15black": {
+    name: "iPhone 15 (Black)",
+    price: "฿32,900",
+    image: "assets/image/iphone/iphone 15 black.png",
+    description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์สุดทนทาน"
+  },
+  "iphone15blue": {
+    name: "iPhone 15 (Blue)",
+    price: "฿32,900",
+    image: "assets/image/iphone/iphone 15 blue.png",
+    description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์สุดทนทาน"
+  },
+  "iphone15pink": {
+    name: "iPhone 15 (Pink)",
+    price: "฿32,900",
+    image: "assets/image/iphone/iphone 15 pink.png",
+    description: "iPhone 15 มาพร้อม Dynamic Island, กล้องหลัก 48MP และ USB-C ในดีไซน์สุดทนทาน"
+  },
+  "iphone15problacktitanium": {
+    name: "iPhone 15 Pro (Black Titanium)",
+    price: "฿39,900",
+    image: "assets/image/iphone/iphone 15 pro black titanium.png",
+    description: "iPhone 15 Pro ประสิทธิภาพระดับโปรในดีไซน์ไทเทเนียม พร้อมปุ่มแอ็คชั่นที่ปรับแต่งได้"
+  },
+  "iphone15pronaturaltitanium": {
+    name: "iPhone 15 Pro (Natural Titanium)",
+    price: "฿39,900",
+    image: "assets/image/iphone/iphone 15 pro natural titanium.png",
+    description: "iPhone 15 Pro ประสิทธิภาพระดับโปรในดีไซน์ไทเทเนียม พร้อมปุ่มแอ็คชั่นที่ปรับแต่งได้"
+  },
+  "iphone15prowhitetitanium": {
+    name: "iPhone 15 Pro (White Titanium)",
+    price: "฿39,900",
+    image: "assets/image/iphone/iphone 15 pro white titanium.png",
+    description: "iPhone 15 Pro ประสิทธิภาพระดับโปรในดีไซน์ไทเทเนียม พร้อมปุ่มแอ็คชั่นที่ปรับแต่งได้"
+  },
+  "iphone15promaxbluetitanium": {
+    name: "iPhone 15 Pro Max (Blue Titanium)",
+    price: "฿45,900",
+    image: "assets/image/iphone/iPhone 15 Pro Max Blue Titanium.png",
+    description: "ที่สุดแห่ง iPhone พร้อมดีไซน์ไทเทเนียม, ชิป A17 Pro และระบบกล้องที่ทรงพลังที่สุด"
+  },
+  "iphone15promaxnaturaltitanium": {
+    name: "iPhone 15 Pro Max (Natural Titanium)",
+    price: "฿45,900",
+    image: "assets/image/iphone/iPhone 15 Pro Max Natural Titanium.png",
+    description: "ที่สุดแห่ง iPhone พร้อมดีไซน์ไทเทเนียม, ชิป A17 Pro และระบบกล้องที่ทรงพลังที่สุด"
+  },
+  "iphone15promaxblack": {
+    name: "iPhone 15 Pro Max (Black)",
+    price: "฿45,900",
+    image: "assets/image/iphone/iPhone 15 Pro Max black.png",
+    description: "ที่สุดแห่ง iPhone พร้อมดีไซน์ไทเทเนียม, ชิป A17 Pro และระบบกล้องที่ทรงพลังที่สุด"
+  },
+  "iphone16black": {
+    name: "iPhone 16 (Black)",
+    price: "฿32,900",
+    image: "assets/image/iphone/iphone16-Black.png",
+    description: "iPhone 16 ก้าวกระโดดครั้งใหญ่ด้วยชิป A18 และฟีเจอร์กล้องอัจฉริยะ"
+  },
+  "iphone16silvergray": {
+    name: "iPhone 16 (Silver/Gray)",
+    price: "฿32,900",
+    image: "assets/image/iphone/iphone16-Silver-gray.png",
+    description: "iPhone 16 ก้าวกระโดดครั้งใหญ่ด้วยชิป A18 และฟีเจอร์กล้องอัจฉริยะ"
+  },
+  "iphone16pink": {
+    name: "iPhone 16 (Pink)",
+    price: "฿32,900",
+    image: "assets/image/iphone/iphone16-pink.png",
+    description: "iPhone 16 ก้าวกระโดดครั้งใหญ่ด้วยชิป A18 และฟีเจอร์กล้องอัจฉริยะ"
+  },
+  "iphone16prosilvergrey": {
+    name: "iPhone 16 Pro (Silver/Grey)",
+    price: "฿42,900",
+    image: "assets/image/iphone/iphone 16 pro silver grey.png",
+    description: "iPhone 16 Pro นิยามใหม่ของพลังและความสามารถในการถ่ายภาพบนหน้าจอที่ใหญ่ขึ้น"
+  },
+  "iphone16prowhite": {
+    name: "iPhone 16 Pro (White)",
+    price: "฿42,900",
+    image: "assets/image/iphone/iphone 16 pro white.png",
+    description: "iPhone 16 Pro นิยามใหม่ของพลังและความสามารถในการถ่ายภาพบนหน้าจอที่ใหญ่ขึ้น"
+  },
+  "iphone16promaxdeserttitanium": {
+    name: "iPhone 16 Pro Max (Desert Titanium)",
+    price: "฿48,900",
+    image: "assets/image/iphone/iPhone 16 Pro Max Desert Titanium.png",
+    description: "ประสบการณ์ iPhone ที่สมบูรณ์แบบที่สุด ด้วยจอภาพใหญ่สุด, แบตฯอึดสุด และกล้องระดับปฏิวัติวงการ"
+  },
+  "iphone16promaxnaturaltitanium": {
+    name: "iPhone 16 Pro Max (Natural Titanium)",
+    price: "฿48,900",
+    image: "assets/image/iphone/iPhone 16 Pro Max Natural Natural Titanium.png",
+    description: "ประสบการณ์ iPhone ที่สมบูรณ์แบบที่สุด ด้วยจอภาพใหญ่สุด, แบตฯอึดสุด และกล้องระดับปฏิวัติวงการ"
+  },
+  "iphone16promaxblack": {
+    name: "iPhone 16 Pro Max (Black)",
+    price: "฿48,900",
+    image: "assets/image/iphone/iphone16-promax-Black.png",
+    description: "ประสบการณ์ iPhone ที่สมบูรณ์แบบที่สุด ด้วยจอภาพใหญ่สุด, แบตฯอึดสุด และกล้องระดับปฏิวัติวงการ"
+  },
+  "iphonese3rdgenmidnight": {
+    name: "iPhone SE 3rd Gen (Midnight)",
+    price: "฿15,900",
+    image: "assets/image/iphone/iphone se 3rd gen midnight.png",
+    description: "พลังแรงจากชิป A15 Bionic ในดีไซน์กะทัดรัดสุดคลาสสิกที่ทุกคนคุ้นเคย"
+  },
+  "iphonese3rdgenred": {
+    name: "iPhone SE 3rd Gen (Red)",
+    price: "฿15,900",
+    image: "assets/image/iphone/iphone se 3rd gen red.png",
+    description: "พลังแรงจากชิป A15 Bionic ในดีไซน์กะทัดรัดสุดคลาสสิกที่ทุกคนคุ้นเคย"
+  },
+  "iphonese3rdgenstarlight": {
+    name: "iPhone SE 3rd Gen (Starlight)",
+    price: "฿15,900",
+    image: "assets/image/iphone/iphone se 3rd gen starlight.png",
+    description: "พลังแรงจากชิป A15 Bionic ในดีไซน์กะทัดรัดสุดคลาสสิกที่ทุกคนคุ้นเคย"
+  },
+  // เพิ่มข้อมูลอื่น ๆ ถ้าต้องการ
+};
+const products = {
+  "iphone13mini": {
+    name: "iPhone 13 mini",
+    price: "฿19,900",
+    image: "assets/image/iphone/iphone13-mini.png",
+    description: "iPhone 13 mini ขนาดกะทัดรัดพร้อมชิป A15 Bionic และกล้องคู่ที่ทรงพลัง"
+  },
+  "iphone13": {
+    name: "iPhone 13",
+    price: "฿22,900",
+    image: "assets/image/iphone/iphone13.png",
+    description: "iPhone 13 มาพร้อมชิป A15 Bionic และหน้าจอ Super Retina XDR"
+  },
+  "iphone13pro": {
+    name: "iPhone 13 Pro",
+    price: "฿28,900",
+    image: "assets/image/iphone/iphone13-pro.png",
+    description: "iPhone 13 Pro จอ ProMotion 120Hz, ชิป A15 และกล้อง Pro ระดับสูง"
+  },
+  "iphone13promax": {
+    name: "iPhone 13 Pro Max",
+    price: "฿32,900",
+    image: "assets/image/iphone/iphone13-pro-max.png",
+    description: "iPhone 13 Pro Max หน้าจอใหญ่ 6.7 นิ้ว พร้อมกล้องระดับโปรและแบตเตอรี่ที่อึดกว่า"
+  },
+  "iphone12": {
+    name: "iPhone 12",
+    price: "฿18,900",
+    image: "assets/image/iphone/iphone12.png",
+    description: "iPhone 12 ดีไซน์ใหม่แบบ Ceramic Shield พร้อมชิป A14 Bionic และกล้องคู่"
+  },
+  "iphone12mini": {
+    name: "iPhone 12 mini",
+    price: "฿15,900",
+    image: "assets/image/iphone/iphone12-mini.png",
+    description: "iPhone 12 mini ขนาดเล็กแต่แรงด้วยชิป A14 Bionic และกล้องคู่ 12MP"
+  },
+  "iphone11": {
+    name: "iPhone 11",
+    price: "฿12,900",
+    image: "assets/image/iphone/iphone11.png",
+    description: "iPhone 11 มาพร้อมชิป A13 Bionic และกล้องคู่ที่ถ่ายภาพยอดเยี่ยม"
+  },
+  "iphone11pro": {
+    name: "iPhone 11 Pro",
+    price: "฿18,900",
+    image: "assets/image/iphone/iphone11-pro.png",
+    description: "iPhone 11 Pro หน้าจอ OLED, กล้องสามตัว และชิป A13 Bionic"
+  },
+  "iphone11promax": {
+    name: "iPhone 11 Pro Max",
+    price: "฿20,900",
+    image: "assets/image/iphone/iphone11-pro-max.png",
+    description: "iPhone 11 Pro Max จอใหญ่ 6.5 นิ้ว พร้อมกล้องสามตัวและแบตเตอรี่ที่ใช้งานได้นาน"
+  },
+  "iphonexr": {
+    name: "iPhone XR",
+    price: "฿10,900",
+    image: "assets/image/iphone/iphonexr.png",
+    description: "iPhone XR สีสันสดใส พร้อมชิป A12 Bionic และหน้าจอ Liquid Retina"
+  },
+  "iphonexs": {
+    name: "iPhone XS",
+    price: "฿14,900",
+    image: "assets/image/iphone/iphonexs.png",
+    description: "iPhone XS จอ OLED, ชิป A12 Bionic และกล้องคู่ที่ยอดเยี่ยม"
+  },
+  "iphonexsmax": {
+    name: "iPhone XS Max",
+    price: "฿16,900",
+    image: "assets/image/iphone/iphonexsmax.png",
+    description: "iPhone XS Max หน้าจอใหญ่ 6.5 นิ้ว พร้อมชิป A12 Bionic และกล้องคู่"
+  },
+  "iphonex": {
+    name: "iPhone X",
+    price: "฿12,500",
+    image: "assets/image/iphone/iphonex.png",
+    description: "iPhone X รุ่นฉลองครบรอบ 10 ปี พร้อมดีไซน์ใหม่และหน้าจอ OLED แบบไร้ขอบ"
+  },
+  "iphonese2ndgen": {
+    name: "iPhone SE 2nd Gen",
+    price: "฿9,900",
+    image: "assets/image/iphone/iphonese2ndgen.png",
+    description: "iPhone SE รุ่นที่ 2 ดีไซน์คลาสสิกพร้อมชิป A13 Bionic ในราคาย่อมเยา"
+  },
+  "iphone8": {
+    name: "iPhone 8",
+    price: "฿7,900",
+    image: "assets/image/iphone/iphone8.png",
+    description: "iPhone 8 ดีไซน์กระจก พร้อมชาร์จไร้สายและกล้อง 12MP"
+  },
+  "iphone8plus": {
+    name: "iPhone 8 Plus",
+    price: "฿9,500",
+    image: "assets/image/iphone/iphone8plus.png",
+    description: "iPhone 8 Plus จอใหญ่ 5.5 นิ้ว พร้อมกล้องคู่และชาร์จไร้สาย"
+  }
+};
+
+
+            // ฐานข้อมูลคุณสมบัติหลัก
             const features = {
                 "iphone14": ["หน้าจอ Super Retina XDR 6.1″", "ชิป A15 Bionic (5-core GPU)", "กล้องหลังคู่ 12MP", "แบตฯ ดูวิดีโอสูงสุด 20 ชม.", "กันน้ำ-ฝุ่น IP68, Ceramic Shield"],
                 "iphone15": ["หน้าจอ Super Retina XDR 6.1″ พร้อม Dynamic Island", "ชิป A16 Bionic", "กล้องหลัก 48MP + Ultra-Wide", "พอร์ต USB-C", "แบตฯ ดูวิดีโอสูงสุด 20 ชม."],
@@ -420,78 +640,106 @@
                 "iphone16promax": ["จอ ProMotion 6.9″ (Adaptive 120Hz)", "ชิป A18 Pro", "กล้องระดับโปรเหมือน 16 Pro", "แบตเตอรี่ความจุสูงสุดในไลน์อัพ", "ตัวเครื่องไทเทเนียม จอใหญ่สุด"],
                 "iphonese3rdgen": ["หน้าจอ Retina HD LCD 4.7″", "ชิป A15 Bionic", "กล้องเดี่ยว 12MP Wide", "Touch ID เพื่อความปลอดภัย", "กันน้ำ-ฝุ่น IP67"],
             };
-            
-            // สร้าง key แบบสั้นสำหรับ features object (ถ้า modelParam มีค่า)
-            const featureKey = modelParam ? modelParam.replace(/(purple|midnight|blue|black|pink|titanium|natural|white|silvergrey|desert|red|starlight)/gi, '') : null;
-            
+
+            // ฟังก์ชันดึง key หลักของรุ่น (เอาสี/วัสดุออก)
+            function getFeatureKey(model) {
+                if (!model) return null;
+                // ลบคำพวกสี/วัสดุให้เหลือชื่อรุ่นหลัก
+                return model.toLowerCase().replace(/(purple|midnight|blue|black|pink|titanium|natural|white|silvergray|silvergrey|desert|red|starlight|grey|gray|promax)/gi, '')
+                    .replace(/(\d+)/g, (m) => m) // ให้เลขอยู่ เช่น 14, 15, 16
+                    .replace(/\s+/g, '')
+                    .replace(/pro{0,1}max{0,1}/g, match => {
+                        if(match.toLowerCase().includes('promax')) return 'promax';
+                        if(match.toLowerCase().includes('pro')) return 'pro';
+                        return '';
+                    });
+            }
+
+            const featureKey = getFeatureKey(modelParam);
             const product = products[modelParam];
-            const productFeatures = featureKey ? features[featureKey] : null;
-    
+            const productFeatures = featureKey && features[featureKey] ? features[featureKey] : [];
+
+            const productImageEl = document.getElementById('product-image');
+            const productNameEl = document.getElementById('product-name');
+            const productPriceEl = document.getElementById('product-price');
+            const productDescriptionEl = document.getElementById('product-description');
+            const featuresListEl = document.querySelector('.features');
+            const featuresHeader = document.querySelector('.product-info-area h3');
+            const addToCartSection = document.querySelector('.add-to-cart-section');
+
             if (product) {
-                document.title = `PhoneXpress - ${product.name}`; // อัปเดต Title ของหน้าเว็บ
-                document.getElementById('product-image').src = product.image;
-                document.getElementById('product-image').alt = product.name;
-                document.getElementById('product-name').textContent = product.name;
-                document.getElementById('product-price').textContent = product.price;
-                document.getElementById('product-description').textContent = product.description;
-    
-                // --- ส่วนแสดงผลคุณสมบัติ ---
-                const featuresListElement = document.querySelector('.features');
-                const featuresHeader = document.querySelector('.product-info-area h3');
-                featuresListElement.innerHTML = ''; // ล้างค่าเริ่มต้นใน HTML
-    
-                if (productFeatures && productFeatures.length > 0) {
+                // ตั้งค่า title
+                document.title = `PhoneXpress - ${product.name}`;
+
+                // แสดงข้อมูลสินค้า
+                productImageEl.src = product.image;
+                productImageEl.alt = product.name;
+                productNameEl.textContent = product.name;
+                productPriceEl.textContent = product.price;
+                productDescriptionEl.textContent = product.description;
+
+                // แสดงฟีเจอร์
+                featuresListEl.innerHTML = '';
+                if (productFeatures.length > 0) {
                     featuresHeader.style.display = 'block';
-                    productFeatures.forEach(featureText => {
-                        const listItem = document.createElement('li');
-                        listItem.textContent = featureText;
-                        featuresListElement.appendChild(listItem);
+                    productFeatures.forEach(feature => {
+                        const li = document.createElement('li');
+                        li.textContent = feature;
+                        featuresListEl.appendChild(li);
                     });
                 } else {
-                     featuresHeader.style.display = 'none'; // ซ่อนหัวข้อถ้าไม่มีข้อมูล
+                    featuresHeader.style.display = 'none';
                 }
-    
+                addToCartSection.style.display = 'flex';
             } else {
                 // กรณีไม่พบสินค้า
-                document.getElementById('product-name').textContent = 'ไม่พบสินค้า';
-                document.getElementById('product-price').textContent = '';
-                document.getElementById('product-description').textContent = 'ขออภัย ไม่พบรายละเอียดสำหรับสินค้านี้';
-                document.getElementById('product-image').src = '';
-                document.getElementById('product-image').alt = 'Product not found';
-                document.querySelector('.add-to-cart-section').style.display = 'none'; // ซ่อนส่วนเพิ่มลงตะกร้า
-                document.querySelector('.features').style.display = 'none'; // ซ่อนคุณสมบัติ
-                document.querySelector('.product-info-area h3').style.display = 'none';
+                productNameEl.textContent = 'ไม่พบสินค้า';
+                productPriceEl.textContent = '';
+                productDescriptionEl.textContent = 'ขออภัย ไม่พบรายละเอียดสำหรับสินค้านี้';
+                productImageEl.src = 'assets/image/not-found.png'; // ใส่รูป default "ไม่พบสินค้า" (ถ้ามี)
+                productImageEl.alt = 'ไม่พบสินค้า';
+                featuresHeader.style.display = 'none';
+                featuresListEl.style.display = 'none';
+                addToCartSection.style.display = 'none';
             }
-    
-            // --- ส่วนควบคุมจำนวนและตะกร้า (เหมือนเดิม) ---
+
+            // ควบคุมจำนวนสินค้า
             const decreaseBtn = document.getElementById('decrease-quantity');
             const increaseBtn = document.getElementById('increase-quantity');
             const quantityInput = document.getElementById('quantity');
             const addToCartBtn = document.getElementById('add-to-cart-btn');
-    
+
             decreaseBtn.addEventListener('click', () => {
-                let currentValue = parseInt(quantityInput.value);
-                if (currentValue > 1) {
-                    quantityInput.value = currentValue - 1;
-                }
+                let val = parseInt(quantityInput.value);
+                if (val > 1) quantityInput.value = val - 1;
             });
-    
+
             increaseBtn.addEventListener('click', () => {
-                let currentValue = parseInt(quantityInput.value);
-                quantityInput.value = currentValue + 1;
+                let val = parseInt(quantityInput.value);
+                quantityInput.value = val + 1;
             });
-    
+
+            quantityInput.addEventListener('input', () => {
+                let val = parseInt(quantityInput.value);
+                if (isNaN(val) || val < 1) quantityInput.value = 1;
+            });
+
             addToCartBtn.addEventListener('click', () => {
                 if (!product) {
                     alert('ไม่สามารถเพิ่มสินค้าลงตะกร้าได้: ไม่พบข้อมูลสินค้า');
                     return;
                 }
                 const quantity = parseInt(quantityInput.value);
+                if (isNaN(quantity) || quantity < 1) {
+                    alert('กรุณาระบุจำนวนสินค้าที่ถูกต้อง');
+                    return;
+                }
+
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                const existingProductIndex = cart.findIndex(item => item.model === modelParam);
-    
-                if (existingProductIndex > -1) {
-                    cart[existingProductIndex].quantity += quantity;
+                const existingIndex = cart.findIndex(item => item.model === modelParam);
+
+                if (existingIndex > -1) {
+                    cart[existingIndex].quantity += quantity;
                 } else {
                     cart.push({
                         model: modelParam,
@@ -505,17 +753,12 @@
                 alert(`เพิ่ม ${product.name} จำนวน ${quantity} ชิ้น ลงในตะกร้าแล้ว!`);
                 window.location.href = 'cart.html';
             });
-    
-            // --- ปุ่มกลับไปดูสินค้าทั้งหมด (เหมือนเดิม) ---
-            document.querySelector('.btn-secondary').addEventListener('click', () => {
+
+            // ปุ่มกลับไปดูสินค้าทั้งหมด
+            document.getElementById('back-to-all-products').addEventListener('click', () => {
                 window.location.href = 'allproduct.html';
             });
         });
     </script>
-        <footer class="footer">
-        <p>&copy; 2025 PhoneXpress. All rights reserved.</p>
-        <p> PhoneNumber 082-691-5252 </p>
-        <p> @iPhoneXpress@gmail.com </p>
-    </footer>
 </body>
 </html>

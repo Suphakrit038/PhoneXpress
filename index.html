@@ -132,7 +132,7 @@
     .hero {
       text-align: center;
       padding: 3rem 1.5rem;
-      background: linear-gradient(180deg, rgba(0,0,0,00.15), rgba(0, 0, 0, 0.15));
+      background: linear-gradient(180deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
       min-height: 40px;
       display: flex;
       flex-direction: column;
@@ -302,7 +302,6 @@
 
     <main>
         <section class="hero">
-          height: 250px;
             <h1>ซื้อ iPhone แท้ ง่าย ปลอดภัย และเหนือระดับ</h1>
             <p>เปรียบเทียบรุ่น สี ความจุ พร้อมชำระเงินในคลิกเดียว</p>
             <a href="allproduct.html" class="btn">ดูสินค้าทั้งหมด</a>
@@ -349,11 +348,25 @@
 
  
     </main>
+<div class="add-to-cart-success" id="cartMessage">✅ เพิ่มสินค้าลงในตะกร้าแล้ว!</div>
 
     <footer class="footer">
         <p>&copy; 2025 PhoneXpress. All rights reserved.</p>
         <p> PhoneNumber 082-691-5252 </p>
         <p> @iPhoneXpress@gmail.com </p>
     </footer>
+
+    <script>
+  function showAddToCartSuccess() {
+    const message = document.getElementById('cartMessage');
+    message.classList.add('show');
+
+    // ซ่อนข้อความอัตโนมัติภายใน 3 วินาที
+    setTimeout(() => {
+      message.classList.remove('show');
+    }, 3000);
+  }
+</script>
+
 </body>
 </html>

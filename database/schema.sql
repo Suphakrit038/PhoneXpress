@@ -2,20 +2,25 @@
 -- ไฟล์นี้ใช้สำหรับสร้างโครงสร้างฐานข้อมูลใน phpMyAdmin
 
 CREATE DATABASE IF NOT EXISTS phonexpress 
-CHARACTER SET utf8mb4 
-COLLATE utf8mb4_unicode_ci;
+CHARACTER SET utf8-- สร้าง Admin user (username: admin, email: admin@phonexpress.com, password: admin123)
+INSERT INTO users (username, email, password_hash, name, surname, role) VALUES
+('admin', 'admin@phonexpress.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Admin', 'PhoneXpress', 'admin');
+
+-- สร้าง Demo user (username: demo, email: demo@phonexpress.com, password: demo123)
+INSERT INTO users (username, email, password_hash, name, surname, tel) VALUES
+('demo', 'demo@phonexpress.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ผู้ใช้', 'ทดสอบ', '0812345678');OLLATE utf8mb4_unicode_ci;
 
 USE phonexpress;
 
 -- ตาราง users (ข้อมูลผู้ใช้)
 CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    password_hash VARCHAR(255) NOT NULL,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    phone VARCHAR(20),
+    id INT PRIMARY KEY AUTO_INCREMENT COMMENT 'รหัสลูกค้า (UserID)',
+    username VARCHAR(50) UNIQUE NOT NULL COMMENT 'ชื่อผู้ใช้ (Username)',
+    email VARCHAR(100) UNIQUE NOT NULL COMMENT 'อีเมล',
+    password_hash VARCHAR(255) NOT NULL COMMENT 'รหัสผ่าน (เข้ารหัสแล้ว)',
+    name VARCHAR(50) NOT NULL COMMENT 'ชื่อ',
+    surname VARCHAR(50) NOT NULL COMMENT 'นามสกุล',
+    tel VARCHAR(20) COMMENT 'เบอร์โทรศัพท์',
     address TEXT,
     city VARCHAR(50),
     postal_code VARCHAR(10),
@@ -24,7 +29,10 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     last_login TIMESTAMP NULL,
-    is_active BOOLEAN DEFAULT TRUE
+    is_active BOOLEAN DEFAULT TRUE,
+    INDEX idx_email (email),
+    INDEX idx_username (username),
+    INDEX idx_name_surname (name, surname)
 );
 
 -- ตาราง sessions (จัดการ Session การเข้าสู่ระบบ)
@@ -153,12 +161,12 @@ INSERT INTO products (model, name, color, storage, price, description, image_pat
 ('iphonese3red', 'iPhone SE (3rd gen)', 'Red', '64GB', 15900.00, 'iPhone SE รุ่นที่ 3 สีแดง ความจุ 64GB', 'assets/image/iphone/iphone se 3rd gen red.png', 45, FALSE),
 ('iphonese3starlight', 'iPhone SE (3rd gen)', 'Starlight', '64GB', 15900.00, 'iPhone SE รุ่นที่ 3 สี Starlight ความจุ 64GB', 'assets/image/iphone/iphone se 3rd gen starlight.png', 42, FALSE);
 
--- สร้าง Admin user (username: admin, password: admin123)
-INSERT INTO users (username, email, password_hash, first_name, last_name, role) VALUES
+-- สร้าง Admin user (username: admin, email: admin@phonexpress.com, password: admin123)
+INSERT INTO users (username, email, password_hash, name, surname, role) VALUES
 ('admin', 'admin@phonexpress.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Admin', 'PhoneXpress', 'admin');
 
--- สร้าง Demo user (username: demo, password: demo123)
-INSERT INTO users (username, email, password_hash, first_name, last_name, phone) VALUES
+-- สร้าง Demo user (username: demo, email: demo@phonexpress.com, password: demo123)
+INSERT INTO users (username, email, password_hash, name, surname, tel) VALUES
 ('demo', 'demo@phonexpress.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ผู้ใช้', 'ทดสอบ', '0812345678');
 
 -- View สำหรับดูข้อมูลผู้ใช้พร้อมสถิติ
@@ -167,8 +175,8 @@ SELECT
     u.id,
     u.username,
     u.email,
-    CONCAT(u.first_name, ' ', u.last_name) as full_name,
-    u.phone,
+    CONCAT(u.name, ' ', u.surname) as full_name,
+    u.tel,
     u.role,
     u.created_at,
     u.last_login,
@@ -205,9 +213,9 @@ CREATE VIEW order_details AS
 SELECT 
     o.id,
     o.order_number,
-    CONCAT(u.first_name, ' ', u.last_name) as customer_name,
+    CONCAT(u.name, ' ', u.surname) as customer_name,
     u.email as customer_email,
-    u.phone as customer_phone,
+    u.tel as customer_phone,
     o.total_amount,
     o.status,
     o.payment_status,

@@ -6,6 +6,8 @@
   <title>PhoneXpress - หน้าแรก</title>
   <meta name="description" content="ซื้อ iPhone ของแท้ ราคาดี มีให้เลือกหลากหลายรุ่น ส่งฟรีทั่วประเทศ - PhoneXpress">
   <link rel="icon" type="image/png" href="assets/image/favicon.png" />
+  <link rel="stylesheet" href="assets/css/auth.css">
+  <link rel="stylesheet" href="assets/css/enhanced.css">
   <style>
     :root {
       --gold: #d4af37;
@@ -298,6 +300,25 @@
             <a href="allproduct.html">สินค้า</a>
             <a href="cart.html">ตะกร้า</a>
         </div>
+        
+        <!-- Authentication Section -->
+        <div class="auth-section" id="authSection">
+            <div class="auth-buttons">
+                <button class="auth-btn login-btn" onclick="openLoginModal()">เข้าสู่ระบบ</button>
+                <button class="auth-btn signup-btn" onclick="openSignupModal()">สมัครสมาชิก</button>
+            </div>
+        </div>
+        
+        <!-- User Menu (Hidden by default) -->
+        <div class="user-menu" id="userMenu" style="display: none;">
+            <div class="user-avatar" id="userAvatar">U</div>
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">โปรไฟล์</a>
+                <a href="#" class="dropdown-item">คำสั่งซื้อ</a>
+                <a href="#" class="dropdown-item">ตั้งค่า</a>
+                <a href="#" class="dropdown-item logout" onclick="logout()">ออกจากระบบ</a>
+            </div>
+        </div>
     </nav>
 
     <main>
@@ -348,6 +369,80 @@
 
  
     </main>
+
+    <!-- Floating Shapes for Enhanced Design -->
+    <div class="floating-shapes">
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+    </div>
+
+    <!-- Authentication Modal -->
+    <div class="modal-overlay" id="authModal">
+        <div class="auth-modal">
+            <button class="close-btn" onclick="closeAuthModal()">&times;</button>
+            
+            <!-- Login Form -->
+            <div class="auth-form-container" id="loginForm">
+                <h2>เข้าสู่ระบบ</h2>
+                <form class="auth-form" onsubmit="return handleLogin(event)">
+                    <div class="form-group">
+                        <label for="loginEmail">อีเมล</label>
+                        <input type="email" id="loginEmail" name="email" placeholder="กรุณากรอกอีเมล" required>
+                        <div class="error-message" id="loginEmailError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">รหัสผ่าน</label>
+                        <input type="password" id="loginPassword" name="password" placeholder="กรุณากรอกรหัสผ่าน" required>
+                        <div class="error-message" id="loginPasswordError"></div>
+                    </div>
+                    <button type="submit" class="auth-submit-btn" id="loginSubmitBtn">เข้าสู่ระบบ</button>
+                </form>
+                <div class="form-toggle">
+                    <p>ยังไม่มีบัญชี?</p>
+                    <button type="button" class="toggle-btn" onclick="showSignupForm()">สมัครสมาชิก</button>
+                </div>
+            </div>
+            
+            <!-- Signup Form -->
+            <div class="auth-form-container" id="signupForm" style="display: none;">
+                <h2>สมัครสมาชิก</h2>
+                <form class="auth-form" onsubmit="return handleSignup(event)">
+                    <div class="form-group">
+                        <label for="signupName">ชื่อ-นามสกุล</label>
+                        <input type="text" id="signupName" name="name" placeholder="กรุณากรอกชื่อ-นามสกุล" required>
+                        <div class="error-message" id="signupNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">อีเมล</label>
+                        <input type="email" id="signupEmail" name="email" placeholder="กรุณากรอกอีเมล" required>
+                        <div class="error-message" id="signupEmailError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">รหัสผ่าน</label>
+                        <input type="password" id="signupPassword" name="password" placeholder="กรุณากรอกรหัสผ่าน (อย่างน้อย 6 ตัวอักษร)" required>
+                        <div class="error-message" id="signupPasswordError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupConfirmPassword">ยืนยันรหัสผ่าน</label>
+                        <input type="password" id="signupConfirmPassword" name="confirmPassword" placeholder="กรุณายืนยันรหัสผ่าน" required>
+                        <div class="error-message" id="signupConfirmPasswordError"></div>
+                    </div>
+                    <button type="submit" class="auth-submit-btn" id="signupSubmitBtn">สมัครสมาชิก</button>
+                </form>
+                <div class="form-toggle">
+                    <p>มีบัญชีแล้ว?</p>
+                    <button type="button" class="toggle-btn" onclick="showLoginForm()">เข้าสู่ระบบ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Notification -->
+    <div class="success-notification" id="successNotification">
+        <span id="successMessage"></span>
+    </div>
+
 <div class="add-to-cart-success" id="cartMessage">✅ เพิ่มสินค้าลงในตะกร้าแล้ว!</div>
 
     <script>
@@ -360,7 +455,9 @@
       message.classList.remove('show');
     }, 3000);
   }
-</script>
+    </script>
+    
+    <script src="assets/js/auth.js"></script>
 
     <footer class="footer">
         <p>&copy; 2025 PhoneXpress. All rights reserved.</p>

@@ -1,0 +1,41 @@
+# Temporary files and cache
+temp/
+*.tmp
+*.log
+
+# Database configuration (อาจมีข้อมูลสำคัญ)
+config/database.php
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Local development files
+*.local
+.env
+.env.local
+
+# Backup files
+*.bak
+*.backup
+*.sql.backup
+
+# Session and upload directories
+uploads/
+sessions/
+
+# Error logs
+error.log
+php_errors.log
